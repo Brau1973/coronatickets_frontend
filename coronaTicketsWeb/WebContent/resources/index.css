@@ -1,0 +1,4 @@
+/* Margen superior lo que ocupa el header */
+.headerSpace{
+	padding-top: 60px;
+}
