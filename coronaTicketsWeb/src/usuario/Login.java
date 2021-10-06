@@ -1,28 +1,25 @@
-
+package usuario;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datatypes.DtPlataforma;
-import interfaces.Fabrica;
-import interfaces.IControladorPlataforma;
-
-
 /**
- * Servlet implementation class hola
+ * Servlet implementation class Login
  */
-@WebServlet("/Hola")
-public class Hola extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Hola() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,15 +36,14 @@ public class Hola extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DtPlataforma dt = new DtPlataforma("Platasdfsd", "Hola", "Hola");
-		IControladorPlataforma iconPlat = Fabrica.getInstancia().getIControladorPlataforma();
-		try {
-			iconPlat.altaPlataforma(dt);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String userName = request.getParameter("user_name");
+		String userPass = request.getParameter("user_pass");
+		System.out.println("Login servlet");
+		// TODO logica de login
+		RequestDispatcher rd;
 		
+		rd = request.getRequestDispatcher("index.jsp");
+		rd.forward(request, response);
 	}
 
 }
