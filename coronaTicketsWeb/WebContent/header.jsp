@@ -40,7 +40,14 @@
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Usuarios</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li>
-			<li class="nav-item"><a class="nav-link" href="index.jsp">Espectaculos</a></li>
+			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Espectaculos </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="altaEspectaculo.jsp">Alta Espectaculo</a>
+			          <a class="dropdown-item" href="consultaEspectaculo.jsp">Consulta Espectaculo</a>
+		        	</div>
+      		</li>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Funciones</a></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
