@@ -44,8 +44,14 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Espectaculos </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			          <a class="dropdown-item" href="altaEspectaculo.jsp">Alta Espectaculo</a>
-			          <a class="dropdown-item" href="consultaEspectaculo.jsp">Consulta Espectaculo</a>
+			          <form action="Datos" method="post">
+						<button class="dropdown-item" type="submit">Alta Espectaculo</button>
+					</form>
+					<div class="dropdown-divider"></div>
+					<form action="ConsultaEspectaculo" method="post">
+						<button class="dropdown-item" type="submit">Consulta
+							 Espectaculo</button>
+					</form>
 		        	</div>
       		</li>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Funciones</a></li>

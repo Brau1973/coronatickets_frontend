@@ -1,4 +1,6 @@
-<%@page import="datatypes.DtEspectaculo"%>
+<%@page import="datatypes.*"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -73,34 +75,42 @@
 	<br></br>
 	<h1>Consulta de Espectaculo</h1>
 	<form action="ConsultaEspectaculo" method="post">
+		<input type="hidden" name="boton" id="boton" value="">
+
 		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<label class="input-group-text" for="inputGroupSelect01">Plataforma</label>
-			</div>
-			<select class="custom-select" id="inputGroupSelect01"
-				name="plataforma">
-				<option selected>Seleccione una Plataforma</option>
-				<option value="plataforma1">Spotify</option>
-				<option value="plataforma2">Facebook</option>
-				<option value="plataforma3">iTunes</option>
+			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
+			<select class="form-control" name="nomPlataforma"
+				onchange="procesar('btnPlataformas')" >
+				<%
+				   ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
+				for (String nomPlataforma : listPlataformas) {
+				%>
+				<option><%=nomPlataforma%></option>
+				<%
+				   }
+				%>
 			</select>
 		</div>
+
+
 		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<label class="input-group-text" for="inputGroupSelect01">Espectaculo</label>
-			</div>
-			<select class="custom-select" id="inputGroupSelect01"
-				name="espectaculo">
-				<option selected>Seleccione un Espectaculo</option>
-				<option value="espectaculo1">Avenged Sevenfold</option>
-				<option value="espectaculo2">Guns n' Roses</option>
-				<option value="espectaculo3">Red Hot Chili Peppers</option>
+			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
+			<select class="form-control" name="nomEspectaculos"
+				onchange="procesar('btnEspectaculos')">
+				<%
+				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) request.getAttribute("espectaculo");
+				for (DtEspectaculo nomEspectaculo : listEspectaculos) {
+				%>
+				<option><%=nomEspectaculo.getNombre()%></option>
+				<%
+				   }
+				%>
 			</select>
 		</div>
+
 		<table class="table table-striped">
 		<thead>
 			<tr>
-				<th scope="col">Nombre</th>
 				<th scope="col">Descripcion</th>
 				<th scope="col">Duracion</th>
 				<th scope="col">Espectadores Min</th>
@@ -115,7 +125,6 @@
 					for (DtEspectaculo dte : espectaculos) {
 			*/%>
 			<tr>
-				<td><%//=dte.getNombre()%></td>
 				<td><%//=dte.getDescripcion()%></td>
 				<td><%//=dte.getDuracion()%></td>
 				<td><%//=dte.getCantMin()%></td>
@@ -128,26 +137,99 @@
 			*/%>
 		</tbody>
 	</table>
+	
+	<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon3"> Funciones</span> <select
+				class="form-control" name="nomFuncion"
+				onchange="procesar('btnDatosFunciones')">
+				<%
+				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) request.getAttribute("funciones");
+				for (DtFuncion nomFuncion : listFunciones) {
+				%>
+				<option><%=nomFuncion.getNombre()%></option>
+				<%
+				   }
+				%>
+			</select>
+		</div>
+		
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th scope="col">Funciones</th>
+				<th scope="col">Fecha</th>
+				<th scope="col">Hora Inicio</th>
+				<th scope="col">Fecha Registro</th>
+				<th scope="col">Artistas</th>
 			</tr>
 		</thead>
 		<tbody>
+		<%/*
+				int i = 1;
+					for (DtFuncion dtf : funciones) {
+			*/%>
+			<tr>
+				<td><%//=dtf.getFecha()%></td>
+				<td><%//=dtf.getHoraInicio()%></td>
+				<td><%//=dtf.getRegistro()%></td>
+				<td><%//=dtf.getArtistas()%></td>
+			</tr>
+			<%/*
+				} 
+			*/%>
 		</tbody>
 	</table>
+	
+	<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon3"> Paquetes</span> <select
+				class="form-control" name="nomFuncion"
+				onchange="procesar('btnDatosPaquetes')">
+				<%
+				   ArrayList<DtPaqueteEspectaculo> listPaquetes = (ArrayList<DtPaqueteEspectaculo>) request.getAttribute("paquetes");
+				for (DtPaqueteEspectaculo nomPaquete : listPaquetes) {
+				%>
+				<option><%=nomPaquete.getNombre()%></option>
+				<%
+				   }
+				%>
+			</select>
+		</div>
+	
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th scope="col">Paquetes</th>
+				<th scope="col">Descripcion</th>
+				<th scope="col">Fecha Inicio</th>
+				<th scope="col">Fecha Fin</th>
+				<th scope="col">Fecha Alta</th>
+				<th scope="col">Descuento</th>
 			</tr>
 		</thead>
 		<tbody>
+		<%/*
+				int i = 1;
+					for (DtPaqueteEspectaculo dtp : paquetes) {
+			*/%>
+			<tr>
+				<td><%//=dtp.getDescripcion()%></td>
+				<td><%//=dtp.getFechaInicio()%></td>
+				<td><%//=dtp.getFechaFin()%></td>
+				<td><%//=dtp.getFechaAlta()%></td>
+				<td><%//=dtp.getDescuento()%></td>
+			</tr>
+			<%/*
+				}
+			*/%>
 		</tbody>
 	</table>
 		<button type="submit" class="btn btn-primary">Confirmar</button>
 	</form>
+	
+	<script type="text/javascript">
+	function procesar(tipo) {
+	    document.getElementById("boton").value = tipo;
+	    document.forms[3].submit();
+	}
+    </script>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
