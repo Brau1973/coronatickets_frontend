@@ -26,7 +26,7 @@
 				<%
 				   ArrayList<Espectaculo> listEspectadores = (ArrayList<Espectaculo>) request.getAttribute("espectador");
 				for(Espectaculo nomEspectador :listEspectadores){
-				   if(nomEspectador.getArtista().equals("artAldrin")){
+				   if(nomEspectador.getArtista().equals("aRose")){
 				%>
 				<option><%=nomEspectador.getNombre()%></option>
 				<%
@@ -70,6 +70,7 @@
 
 		<button class="btn btn-primary" type="submit">Agregar Funcion</button>
 	</form>
+	
 
 </body>
 </html>
