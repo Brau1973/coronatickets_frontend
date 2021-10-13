@@ -11,8 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import datatypes.DtEspectaculo;
+import datatypes.DtUsuario;
 import excepciones.EspectaculoRepetidoExcepcion;
 import interfaces.Fabrica;
 import interfaces.IControladorEspectaculo;
@@ -36,11 +38,13 @@ public class DejarDeSeguirUsuario extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
-		String usuarioLogueado = ""; // OBTENER VALOR DE LA SESION
-		String usuarioASeguir = request.getParameter("nomUsuario");
+		HttpSession session = request.getSession();
+		DtUsuario dtUsuLogueado = (DtUsuario) session.getAttribute("usuLogueado");	
+		String nicknameUsuarioLogueado = dtUsuLogueado.getNickname();
+		String nicknameUsuarioADejarDeSeguir = request.getParameter("nomUsuario");
 		RequestDispatcher rd;
-		iconU.seguirUsuario(usuarioLogueado,usuarioASeguir);
-		request.setAttribute("mensaje", "Ahora sigues al usuario "+usuarioASeguir);
+		iconU.seguirUsuario(nicknameUsuarioLogueado,nicknameUsuarioADejarDeSeguir);
+		request.setAttribute("mensaje", "Ya no sigues a "+nicknameUsuarioADejarDeSeguir);
 		rd = request.getRequestDispatcher("/notificacion.jsp");
 		rd.forward(request, response);
 	}
