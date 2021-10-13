@@ -26,8 +26,7 @@
 <%@include file="header.jsp"%>
 </head>
 <body>
-	<br></br>
-	<h1>Alta Espectaculo</h1>
+	<br></br> 
 	<form action="AltaEspectaculo" method="post">
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
@@ -46,41 +45,41 @@
 		<div class="form-group">
 			<label for="nombreEspectaculo">Nombre</label> <input type="text"
 				name="nomEspectaculo" class="form-control" id="nombreEspectaculo"
-				placeholder="Ingrese un nombre para el espectaculo">
+				placeholder="Ingrese un nombre para el espectaculo" required>
 		</div>
 		<div class="form-group">
 			<label for="descripcionEspectaculo">Descripcion</label> <input
 				type="text" name="descEspectaculo" class="form-control"
 				id="descripcionEspectaculo"
-				placeholder="Ingrese una descripcion para el espectaculo">
+				placeholder="Ingrese una descripcion para el espectaculo" required>
 		</div>
 		<div class="form-group">
 			<label for="duracionEspectaculo">Duracion</label> <input type="text"
 				name="durEspectaculo" class="form-control" id="duracionEspectaculo"
-				placeholder="Ingrese la duracion del espectaculo">
+				placeholder="Ingrese la duracion del espectaculo" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
 			<label for="quantity">Espectadores mínimos:</label> <input
 				type="number" id="quantity" name="espectadoresMin" min="1"
-				max="100000" style="width: 100px">
+				max="100000" style="width: 100px" required>
 		</div>
 		<div class="form-group">
 			<label for="quantity">Espectadores máximos:</label> <input
 				type="number" id="quantity" name="espectadoresMax" min="1"
-				max="100000" style="width: 100px">
+				max="100000" style="width: 100px" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
 			<label for="urlEspectaculo">URL</label> <input type="text"
 				name="urlEspectaculo" class="form-control" id="urlEspectaculo"
-				placeholder="Ingrese la URL del espectaculo">
+				placeholder="Ingrese la URL del espectaculo" required>
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">Costo</label> <input type="number"
 				name="costoEspectaculo" class="form-control"
 				id="exampleInputPassword1"
-				placeholder="Ingrese el costo del espectaculo">
+				placeholder="Ingrese el costo del espectaculo" required>
 		</div>
 		<div>
 			<label class="form-group" for="customFile">Seleccionar imagen</label>
@@ -90,8 +89,7 @@
 		<!-- se da de alta el espectaculo en la fecha actual-->
 		<!-- fecha de alta -->
 		<button type="reset" class="btn btn-primary">Cancelar</button>
-		<button type="submit" class="btn btn-primary"
-			onclick="procesar('alta')">Confirmar</button>
+		<button type="submit" class="btn btn-primary">Confirmar</button>
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -105,12 +103,12 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function procesar(tipo) {
 			document.getElementById("boton").value = tipo;
 			document.forms[0].submit();
 		}
-	</script>
+	</script> -->
 
 
 </body>

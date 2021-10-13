@@ -1,4 +1,4 @@
-<%-- <%@page import="datatypes.DtUsuario"%> --%>
+<%@page import="datatypes.DtUsuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -41,7 +41,9 @@
                         role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> Usuarios </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="seguirAUsuario.jsp">Seguir a Usuario</a>
+                      <form action="GetUsuarios" method="post">
+						<button class="dropdown-item" type="submit">Seguir a Usuario</button>
+					</form>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="">Dejar de seguir Usuario</a>
                     </div>
@@ -56,7 +58,7 @@
 						<button class="dropdown-item" type="submit">Alta Espectaculo</button>
 					</form>
 					<div class="dropdown-divider"></div>
-					<form action="ConsultaEspectaculo" method="post">
+					<form action="DatosConsulta" method="post">
 						<button class="dropdown-item" type="submit">Consulta
 							 Espectaculo</button>
 					</form>

@@ -50,43 +50,6 @@ public class ConsultaEspectaculo extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IControladorPlataforma iconP = Fabrica.getInstancia().getIControladorPlataforma();
-		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
-		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
-		IControladorPaquete iconPq = Fabrica.getInstancia().getIControladorPaquete();
-
-		String strPlataforma = request.getParameter("nomPlataforma");
-		List<String> listPlataformas = new ArrayList<String>();
-		String strEspectaculo = request.getParameter("nomEspectaculos");
-		List<DtEspectaculo> listEspectaculos = new ArrayList<DtEspectaculo>();
-		List<DtFuncion> dtFun = new ArrayList<DtFuncion>();
-		List<DtPaqueteEspectaculo> dtPaq = new ArrayList<DtPaqueteEspectaculo>();
-		RequestDispatcher rd;
-		if (strPlataforma != null) {
-			if (request.getParameter("boton").equals("btnPlataformas")) {
-				listEspectaculos = iconE.listarEspectaculos(strPlataforma);
-			} else if (request.getParameter("boton").equals("btnEspectaculos")) {
-				listEspectaculos = iconE.listarEspectaculos(strPlataforma);
-				dtFun = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
-				dtPaq = iconE.obtenerEspectaculo(strEspectaculo).getPaqueteEspectaculoDt();
-			} else if (request.getParameter("boton").equals("btnDatosFunciones")) {
-				String strFuncion = request.getParameter("nomFuncion");
-				
-			
-			}
-		}
-		try {
-			listPlataformas = iconP.listarPlataformasStr();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("plataformas", listPlataformas);
-		request.setAttribute("espectaculo", listEspectaculos);
-		request.setAttribute("funciones", dtFun);
-		request.setAttribute("paquetes", dtPaq);
 		
-		rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
-		rd.forward(request, response);
 	}
-
 }
