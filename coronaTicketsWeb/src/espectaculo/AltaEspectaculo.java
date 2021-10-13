@@ -24,38 +24,39 @@ import interfaces.IControladorPlataforma;
 @WebServlet("/AltaEspectaculo")
 public class AltaEspectaculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public AltaEspectaculo() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AltaEspectaculo() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
 		String plataforma = request.getParameter("nomPlataforma");
-		String artista = "aRose"; //pasar artista con el q ingresó al sistema
+		String artista = "aRose"; // pasar artista con el q ingresó al sistema
 		String nombre = request.getParameter("nomEspectaculo");
 		String descripcion = request.getParameter("descEspectaculo");
 		Integer duracion = Integer.valueOf(request.getParameter("durEspectaculo"));
-		Integer espectadoresMin= Integer.valueOf(request.getParameter("espectadoresMin"));
-		Integer espectadoresMax= Integer.valueOf(request.getParameter("espectadoresMax"));
+		Integer espectadoresMin = Integer.valueOf(request.getParameter("espectadoresMin"));
+		Integer espectadoresMax = Integer.valueOf(request.getParameter("espectadoresMax"));
 		String url = request.getParameter("urlEspectaculo");
 		Integer costo = Integer.valueOf(request.getParameter("costoEspectaculo"));
 		Date fechaAlta = new Date();
-		DtEspectaculo dte = new DtEspectaculo(artista, plataforma, nombre, descripcion, duracion, espectadoresMin, espectadoresMax, url, costo, fechaAlta);
+		DtEspectaculo dte = new DtEspectaculo(artista, plataforma, nombre, descripcion, duracion, espectadoresMin,
+				espectadoresMax, url, costo, fechaAlta);
 		RequestDispatcher rd;
-			if(request.getParameter("boton").equals("alta")) {
-				try {
-					iconE.altaEspectaculo(dte, plataforma);
-				} catch (EspectaculoRepetidoExcepcion e) {
-					request.setAttribute("mensaje", e.getMessage());
-				}
-				request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el espectáculo");
-				rd = request.getRequestDispatcher("/notificacion.jsp");
-				rd.forward(request, response);
-			}
+		try {
+			iconE.altaEspectaculo(dte, plataforma);
+		} catch (EspectaculoRepetidoExcepcion e) {
+			request.setAttribute("mensaje", e.getMessage());
+		}
+		request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el espectáculo");
+		rd = request.getRequestDispatcher("/notificacion.jsp");
+		rd.forward(request, response);
 	}
 }

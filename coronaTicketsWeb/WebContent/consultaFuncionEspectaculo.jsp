@@ -22,7 +22,7 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma"
-				onclick="procesar('btnEspectaculos')" >
+				onchange="procesar('btnEspectaculos')" >
 				<%
 				   ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
 				for (String nomPlataforma : listPlataformas) {
@@ -38,7 +38,7 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
 			<select class="form-control" name="nomEspectaculos"
-				onclick="procesar('btnFunciones')">
+				onchange="procesar('btnFunciones')">
 				<%
 				   ArrayList<DtEspectaculo> listEspectadores = (ArrayList<DtEspectaculo>) request.getAttribute("espectador");
 				for (DtEspectaculo nomEspectador : listEspectadores) {
@@ -54,7 +54,7 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Funciones</span> <select
 				class="form-control" name="nomFuncion"
-				onclick="procesar('btnDatosFunciones')">
+				onchange="procesar('btnDatosFunciones')">
 				<%
 				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) request.getAttribute("funciones");
 				for (DtFuncion nomFuncion : listFunciones) {
