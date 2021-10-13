@@ -10,16 +10,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import datatypes.DtUsuario;
 import interfaces.Fabrica;
 import interfaces.IControladorPlataforma;
 import interfaces.IControladorUsuario;
 
-@WebServlet("/GetUsuarios")
-public class GetUsuarios extends HttpServlet {
+@WebServlet("/GetUsuariosNoSeguidos")
+public class GetUsuariosNoSeguidos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public GetUsuarios() {
+	public GetUsuariosNoSeguidos() {
 		super();
 	}
 
@@ -30,24 +32,18 @@ public class GetUsuarios extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	  IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
-	  List<String> listUsuarios = new ArrayList<String>();
-	  listUsuarios = iconU.listarNicknameUsuarios();
+	  List<String> listUsuariosNoSeguidos = new ArrayList<String>();
+	  HttpSession session = request.getSession();
+	  DtUsuario dtUsuLogueado = (DtUsuario) session.getAttribute("usuLogueado");
+	  listUsuariosNoSeguidos = iconU.listarNicknameUsuariosNoSeguidos(dtUsuLogueado.getNickname());
 	  RequestDispatcher rd;
-	  for (String nomUsuario : listUsuarios) {
+	  for (String nomUsuario : listUsuariosNoSeguidos) {
 		  System.out.println(nomUsuario);
 	  }
-	  System.out.println(listUsuarios);
-      request.setAttribute("usuarios", listUsuarios);
-      rd = request.getRequestDispatcher("/seguirAUsuario.jsp");
+	  System.out.println(listUsuariosNoSeguidos);
+      request.setAttribute("usuariosNoSeguidos", listUsuariosNoSeguidos);
+      rd = request.getRequestDispatcher("/seguirUsuario.jsp");
       rd.forward(request, response);
-	  
-	  
-//	  IControladorPlataforma iconP = Fabrica.getInstancia().getIControladorPlataforma();
-//	  List<String> listPlataformas = new ArrayList<String>();
-//	  listPlataformas = iconP.listarPlataformasStr();
-//      RequestDispatcher rd;
-//      request.setAttribute("plataformas", listPlataformas);
-//      rd = request.getRequestDispatcher("/altaEspectaculo.jsp");
-//      rd.forward(request, response);
-   }
+	}
+	
 }

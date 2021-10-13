@@ -41,9 +41,13 @@
                         role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> Usuarios </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="seguirAUsuario.jsp">Seguir a Usuario</a>
+                      <form action="GetUsuariosNoSeguidos" method="post">
+						<button class="dropdown-item" type="submit">Seguir Usuario</button>
+					  </form>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="">Dejar de seguir Usuario</a>
+                      <form action="GetUsuariosSeguidos" method="post">
+						<button class="dropdown-item" type="submit">Dejar de seguir Usuario</button>
+					  </form>
                     </div>
               </li>
 			<li class="nav-item"><a class="nav-link"

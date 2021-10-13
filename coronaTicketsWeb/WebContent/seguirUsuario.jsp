@@ -21,14 +21,14 @@
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<h1>Seguir a Usuario</h1>
-	<form action="SeguirAUsuario" method="post">
+	<h1>Seguir Usuario</h1>
+	<form action="SeguirUsuario" method="post">
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Usuarios</span>
 			<select class="form-control" name="nomUsuario">
 				<%
-				   ArrayList<String> listUsuarios = (ArrayList<String>) request.getAttribute("usuarios");
+				   ArrayList<String> listUsuarios = (ArrayList<String>) request.getAttribute("usuariosNoSeguidos");
 				for (String nomUsuario : listUsuarios) {
 				%>
 				<option><%=nomUsuario%></option>
