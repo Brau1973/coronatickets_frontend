@@ -12,15 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import interfaces.Fabrica;
-import interfaces.IControladorUsuario;
-import logica.Espectaculo;
-import manejadores.ManejadorEspectaculo;
+import interfaces.IControladorPlataforma;
 
-@WebServlet("/Consultas")
-public class Consultas extends HttpServlet{
+@WebServlet("/ConsultaPlataforma")
+public class ConsultaPlataforma extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
-	public Consultas(){
+	public ConsultaPlataforma(){
 		super();
 	}
 
@@ -29,19 +27,19 @@ public class Consultas extends HttpServlet{
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
-		List<String> listArtistas = new ArrayList<String>();
-		ManejadorEspectaculo mE = ManejadorEspectaculo.getInstancia();
-		List<Espectaculo> listEspectaculos = mE.obtenerEspectaculo();
-		try{
-			listArtistas = iconU.listarNicknameArtistas();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		request.setAttribute("usuario", listArtistas);
-		request.setAttribute("espectaculo", listEspectaculos);
+		IControladorPlataforma iconP = Fabrica.getInstancia().getIControladorPlataforma();
+		List<String> listPlataformas = new ArrayList<String>();
+	//	if(request.getParameter("boton").equals("selPlataforma")){
+			try{
+				listPlataformas = iconP.listarPlataformasStr();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		//}
+		request.setAttribute("plataformas", listPlataformas);
 		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
+		rd = request.getRequestDispatcher("/ConsultaFuncionEspectaculo");
 		rd.forward(request, response);
 	}
+
 }

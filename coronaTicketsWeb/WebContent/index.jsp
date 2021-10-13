@@ -9,11 +9,14 @@
 <link href="resources/index.css" rel="stylesheet"></link>
 
 <script src="resources/index.css"></script>
-
 <title>Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
+	<%
+		String idy ="imagenes/img.png";
+	%>
 <body class="container p-5 my-5 bg-light text-dark">
-	<img src="imagenes/img.png" class="img-fluid" alt="CoronaTickets">
+	<img src="<%=idy%>" class="img-fluid" alt="CoronaTickets">
+
 </body>
 </html>
