@@ -52,7 +52,7 @@
 							de Espectaculo</button>
 					</form>
 					<div class="dropdown-divider"></div>
-					<form action="ConsultaFuncionEspectaculo" method="post">
+					<form action="ConsultaPlataforma" method="post">
 						<button class="dropdown-item" type="submit">Consulta
 							Funcion Espectaculo</button>
 					</form>
