@@ -36,7 +36,6 @@ public class GetUsuarios extends HttpServlet {
 	  for (String nomUsuario : listUsuarios) {
 		  System.out.println(nomUsuario);
 	  }
-	  
 	  System.out.println(listUsuarios);
       request.setAttribute("usuarios", listUsuarios);
       rd = request.getRequestDispatcher("/seguirAUsuario.jsp");
