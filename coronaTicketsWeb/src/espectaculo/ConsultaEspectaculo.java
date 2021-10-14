@@ -76,9 +76,9 @@ public class ConsultaEspectaculo extends HttpServlet {
 		request.setAttribute("funciones", listDtFuncion);
 		request.setAttribute("paquetes", listDtPaquete);
 		response.sendRedirect("consultaEspectaculo.jsp");
-		/*RequestDispatcher rd;
+		RequestDispatcher rd;
 		rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
 		rd.forward(request, response);
-	*/
+	
 	}
 }

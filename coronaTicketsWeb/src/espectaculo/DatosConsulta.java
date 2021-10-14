@@ -46,7 +46,7 @@ public class DatosConsulta extends HttpServlet {
 		  listPlataformas = iconP.listarPlataformasStr();
 	      RequestDispatcher rd;
 	      request.setAttribute("plataformas", listPlataformas);
-	      rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
+	      rd = request.getRequestDispatcher("/ConsultaEspectaculo");
 	      rd.forward(request, response);
 	}
 

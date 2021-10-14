@@ -31,15 +31,12 @@
 			<select class="form-control" name="nomPlataforma"
 				onchange="procesar('btnPlataformas')">
 				<%
-				
 				   ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
-				if(listPlataformas != null){
 				for (String nomPlataforma : listPlataformas) {
 				%>
 				<option><%=nomPlataforma%></option>
 				<%
 				   }
-				}
 				%>
 			</select>
 		</div>
@@ -121,7 +118,7 @@
 					for (DtFuncion dtf : listFunciones) {
 			%>
 			<tr>
-				<th scope="row"><%//=j%></th>
+				<th scope="row"><%=j%></th>
 				<td><%=dtf.getNombre()%></td>
 				<td><%=dtf.getFecha()%></td>
 				<td><%=dtf.getHoraInicio()%></td>
@@ -177,6 +174,7 @@
 	</table>
 	</form>
 	
+	<p id="demo"></p>
 	<script type="text/javascript">
 	function procesar(tipo) {
 	    document.getElementById("boton").value = tipo;
