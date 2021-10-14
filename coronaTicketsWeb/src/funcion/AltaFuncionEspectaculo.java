@@ -76,7 +76,7 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 
 		DtFuncion dtFuncion = new DtFuncion(nombre, fechaInicio, horaInicio, new Date(), listArtistas);
 		try{
-			iconF.altaFuncion(dtFuncion, espectaculo, foto);
+			iconF.altaFuncion(dtFuncion, espectaculo);//, foto);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

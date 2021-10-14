@@ -65,7 +65,7 @@ public class ConsultaFuncionEspectaculo extends HttpServlet{
 				}
 				request.setAttribute("mostrarArtistas", listArtistas);
 
-				byte[] foto = func.getImagen();
+				/*byte[] foto = func.getImagen();
 				String selectedImagePath = new String(foto);
 				
 				  try (FileOutputStream fos = new FileOutputStream(selectedImagePath)) {
@@ -73,7 +73,7 @@ public class ConsultaFuncionEspectaculo extends HttpServlet{
 			        }
 				
 				request.setAttribute("mostrarFoto", selectedImagePath);
-
+*/
 				RequestDispatcher rd;
 				rd = request.getRequestDispatcher("/datosFunciones.jsp");
 				rd.forward(request, response);

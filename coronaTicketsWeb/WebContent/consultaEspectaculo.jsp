@@ -23,20 +23,23 @@
 <body>
 	<br></br>
 	<h1>Consulta de Espectaculo</h1>
-	<form action="ConsultaEspectaculo" method="post">
-		<input type="hidden" name="boton" id="boton" value="">
+	<form action="ConsultaEspectaculo" method="post" id="formConsultaEspectaculo">
+		<input type="hidden" name="boton" id="boton" value="" >
 
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma"
 				onchange="procesar('btnPlataformas')">
 				<%
+				
 				   ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
+				if(listPlataformas != null){
 				for (String nomPlataforma : listPlataformas) {
 				%>
 				<option><%=nomPlataforma%></option>
 				<%
 				   }
+				}
 				%>
 			</select>
 		</div>
@@ -47,12 +50,14 @@
 			<select class="form-control" name="nomEspectaculos"
 				onchange="procesar('btnEspectaculos')">
 				<%
-				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) request.getAttribute("espectaculo");
+				if(request.getParameter("espectaculos") != null){
+				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) request.getAttribute("espectaculos");
 				for (DtEspectaculo nomEspectaculo : listEspectaculos) {
 				%>
 				<option><%=nomEspectaculo.getNombre()%></option>
 				<%
 				   }
+				
 				%>
 			</select>
 		</div>
@@ -70,29 +75,32 @@
 			</tr>
 		</thead>
 		<tbody>
-		<%/*
+		<%
 				int i = 1;
 					for (DtEspectaculo dte : listEspectaculos) {
-			*/%>
+			%>
 			<tr>
-				<th scope="row"><%//=i%></th>
-				<td><%//=dte.getDescripcion()%></td>
-				<td><%//=dte.getDuracion()%></td>
-				<td><%//=dte.getCantMin()%></td>
-				<td><%//=dte.getCantMax()%></td>
-				<td><%//=dte.getCosto()%></td>
-				<td><%//=dte.getRegistro()%></td>
+				<th scope="row"><%=i%></th>
+				<td><%=dte.getDescripcion()%></td>
+				<td><%=dte.getDuracion()%></td>
+				<td><%=dte.getCantMin()%></td>
+				<td><%=dte.getCantMax()%></td>
+				<td><%=dte.getCosto()%></td>
+				<td><%=dte.getRegistro()%></td>
 			</tr>
-			<%/*
+			<%
 				}
-			*/%>
+			}
+			%>
 		</tbody>
 	</table>
 	
 	<div class="input-group mb-3">
 			<label class="input-group-text" id="basic-addon3"> Funciones</label>
 				<%
+				if(request.getParameter("funciones") != null){
 				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) request.getAttribute("funciones");
+				
 				%>
 		</div>
 		
@@ -108,27 +116,29 @@
 			</tr>
 		</thead>
 		<tbody>
-		<%/*
-				int i = 1;
+		<%
+				int j = 1;
 					for (DtFuncion dtf : listFunciones) {
-			*/%>
+			%>
 			<tr>
-				<th scope="row"><%//=i%></th>
-				<td><%//=dtf.getNombre()%></td>
-				<td><%//=dtf.getFecha()%></td>
-				<td><%//=dtf.getHoraInicio()%></td>
-				<td><%//=dtf.getRegistro()%></td>
-				<td><%//=dtf.getArtistas()%></td>
+				<th scope="row"><%//=j%></th>
+				<td><%=dtf.getNombre()%></td>
+				<td><%=dtf.getFecha()%></td>
+				<td><%=dtf.getHoraInicio()%></td>
+				<td><%=dtf.getRegistro()%></td>
+				<td><%=dtf.getArtistas()%></td>
 			</tr>
-			<%/*
-				} 
-			*/%>
+			<%
+			}
+				}
+		%>
 		</tbody>
 	</table>
 	
 	<div class="input-group mb-3">
 			<label class="input-group-text" id="basic-addon3"> Paquetes</label>
 				<%
+				if(request.getParameter("paquetes") != null){
 				   ArrayList<DtPaqueteEspectaculo> listPaquetes = (ArrayList<DtPaqueteEspectaculo>) request.getAttribute("paquetes");
 				%>
 		</div>
@@ -146,22 +156,23 @@
 			</tr>
 		</thead>
 		<tbody>
-		<%/*
-				int i = 1;
+		<%
+				int k = 1;
 					for (DtPaqueteEspectaculo dtp : listPaquetes) {
-			*/%>
+			%>
 			<tr>
-				<th scope="row"><%//=i%></th>
-				<td><%//=dtf.getNombre()%></td>
-				<td><%//=dtp.getDescripcion()%></td>
-				<td><%//=dtp.getFechaInicio()%></td>
-				<td><%//=dtp.getFechaFin()%></td>
-				<td><%//=dtp.getFechaAlta()%></td>
-				<td><%//=dtp.getDescuento()%></td>
+				<th scope="row"><%=k%></th>
+				<td><%=dtp.getNombre()%></td>
+				<td><%=dtp.getDescripcion()%></td>
+				<td><%=dtp.getFechaInicio()%></td>
+				<td><%=dtp.getFechaFin()%></td>
+				<td><%=dtp.getFechaAlta()%></td>
+				<td><%=dtp.getDescuento()%></td>
 			</tr>
-			<%/*
+			<%
 				}
-			*/%>
+				}
+			%>
 		</tbody>
 	</table>
 	</form>
@@ -169,7 +180,7 @@
 	<script type="text/javascript">
 	function procesar(tipo) {
 	    document.getElementById("boton").value = tipo;
-	    document.forms[3].submit();
+	    document.getElementById("formConsultaEspectaculo").submit();
 	}
     </script>
 

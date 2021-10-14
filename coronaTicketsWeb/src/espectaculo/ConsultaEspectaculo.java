@@ -1,6 +1,7 @@
 package espectaculo;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,9 @@ import datatypes.DtPaqueteEspectaculo;
 import interfaces.Fabrica;
 import interfaces.IControladorEspectaculo;
 import interfaces.IControladorPlataforma;
+import logica.Artista;
+import logica.Funcion;
+import manejadores.ManejadorFuncion;
 import interfaces.IControladorFuncion;
 import interfaces.IControladorPaquete;
 
@@ -50,6 +54,31 @@ public class ConsultaEspectaculo extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("asdeadasdad");
+		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
+		String strPlataforma = request.getParameter("nomPlataforma");
+		String strEspectaculo = request.getParameter("nomEspectaculo");
+		List<DtEspectaculo> listEspectaculosDt = new ArrayList<DtEspectaculo>();
+		List<DtFuncion> listDtFuncion = new ArrayList<DtFuncion>();
+		List<DtPaqueteEspectaculo> listDtPaquete = new ArrayList<DtPaqueteEspectaculo>();
 		
+		if(strPlataforma != null) {
+		if(request.getParameter("boton").equals("btnPlataformas")){
+			listEspectaculosDt = iconE.listarEspectaculos(strPlataforma);
+			if(request.getParameter("boton").equals("btnEspectaculos")){
+				listDtFuncion = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
+				listDtPaquete = iconE.obtenerEspectaculo(strEspectaculo).getPaqueteEspectaculoDt();
+			}
+		}
+		}
+
+		request.setAttribute("espectaculos", listEspectaculosDt);
+		request.setAttribute("funciones", listDtFuncion);
+		request.setAttribute("paquetes", listDtPaquete);
+		response.sendRedirect("consultaEspectaculo.jsp");
+		/*RequestDispatcher rd;
+		rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
+		rd.forward(request, response);
+	*/
 	}
 }

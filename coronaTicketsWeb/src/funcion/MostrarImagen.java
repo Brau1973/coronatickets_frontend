@@ -25,8 +25,8 @@ public class MostrarImagen extends HttpServlet{
 		long id = Long.parseLong($id);
 		Funcion func = new Funcion();
 		func = mF.buscarFuncion("aikkk");
-		byte[] foto =func.getImagen();
-		response.getOutputStream().write(foto);
+		//byte[] foto =func.getImagen();
+		//response.getOutputStream().write(foto);
 	}
 
 
