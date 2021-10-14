@@ -77,7 +77,10 @@
 			%>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-expanded="true"><%=dtU.getNombre() %></a>
+				role="button" data-toggle="dropdown" aria-expanded="true">
+				<img src="imagenes/userImg.png" height="30px" >
+				<%=dtU.getNombre() %></a>
+				
 				<div class="dropdown-menu">
 					<form action="Login" method="get">
 		 				<button class="dropdown-item" type="submit">Cerrar sesion</button>
