@@ -12,6 +12,10 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 	<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -48,13 +52,13 @@
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Usuarios</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li>
-			<%
-				if (dtU instanceof DtArtista) {
-			%>
+<%-- 			<% --%>
+// 				if (dtU instanceof DtArtista) {
+<%-- 			%> --%>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Espectaculos</a></li>
-			<%
-				}
-			%>
+<%-- 			<% --%>
+// 				}
+<%-- 			%> --%>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Funciones</a></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
