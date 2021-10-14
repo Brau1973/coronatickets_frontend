@@ -1,17 +1,21 @@
-<%@page import="datatypes.DtUsuario"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
+<%@page import="datatypes.DtArtista"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="datatypes.DtUsuario"%>
+<%@page import="datatypes.DtArtista"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -23,6 +27,10 @@
 <title>Coronatickets</title>
 </head>
 <body>
+	<%
+		HttpSession sesion = request.getSession();
+	DtUsuario dtU = (DtUsuario) sesion.getAttribute("user");
+	%>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
 	<div class="container-md">
 		<a class="navbar-brand" href="index.jsp">CoronaTickets</a>
@@ -40,7 +48,13 @@
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Usuarios</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li>
+			<%
+				if (dtU instanceof DtArtista) {
+			%>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Espectaculos</a></li>
+			<%
+				}
+			%>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Funciones</a></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -62,10 +76,25 @@
 	</div>
 
 	<div>
+		<%
+			if (dtU == null) {
+			
+		%>
 		<form class="form-inline" action="login.jsp">
 			<button class="btn btn-success" type="submit">Login</button>
-			<button class="btn btn-success" type="submit" style="display: none">Logout</button>
 		</form>
+		<%
+			} else {
+		%>
+<!-- 		<form class="form-inline" action="login.jsp"> -->
+<!-- 			<button class="btn btn-success" type="submit">Login2</button> -->
+<!-- 		</form> -->
+		<form action="Login" method="get">
+			<button class="btn btn-success" type="submit">Logout</button>
+		</form>
+		<%
+			}
+		%>
 	</div>
 	</nav>
 
