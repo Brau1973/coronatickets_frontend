@@ -23,18 +23,20 @@
 <body>
 	<br></br>
 	<h1>Consulta de Espectaculo</h1>
-	<form action="ConsultaEspectaculo" method="post">
+	<form action="ConsultaEspectaculo" method="post" id="formConsultaEspectaculo">
 		<input type="hidden" name="boton" id="boton" value="">
 
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
-			<select class="form-control" name="nomPlat"
-				onkeypress="procesar('botonPlataformas')" >
+			<select class="form-control" name="nomPlataforma"
+				onchange="procesar('botonPlataformas')" >
 				<%
-				   ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
+					HttpSession s = request.getSession();
+				String plataformaSelected = (String)s.getAttribute("plataformaSelected");
+				ArrayList<String> listPlataformas = (ArrayList<String>) s.getAttribute("allPlataformas");
 				for (String nomPlataforma : listPlataformas) {
 				%>
-				<option><%=nomPlataforma%></option>
+				<option <% if(plataformaSelected != null && plataformaSelected.equals(nomPlataforma)){%>selected="selected"<%} %>><%=nomPlataforma%></option>
 				<%
 				   }
 				%>
@@ -47,12 +49,14 @@
 			<select class="form-control" name="nomEsp"
 				ondblclick="procesar('botonEspectaculos')">
 				<%
-				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) request.getAttribute("espectaculos");
+				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) s.getAttribute("allEspectaculos");
+				if(listEspectaculos != null){
 				for (DtEspectaculo espectaculo : listEspectaculos) {
 				%>
 				<option><%=espectaculo.getNombre()%></option>
 				<%
 				   }
+				}
 				%>
 			</select>
 		</div>
@@ -71,6 +75,7 @@
 		</thead>
 		<tbody>
 		<%
+		if(listEspectaculos != null){
 			int i = 1;
 			for (DtEspectaculo dte : listEspectaculos) {	
 			%>
@@ -85,6 +90,7 @@
 			</tr>
 			<%
 				} 
+		}
 			%>
 		</tbody>
 	</table>
@@ -93,7 +99,8 @@
 			<span class="input-group-text" id="basic-addon3"> Funciones</span> <select
 				class="form-control" name="nomFunc">
 				<%
-				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) request.getAttribute("funciones");
+				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) s.getAttribute("funciones");
+				
 				%>
 			</select>
 		</div>
@@ -173,7 +180,7 @@
 	<script type="text/javascript">
 	function procesar(tipo) {
 	    document.getElementById("boton").value = tipo;
-	    document.forms[2].submit();
+	    document.getElementById("formConsultaEspectaculo").submit();
 	}
     </script>
 

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
@@ -52,7 +53,19 @@ public class DatosConsulta extends HttpServlet {
 		  listPlataformas = iconP.listarPlataformasStr();
 	      RequestDispatcher rd;
 	      request.setAttribute("plataformas", listPlataformas);
-	      rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
+	      HttpSession s = request.getSession();
+	      s.setAttribute("allPlataformas", listPlataformas);
+	      String page = (String) request.getParameter("pageNavega");
+	      switch (page) {
+		case "MenuConsultaEspectaculo":
+			rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
+			break;
+
+		default:
+			rd = request.getRequestDispatcher("/index.jsp");
+			break;
+		}
+	      
 	      rd.forward(request, response);
 	}
 }

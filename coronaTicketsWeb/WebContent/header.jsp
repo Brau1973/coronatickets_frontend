@@ -48,8 +48,8 @@
 						<button class="dropdown-item" type="submit">Alta Espectaculo</button>
 					</form>
 					<div class="dropdown-divider"></div>
-					<form action="ConsultaEspectaculo" method="post">
-						<button class="dropdown-item" type="submit">Consulta
+					<form action="DatosConsulta" method="post">
+						<button class="dropdown-item" type="submit" name="pageNavega" value="MenuConsultaEspectaculo">Consulta
 							 Espectaculo</button>
 					</form>
 		        	</div>
