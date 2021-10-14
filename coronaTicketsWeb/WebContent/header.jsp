@@ -16,7 +16,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-	<link
+<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -52,13 +52,7 @@
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Usuarios</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li>
-<%-- 			<% --%>
-// 				if (dtU instanceof DtArtista) {
-<%-- 			%> --%>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Espectaculos</a></li>
-<%-- 			<% --%>
-// 				}
-<%-- 			%> --%>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Funciones</a></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -75,7 +69,27 @@
 							Funcion Espectaculo</button>
 					</form>
 
-				</div></li>
+				</div>
+			</li>
+			<%
+				if (dtU != null) {
+			
+			%>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-expanded="true"><%=dtU.getNombre() %></a>
+				<div class="dropdown-menu">
+					<form action="Login" method="get">
+		 				<button class="dropdown-item" type="submit">Cerrar sesion</button>
+			 		</form>
+					<div class="dropdown-divider"></div>
+<!-- 					<form action="ConsultaFuncionEspectaculo" method="post"> -->
+						<button class="dropdown-item" type="submit">Ver Perfil</button>
+<!-- 					</form> -->
+
+				</div>
+			</li>
+			<%} %>
 		</ul>
 	</div>
 
@@ -88,17 +102,16 @@
 			<button class="btn btn-success" type="submit">Login</button>
 		</form>
 		<%
-			} else {
-		%>
-<!-- 		<form class="form-inline" action="login.jsp"> -->
-<!-- 			<button class="btn btn-success" type="submit">Login2</button> -->
-<!-- 		</form> -->
-		<form action="Login" method="get">
-			<button class="btn btn-success" type="submit">Logout</button>
-		</form>
-		<%
 			}
 		%>
+		<!-- 		<form class="form-inline" action="login.jsp"> -->
+		<!-- 			<button class="btn btn-success" type="submit">Login2</button> -->
+		<!-- 		</form> -->
+<!-- 		<form action="Login" method="get"> -->
+<!-- 			<button class="btn btn-success" type="submit">Logout</button> -->
+<!-- 		</form> -->
+<%-- 		<% --%>
+<%-- 		%> --%>
 	</div>
 	</nav>
 
