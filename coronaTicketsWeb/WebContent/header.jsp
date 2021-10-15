@@ -40,7 +40,7 @@
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Usuarios</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li>
-			<li class="nav-item"><a class="nav-link" href="index.jsp">Espectaculos</a></li>
+			<li class="nav-item"><a class="nav-link" href="paginaParaCopiar.jsp">Espectaculos</a></li>
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Funciones</a></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -53,7 +53,7 @@
 					</form>
 					<div class="dropdown-divider"></div>
 					<form action="ConsultaPlataforma" method="post">
-						<button class="dropdown-item" type="submit">Consulta
+						<button class="dropdown-item" name="btnConsultaFuncion" value="opConsultaFuncion" type="submit">Consulta
 							Funcion Espectaculo</button>
 					</form>
 
