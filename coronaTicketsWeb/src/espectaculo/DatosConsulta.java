@@ -52,7 +52,7 @@ public class DatosConsulta extends HttpServlet {
 		  List<String> listPlataformas = new ArrayList<String>();
 		  listPlataformas = iconP.listarPlataformasStr();
 	      RequestDispatcher rd;
-	      request.setAttribute("plataformas", listPlataformas);
+	      
 	      HttpSession s = request.getSession();
 	      s.setAttribute("allPlataformas", listPlataformas);
 	      String page = (String) request.getParameter("pageNavega");

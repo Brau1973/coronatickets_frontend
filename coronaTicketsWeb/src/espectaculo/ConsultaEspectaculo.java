@@ -52,12 +52,12 @@ public class ConsultaEspectaculo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
-		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
-		IControladorPaquete iconPq = Fabrica.getInstancia().getIControladorPaquete();
-		String dtEsp = null;
+		//IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
+		//IControladorPaquete iconPq = Fabrica.getInstancia().getIControladorPaquete();
+		//String dtEsp = null;
 		System.out.println("Servlet consultaEspectaculo");
 		String strPlataforma = request.getParameter("nomPlataforma");
-		String strEspectaculo = request.getParameter("nomEspectaculos");
+		String strEspectaculo = "";
 		List<DtEspectaculo> listEspectaculos = new ArrayList<DtEspectaculo>();
 		List<DtFuncion> dtFun = new ArrayList<DtFuncion>();
 		List<DtPaqueteEspectaculo> dtPaq = new ArrayList<DtPaqueteEspectaculo>();
@@ -65,8 +65,10 @@ public class ConsultaEspectaculo extends HttpServlet {
 		if (strPlataforma != null) {
 			if (request.getParameter("boton").equals("botonPlataformas")) {
 				listEspectaculos = iconE.listarEspectaculos(strPlataforma);
+				strEspectaculo = request.getParameter("nomEsp");
 			} else if (request.getParameter("boton").equals("botonEspectaculos")) {
 				listEspectaculos = iconE.listarEspectaculos(strPlataforma);
+				strEspectaculo = request.getParameter("nomEsp");
 				dtFun = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
 				dtPaq = iconE.obtenerEspectaculo(strEspectaculo).getPaqueteEspectaculoDt();
 			}
@@ -74,10 +76,9 @@ public class ConsultaEspectaculo extends HttpServlet {
 		HttpSession s = request.getSession();
 	     s.setAttribute("allEspectaculos", listEspectaculos);
 	     s.setAttribute("plataformaSelected", strPlataforma);
-		request.setAttribute("espectaculos", listEspectaculos);
-		request.setAttribute("funciones", dtFun);
-		request.setAttribute("paquetes", dtPaq);
-		request.setAttribute("dtEspectaculo", dtEsp);
+	     s.setAttribute("espectaculoSelected", strEspectaculo);
+	     s.setAttribute("funciones", dtFun);
+	     s.setAttribute("paquetes", dtPaq);
 		rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
 		rd.forward(request, response);
 	}

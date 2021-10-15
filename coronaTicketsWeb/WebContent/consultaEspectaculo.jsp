@@ -47,13 +47,14 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
 			<select class="form-control" name="nomEsp"
-				ondblclick="procesar('botonEspectaculos')">
+				onchange="procesar('botonEspectaculos')">
 				<%
+				String espectaculoSelected = (String)s.getAttribute("espectaculoSelected");
 				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) s.getAttribute("allEspectaculos");
 				if(listEspectaculos != null){
 				for (DtEspectaculo espectaculo : listEspectaculos) {
 				%>
-				<option><%=espectaculo.getNombre()%></option>
+				<option <% if(espectaculoSelected != null && espectaculoSelected.equals(espectaculo.getNombre())){%>selected="selected"<%} %>><%=espectaculo.getNombre()%></option>
 				<%
 				   }
 				}
@@ -64,7 +65,6 @@
 		<table class="table table-striped">
 		<thead>
 			<tr>
-				<th scope="col">#</th>
 				<th scope="col">Descripcion</th>
 				<th scope="col">Duracion</th>
 				<th scope="col">Espectadores Min</th>
@@ -77,10 +77,10 @@
 		<%
 		if(listEspectaculos != null){
 			int i = 1;
-			for (DtEspectaculo dte : listEspectaculos) {	
+			for (DtEspectaculo dte : listEspectaculos) {
+				if(espectaculoSelected != null && espectaculoSelected.equals(dte.getNombre())){
 			%>
 			<tr>
-				<th scope="row"><%//=i%></th>
 				<td><%=dte.getDescripcion()%></td>
 				<td><%=dte.getDuracion()%></td>
 				<td><%=dte.getCantMin()%></td>
@@ -90,19 +90,19 @@
 			</tr>
 			<%
 				} 
+				i++;
+			}
 		}
 			%>
 		</tbody>
 	</table>
 	
 	<div class="input-group mb-3">
-			<span class="input-group-text" id="basic-addon3"> Funciones</span> <select
-				class="form-control" name="nomFunc">
+			<span class="input-group-text" id="basic-addon3"> Funciones</span>
 				<%
 				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) s.getAttribute("funciones");
 				
 				%>
-			</select>
 		</div>
 		
 	<table class="table table-striped">
@@ -117,31 +117,32 @@
 			</tr>
 		</thead>
 		<tbody>
-		<%/*
-				int i = 1;
+		<%
+				int j = 1;
+				if(listFunciones != null){
 					for (DtFuncion dtf : listFunciones) {
-			*/%>
+			%>
 			<tr>
-				<th scope="row"><%//=i%></th>
-				<td><%//=dtf.getNombre()%></td>
-				<td><%//=dtf.getFecha()%></td>
-				<td><%//=dtf.getHoraInicio()%></td>
-				<td><%//=dtf.getRegistro()%></td>
-				<td><%//=dtf.getArtistas()%></td>
+				<th scope="row"><%=j%></th>
+				<td><%=dtf.getNombre()%></td>
+				<td><%=dtf.getFecha()%></td>
+				<td><%=dtf.getHoraInicio()%></td>
+				<td><%=dtf.getRegistro()%></td>
+				<td><%=dtf.getArtistas()%></td>
 			</tr>
-			<%/*
+			<%
+				j++;
 				} 
-			*/%>
+				}
+			%>
 		</tbody>
 	</table>
 	
 	<div class="input-group mb-3">
-			<span class="input-group-text" id="basic-addon3"> Paquetes</span> <select
-				class="form-control" name="nomPaq">
+			<span class="input-group-text" id="basic-addon3"> Paquetes</span> 
 				<%
-				   ArrayList<DtPaqueteEspectaculo> listPaquetes = (ArrayList<DtPaqueteEspectaculo>) request.getAttribute("paquetes");
+				   ArrayList<DtPaqueteEspectaculo> listPaquetes = (ArrayList<DtPaqueteEspectaculo>) s.getAttribute("paquetes");
 				%>
-			</select>
 		</div>
 	
 	<table class="table table-striped">
@@ -157,22 +158,25 @@
 			</tr>
 		</thead>
 		<tbody>
-		<%/*
-				int i = 1;
+		<%
+				int k = 1;
+				if(listPaquetes != null){ 
 					for (DtPaqueteEspectaculo dtp : listPaquetes) {
-			*/%>
+			%>
 			<tr>
-				<th scope="row"><%//=i%></th>
-				<td><%//=dtp.getNombre()%></td>
-				<td><%//=dtp.getDescripcion()%></td>
-				<td><%//=dtp.getFechaInicio()%></td>
-				<td><%//=dtp.getFechaFin()%></td>
-				<td><%//=dtp.getFechaAlta()%></td>
-				<td><%//=dtp.getDescuento()%></td>
+				<th scope="row"><%=k%></th>
+				<td><%=dtp.getNombre()%></td>
+				<td><%=dtp.getDescripcion()%></td>
+				<td><%=dtp.getFechaInicio()%></td>
+				<td><%=dtp.getFechaFin()%></td>
+				<td><%=dtp.getFechaAlta()%></td>
+				<td><%=dtp.getDescuento()%></td>
 			</tr>
-			<%/*
+			<%
+				k++;
 				}
-			*/%>
+				}
+			%>
 		</tbody>
 	</table>
 	</form>
