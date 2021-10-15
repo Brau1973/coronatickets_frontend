@@ -33,8 +33,8 @@ public class GetUsuariosNoSeguidos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	  IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
 	  List<String> listUsuariosNoSeguidos = new ArrayList<String>();
-	  HttpSession session = request.getSession();
-	  DtUsuario dtUsuLogueado = (DtUsuario) session.getAttribute("usuLogueado");
+	  HttpSession sesion = request.getSession();
+	  DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
 	  listUsuariosNoSeguidos = iconU.listarNicknameUsuariosNoSeguidos(dtUsuLogueado.getNickname());
 	  RequestDispatcher rd;
 	  for (String nomUsuario : listUsuariosNoSeguidos) {
