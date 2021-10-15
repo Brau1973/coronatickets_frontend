@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import datatypes.DtUsuario;
 import interfaces.Fabrica;
-import interfaces.IControladorPlataforma;
 import interfaces.IControladorUsuario;
 
 @WebServlet("/GetUsuariosSeguidos")

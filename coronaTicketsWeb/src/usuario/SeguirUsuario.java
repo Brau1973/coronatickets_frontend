@@ -1,9 +1,6 @@
 package usuario;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,12 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtEspectaculo;
 import datatypes.DtUsuario;
-import excepciones.EspectaculoRepetidoExcepcion;
 import interfaces.Fabrica;
-import interfaces.IControladorEspectaculo;
-import interfaces.IControladorPlataforma;
 import interfaces.IControladorUsuario;
 
 /**
