@@ -20,8 +20,7 @@
 <title>Consulta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
-<body>
-	<br></br>
+<body class="headerSpace">
 	<h1>Consulta de Espectaculo</h1>
 	<form action="ConsultaEspectaculo" method="post" id="formConsultaEspectaculo">
 		<input type="hidden" name="boton" id="boton" value="">
@@ -29,7 +28,8 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma"
-				onchange="procesar('botonPlataformas')" >
+				onchange="procesar('botonPlataformas')">
+				<option selected disabled>Seleccione Plataforma</option>
 				<%
 					HttpSession s = request.getSession();
 				String plataformaSelected = (String)s.getAttribute("plataformaSelected");
@@ -48,6 +48,7 @@
 			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
 			<select class="form-control" name="nomEsp"
 				onchange="procesar('botonEspectaculos')">
+				<option selected disabled>Seleccione Espectaculo</option>
 				<%
 				String espectaculoSelected = (String)s.getAttribute("espectaculoSelected");
 				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) s.getAttribute("allEspectaculos");
@@ -128,7 +129,7 @@
 				<td><%=dtf.getFecha()%></td>
 				<td><%=dtf.getHoraInicio()%></td>
 				<td><%=dtf.getRegistro()%></td>
-				<td><%=dtf.getArtistas()%></td>
+				<td><%=dtf.getArtistas().toString().replace("[", "").replace("]", "")%></td>
 			</tr>
 			<%
 				j++;

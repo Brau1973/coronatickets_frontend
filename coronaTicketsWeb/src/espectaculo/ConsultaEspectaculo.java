@@ -52,15 +52,12 @@ public class ConsultaEspectaculo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
-		//IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
-		//IControladorPaquete iconPq = Fabrica.getInstancia().getIControladorPaquete();
-		//String dtEsp = null;
 		System.out.println("Servlet consultaEspectaculo");
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = "";
 		List<DtEspectaculo> listEspectaculos = new ArrayList<DtEspectaculo>();
-		List<DtFuncion> dtFun = new ArrayList<DtFuncion>();
-		List<DtPaqueteEspectaculo> dtPaq = new ArrayList<DtPaqueteEspectaculo>();
+		List<DtFuncion> listFunciones = new ArrayList<DtFuncion>();
+		List<DtPaqueteEspectaculo> listPaquetes = new ArrayList<DtPaqueteEspectaculo>();
 		RequestDispatcher rd;
 		if (strPlataforma != null) {
 			if (request.getParameter("boton").equals("botonPlataformas")) {
@@ -69,18 +66,17 @@ public class ConsultaEspectaculo extends HttpServlet {
 			} else if (request.getParameter("boton").equals("botonEspectaculos")) {
 				listEspectaculos = iconE.listarEspectaculos(strPlataforma);
 				strEspectaculo = request.getParameter("nomEsp");
-				dtFun = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
-				dtPaq = iconE.obtenerEspectaculo(strEspectaculo).getPaqueteEspectaculoDt();
+				listFunciones = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
+				listPaquetes = iconE.obtenerEspectaculo(strEspectaculo).getPaqueteEspectaculoDt();
 			}
 		}
 		HttpSession s = request.getSession();
 	     s.setAttribute("allEspectaculos", listEspectaculos);
 	     s.setAttribute("plataformaSelected", strPlataforma);
 	     s.setAttribute("espectaculoSelected", strEspectaculo);
-	     s.setAttribute("funciones", dtFun);
-	     s.setAttribute("paquetes", dtPaq);
+	     s.setAttribute("funciones", listFunciones);
+	     s.setAttribute("paquetes", listPaquetes);
 		rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
 		rd.forward(request, response);
 	}
-
 }

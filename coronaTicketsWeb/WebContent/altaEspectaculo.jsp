@@ -25,10 +25,9 @@
 <title>Alta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
-<body>
-	<br></br>
+<body class="headerSpace">
 	<h1>Alta Espectaculo</h1>
-	<form action="AltaEspectaculo" method="post">
+	<form action="AltaEspectaculo" method="post" id="formAltaEspectaculo">
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
@@ -63,12 +62,12 @@
 		<div class="form-group">
 			<label for="quantity">Espectadores mínimos:</label> <input
 				type="number" id="quantity" name="espectadoresMin" min="1"
-				max="100000" style="width: 100px" required>
+				max="1000000" style="width: 100px" required>
 		</div>
 		<div class="form-group">
 			<label for="quantity">Espectadores máximos:</label> <input
 				type="number" id="quantity" name="espectadoresMax" min="1"
-				max="100000" style="width: 100px" required>
+				max="1000000" style="width: 100px" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
@@ -89,9 +88,9 @@
 		<!-- fecha de alta -->
 		<!-- se da de alta el espectaculo en la fecha actual-->
 		<!-- fecha de alta -->
-		<button type="reset" class="btn btn-primary">Cancelar</button>
 		<button type="submit" class="btn btn-primary"
 			>Confirmar</button>
+		<button type="reset" class="btn btn-primary">Cancelar</button>
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -105,12 +104,12 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-	<!--  <script type="text/javascript">
+	<script type="text/javascript">
 		function procesar(tipo) {
 			document.getElementById("boton").value = tipo;
-			document.forms[0].submit();
+			document.getElementById("formAltaEspectaculo").submit();
 		}
-	</script>-->
+	</script>
 
 
 </body>
