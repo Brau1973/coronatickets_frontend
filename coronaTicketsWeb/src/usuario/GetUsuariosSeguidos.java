@@ -36,13 +36,17 @@ public class GetUsuariosSeguidos extends HttpServlet {
 	  DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
 	  listUsuariosSeguidos = iconU.listarNicknameUsuariosSeguidos(dtUsuLogueado.getNickname());
 	  RequestDispatcher rd;
-	  for (String nomUsuario : listUsuariosSeguidos) {
-		  System.out.println(nomUsuario);
-	  }
+//	  for (String nomUsuario : listUsuariosSeguidos) {
+//		  System.out.println(nomUsuario);
+//	  }
 	  System.out.println(listUsuariosSeguidos);
-      request.setAttribute("usuariosSeguidos", listUsuariosSeguidos);
-      rd = request.getRequestDispatcher("/dejarDeSeguirUsuario.jsp");
+	  if(!listUsuariosSeguidos.isEmpty()){
+	      request.setAttribute("usuariosSeguidos", listUsuariosSeguidos);
+	      rd = request.getRequestDispatcher("/dejarDeSeguirUsuario.jsp");
+	  }else{
+		  request.setAttribute("mensaje", "Estimado "+dtUsuLogueado.getNickname()+" , debe seguir a algun usuario antes de usar esta funcionalidad");
+	      rd = request.getRequestDispatcher("/notificacion.jsp");
+	  }
       rd.forward(request, response);
-	}
-	
+	  }
 }
