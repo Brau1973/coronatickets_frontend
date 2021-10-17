@@ -35,7 +35,7 @@ public class AltaEspectaculo extends HttpServlet {
 			throws ServletException, IOException {
 		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
 		String plataforma = request.getParameter("nomPlataforma");
-		String artista = "jmayer"; // pasar artista con el q ingres al sistema
+		String artista = "artSeba"; // pasar artista con el q ingres al sistema
 		String nombre = request.getParameter("nomEspectaculo");
 		String descripcion = request.getParameter("descEspectaculo");
 		Integer duracion = Integer.valueOf(request.getParameter("durEspectaculo"));
