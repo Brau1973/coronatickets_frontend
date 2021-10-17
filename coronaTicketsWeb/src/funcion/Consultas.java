@@ -40,8 +40,7 @@ public class Consultas extends HttpServlet{
 		}
 		request.setAttribute("usuario", listArtistas);
 		request.setAttribute("espectaculo", listEspectaculos);
-		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
+		 RequestDispatcher rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
 		rd.forward(request, response);
 	}
 }

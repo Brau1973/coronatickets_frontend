@@ -1,9 +1,7 @@
 package espectaculo;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +14,6 @@ import datatypes.DtEspectaculo;
 import excepciones.EspectaculoRepetidoExcepcion;
 import interfaces.Fabrica;
 import interfaces.IControladorEspectaculo;
-import interfaces.IControladorPlataforma;
 
 /**
  * Servlet implementation class AltaEspectaculo
@@ -55,7 +52,7 @@ public class AltaEspectaculo extends HttpServlet {
 		} catch (EspectaculoRepetidoExcepcion e) {
 			request.setAttribute("mensaje", e.getMessage());
 		}
-		request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el espectáculo");
+		request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el espectculo");
 		rd = request.getRequestDispatcher("/notificacion.jsp");
 		rd.forward(request, response);
 	}

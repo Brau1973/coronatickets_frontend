@@ -52,6 +52,8 @@
                         role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> Usuarios </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="altaUsuario.jsp">Alta Usuario</a>
+                      <div class="dropdown-divider"></div>
                       <form action="GetUsuariosNoSeguidos" method="post">
 						<button class="dropdown-item" type="submit">Seguir Usuario</button>
 					  </form>
@@ -61,6 +63,7 @@
 					  </form>
                     </div>
               </li>
+ 
 			<li class="nav-item"><a class="nav-link"
 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li>
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -77,19 +80,23 @@
 					</form>
 		        	</div>
       		</li>
-			<li class="nav-item"><a class="nav-link" href="index.jsp">Funciones</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.jsp">Plataformas</a></li>
+			
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-expanded="true">Plataformas</a>
+				role="button" data-toggle="dropdown" aria-expanded="false">Funciones</a>
 				<div class="dropdown-menu">
 
 					<form action="Consultas" method="post">
 						<button class="dropdown-item" type="submit">Alta Funcion
 							de Espectaculo</button>
 					</form>
+
 					<div class="dropdown-divider"></div>
+
 					<form action="ConsultaPlataforma" method="post">
-						<button class="dropdown-item" type="submit">Consulta
+						<button class="dropdown-item" name="btnOpcion"
+							value="opConsultaFuncionEsp" type="submit">Consulta
 							Funcion Espectaculo</button>
 					</form>
 

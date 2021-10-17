@@ -1,11 +1,16 @@
 package funcion;
 
-import java.io.FileOutputStream;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,21 +40,25 @@ public class ConsultaFuncionEspectaculo extends HttpServlet{
 
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		// System.out.print(strPlataforma + " PLATAFORMA ");
-		// System.out.print(strEspectaculo + " esPEC ");
 		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = request.getParameter("nomEspectaculo");
 		List<DtEspectaculo> listEspectaculosDt = new ArrayList<DtEspectaculo>();
-
+		
 		List<DtFuncion> dtfun = new ArrayList<DtFuncion>();
 		List<Artista> dtArt = new ArrayList<Artista>();
 		Funcion func = new Funcion();
-
+		request.setAttribute("espectaculos", listEspectaculosDt);
+		request.setAttribute("funciones", dtfun);
+		
 		if(strPlataforma != null){
 			listEspectaculosDt = iconE.listarEspectaculos(strPlataforma);
+			request.setAttribute("espectaculos", listEspectaculosDt);
+
 			if(request.getParameter("boton").equals("selEspectaculo")){
 				dtfun = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
+				request.setAttribute("funciones", dtfun);
+
 			}else if(request.getParameter("boton").equals("selFuncion")){
 				String strFuncion = request.getParameter("nomFuncion");
 				ManejadorFuncion mF = ManejadorFuncion.getInstancia();
@@ -65,26 +74,29 @@ public class ConsultaFuncionEspectaculo extends HttpServlet{
 				}
 				request.setAttribute("mostrarArtistas", listArtistas);
 
-				/*byte[] foto = func.getImagen();
-				String selectedImagePath = new String(foto);
-				
-				  try (FileOutputStream fos = new FileOutputStream(selectedImagePath)) {
-			            fos.write(foto);
-			        }
-				
-				request.setAttribute("mostrarFoto", selectedImagePath);
-*/
+				byte[] foto = func.getImagen();
+				BufferedImage image = null;
+				InputStream in = new ByteArrayInputStream(foto);
+				try{
+					image = ImageIO.read(in);
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
+				ByteArrayOutputStream output = new ByteArrayOutputStream();
+				ImageIO.write(image, "jpg", output);
+				String imageBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
+				request.setAttribute("mostrarFoto", imageBase64);
 				RequestDispatcher rd;
 				rd = request.getRequestDispatcher("/datosFunciones.jsp");
 				rd.forward(request, response);
 			}
 		}
-
-		request.setAttribute("espectaculos", listEspectaculosDt);
-		request.setAttribute("funciones", dtfun);
+		
+	//request.setAttribute("plataformas", listPlataformas);
+	request.setAttribute("espectaculos", listEspectaculosDt);
 		RequestDispatcher rd;
 		rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
 		rd.forward(request, response);
-	}
 
+	}
 }

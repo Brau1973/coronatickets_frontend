@@ -129,7 +129,7 @@
 				<td><%=dtf.getFecha()%></td>
 				<td><%=dtf.getHoraInicio()%></td>
 				<td><%=dtf.getRegistro()%></td>
-				<td><%=dtf.getArtistas()%></td>
+				<td><%=dtf.getArtistas().toString().replace("[", "").replace("]", "")%></td>
 			</tr>
 			<%
 				j++;

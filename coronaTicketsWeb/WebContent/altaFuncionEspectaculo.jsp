@@ -1,6 +1,6 @@
 <%@page import="logica.Espectaculo"%>
 <%@page import="java.util.ArrayList"%>
-<%-- <%@page import="datatypes.DtUsuario"%> --%>
+<%@page import="datatypes.DtUsuario"%>
 <%@page import="java.util.List"%>
 <%@page import="datatypes.DtEspectaculo"%>
 <%@page import="interfaces.Fabrica"%>
@@ -20,16 +20,18 @@
 </head>
 <body class="headerSpace">
 	<form class="container p-5 my-5 bg-light text-dark"
-		action="AltaFuncionEspectaculo" method="post" enctype="multipart/form-data">
+		action="AltaFuncionEspectaculo" method="post"
+		enctype="multipart/form-data">
 		<h3>Alta Funcion de Espectaculo</h3>
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="basic-addon3"> Seleccionar Espectaculo:</span>
-			<select class="form-control" name="nomEspectaculo">
+			<span class="input-group-text" id="basic-addon3"> Seleccionar
+				Espectaculo:</span> <select class="form-control" name="nomEspectaculo">
 				<%
 					ArrayList<Espectaculo> listEspectadores = (ArrayList<Espectaculo>) request.getAttribute("espectaculo");
+				DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
+				String nicknameUsuarioLogueado = dtUsuLogueado.getNickname();
 				for (Espectaculo nomEspectador : listEspectadores) {
-					if (nomEspectador.getArtista().equals("artAldrin")) {
-
+					if (nomEspectador.getArtista().equals(nicknameUsuarioLogueado)) {
 				%>
 				<option><%=nomEspectador.getNombre()%></option>
 				<%
@@ -39,17 +41,29 @@
 			</select>
 		</div>
 
-		<div class="input-group mb-3">
-			<span class="input-group-text">Nombre:</span> <input type="text"
-				name="nomFuncion" class="form-control">
-		</div>
-		<div class="input-group mb-3">
-			<span class="input-group-text">Fecha:</span> <input type="date"
-				name="fechaFuncion" class="form-control">
-		</div>
-		<div class="input-group mb-3">
-			<span class="input-group-text">Hora:</span> <input type="time"
-				name="horaFuncion" class="form-control">
+		<div action="/action_page.php" class="was-validated">
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">Nombre:</span> <input type="text"
+					class="form-control" name="nomFuncion" required>
+				<div class="valid-feedback">Valido.</div>
+				<div class="invalid-feedback">Ingresar nombre de funcion.</div>
+			</div>
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">Fecha:</span> <input type="date"
+					name="fechaFuncion" class="form-control" required>
+				<div class="valid-feedback">Valido.</div>
+				<div class="invalid-feedback">Ingrese fecha de funcion.</div>
+			</div>
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">Hora:</span> <input type="time"
+					name="horaFuncion" class="form-control" required>
+				<div class="valid-feedback">Valido.</div>
+				<div class="invalid-feedback">Ingrese hora de inicio.</div>
+			</div>
+
 		</div>
 
 		<link
@@ -66,8 +80,8 @@
 			<span class="input-group-text">Artistas invitados:</span> <select
 				multiple="multiple" name="selArtista" class="form-control">
 				<%
-					ArrayList<String> listArtistas2 = (ArrayList<String>) request.getAttribute("usuario");
-				for (String nickArtista : listArtistas2) {
+					ArrayList<String> listArtistas = (ArrayList<String>) request.getAttribute("usuario");
+				for (String nickArtista : listArtistas) {
 				%>
 				<option><%=nickArtista%></option>
 				<%
@@ -77,14 +91,21 @@
 		</div>
 
 		<div class="input-group mb-3">
-			<span class="input-group-text">Seleccionar imagen:</span> <input
-				type="file" name="imagen" id="imagen" class="form-control">
-
+			<span class="input-group-text">Imagen:</span> <input type="file"
+				name="imagen" id="imagen" class="form-control">
 		</div>
+
+		<!--  	<div class="input-group mb-3">
+			<span class="input-group-text">Nombre:</span> <input type="text"
+				class="form-control" name="nomFuncion" id="nomFuncion"
+				placeholder="Ingrese nombre" required>
+			<div class="valid-feedback">Valido.</div>
+			<div class="invalid-feedback">Ingresar nombre de funcion.</div>
+		</div>
+		-->
 		<button class="btn btn-primary" type="submit">Registrar</button>
 		<button class="btn btn-dark" type="submit">Cancelar</button>
 	</form>
-	
 
 	<script>
 	$(function() {

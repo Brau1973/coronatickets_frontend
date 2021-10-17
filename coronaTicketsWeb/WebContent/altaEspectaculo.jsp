@@ -25,9 +25,15 @@
 <title>Alta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
+<<<<<<< HEAD
 <body>
 	<br></br> 
 	<form action="AltaEspectaculo" method="post">
+=======
+<body class="headerSpace">
+	<h1>Alta Espectaculo</h1>
+	<form action="AltaEspectaculo" method="post" id="formAltaEspectaculo">
+>>>>>>> 651e7afae3dcad4006544f386c6112c497206ea9
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
@@ -62,12 +68,12 @@
 		<div class="form-group">
 			<label for="quantity">Espectadores mínimos:</label> <input
 				type="number" id="quantity" name="espectadoresMin" min="1"
-				max="100000" style="width: 100px" required>
+				max="1000000" style="width: 100px" required>
 		</div>
 		<div class="form-group">
 			<label for="quantity">Espectadores máximos:</label> <input
 				type="number" id="quantity" name="espectadoresMax" min="1"
-				max="100000" style="width: 100px" required>
+				max="1000000" style="width: 100px" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
@@ -88,8 +94,14 @@
 		<!-- fecha de alta -->
 		<!-- se da de alta el espectaculo en la fecha actual-->
 		<!-- fecha de alta -->
+<<<<<<< HEAD
 		<button type="reset" class="btn btn-primary">Cancelar</button>
 		<button type="submit" class="btn btn-primary">Confirmar</button>
+=======
+		<button type="submit" class="btn btn-primary"
+			>Confirmar</button>
+		<button type="reset" class="btn btn-primary">Cancelar</button>
+>>>>>>> 651e7afae3dcad4006544f386c6112c497206ea9
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -106,7 +118,7 @@
 	<!-- <script type="text/javascript">
 		function procesar(tipo) {
 			document.getElementById("boton").value = tipo;
-			document.forms[0].submit();
+			document.getElementById("formAltaEspectaculo").submit();
 		}
 	</script> -->
 

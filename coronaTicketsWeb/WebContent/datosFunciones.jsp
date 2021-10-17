@@ -33,10 +33,8 @@
 		<div class="card-header">Foto Funcion</div>
 		<div class="card-body">
 			<div>
-				<%
-					String foto = (String) request.getAttribute("mostrarFoto");
-				%>
-				<img src="<%=foto%>" width="150px">
+				<img src="data:image/jpg;base64,${mostrarFoto}" width="200"
+					height="200" />
 			</div>
 		</div>
 	</div>
