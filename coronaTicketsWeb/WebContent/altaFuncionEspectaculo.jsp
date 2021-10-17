@@ -1,6 +1,6 @@
 <%@page import="logica.Espectaculo"%>
-<%@page import="datatypes.DtUsuario"%>
 <%@page import="java.util.ArrayList"%>
+<%-- <%@page import="datatypes.DtUsuario"%> --%>
 <%@page import="java.util.List"%>
 <%@page import="datatypes.DtEspectaculo"%>
 <%@page import="interfaces.Fabrica"%>
@@ -58,7 +58,7 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text">Hora:</span> <input type="time"
 					name="horaFuncion" class="form-control" required>
-					<div class="valid-feedback">Valido.</div>
+				<div class="valid-feedback">Valido.</div>
 				<div class="invalid-feedback">Ingrese hora de inicio.</div>
 			</div>
 
@@ -104,8 +104,6 @@
 		<button class="btn btn-primary" type="submit">Registrar</button>
 		<button class="btn btn-dark" type="submit">Cancelar</button>
 	</form>
-
-
 
 	<script>
 	$(function() {

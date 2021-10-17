@@ -8,6 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import datatypes.DtUsuario;
+import interfaces.Fabrica;
+import interfaces.IControladorUsuario;
 
 /**
  * Servlet implementation class Login
@@ -28,21 +33,30 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp") ;
+		HttpSession session = request.getSession();
+		session.setAttribute("user", null);
+		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("login.jsp") ;
 		String userName = request.getParameter("user_name");
 		String userPass = request.getParameter("user_pass");
 		System.out.println("Login servlet");
-		// TODO logica de login
-		RequestDispatcher rd;
-		
-		rd = request.getRequestDispatcher("index.jsp");
+		IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
+		DtUsuario dt= iconU.getLoginUsuario(userName);
+		if(dt != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", dt);
+			session.setAttribute("loged", true);
+			rd = request.getRequestDispatcher("/index.jsp");
+		}else {
+			System.out.println("No existe usuario y contraseña.");
+		}
 		rd.forward(request, response);
 	}
 
