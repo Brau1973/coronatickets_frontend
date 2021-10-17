@@ -24,21 +24,22 @@
 			<select class="form-control" name="nomPlataforma" id="mySelect"
 				onclick="myFunction()">
 				<%
+					if (request.getAttribute("plataformas") != null) {
 					ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
-				if (id == null) {
 					for (String nomPlataforma : listPlataformas) {
 				%>
 				<option><%=nomPlataforma%></option>
 				<%
 					}
-				} else { //// ver desp
+				} else {
 				%>
-				<option value="<%=id%>" selected><%=id%></option> 
+				<option><%=id%></option>
 				<%
 					}
 				%>
 			</select>
 		</div>
+
 
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
@@ -73,8 +74,10 @@
 				%>
 			</select>
 		</div>
+		<button class="btn btn-dark" name="btnOpcion"
+			value="opConsultaFuncionEsp" type="submit"
+			formaction="ConsultaPlataforma">Actualizar</button>
 	</form>
-
 
 	<p id="demo"></p>
 	<script type="text/javascript">

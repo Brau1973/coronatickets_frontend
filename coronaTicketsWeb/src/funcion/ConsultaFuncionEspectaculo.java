@@ -40,28 +40,26 @@ public class ConsultaFuncionEspectaculo extends HttpServlet{
 
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		// System.out.print(strPlataforma + " PLATAFORMA ");
 		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = request.getParameter("nomEspectaculo");
 		List<DtEspectaculo> listEspectaculosDt = new ArrayList<DtEspectaculo>();
-
+		
 		List<DtFuncion> dtfun = new ArrayList<DtFuncion>();
 		List<Artista> dtArt = new ArrayList<Artista>();
 		Funcion func = new Funcion();
 		request.setAttribute("espectaculos", listEspectaculosDt);
 		request.setAttribute("funciones", dtfun);
-		System.out.print("51 ");
+		
 		if(strPlataforma != null){
 			listEspectaculosDt = iconE.listarEspectaculos(strPlataforma);
 			request.setAttribute("espectaculos", listEspectaculosDt);
-			System.out.print(" 6 ");
+
 			if(request.getParameter("boton").equals("selEspectaculo")){
 				dtfun = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
 				request.setAttribute("funciones", dtfun);
-				System.out.print(" 7 ");
+
 			}else if(request.getParameter("boton").equals("selFuncion")){
-				System.out.print("8 ");
 				String strFuncion = request.getParameter("nomFuncion");
 				ManejadorFuncion mF = ManejadorFuncion.getInstancia();
 				func = mF.buscarFuncion(strFuncion);
@@ -88,14 +86,14 @@ public class ConsultaFuncionEspectaculo extends HttpServlet{
 				ImageIO.write(image, "jpg", output);
 				String imageBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
 				request.setAttribute("mostrarFoto", imageBase64);
-				System.out.print("9 ");
 				RequestDispatcher rd;
 				rd = request.getRequestDispatcher("/datosFunciones.jsp");
 				rd.forward(request, response);
 			}
 		}
-		System.out.print(" 10 ");
-		request.setAttribute("espectaculos", listEspectaculosDt);
+		
+	//request.setAttribute("plataformas", listPlataformas);
+	request.setAttribute("espectaculos", listEspectaculosDt);
 		RequestDispatcher rd;
 		rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
 		rd.forward(request, response);

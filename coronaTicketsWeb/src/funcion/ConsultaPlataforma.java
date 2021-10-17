@@ -29,7 +29,7 @@ public class ConsultaPlataforma extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		IControladorPlataforma iconP = Fabrica.getInstancia().getIControladorPlataforma();
 		List<String> listPlataformas = new ArrayList<String>();
-		String strEs = request.getParameter("btnConsultaFuncion");
+		String strEs = request.getParameter("btnOpcion");
 
 		try{
 			listPlataformas = iconP.listarPlataformasStr();
@@ -38,31 +38,25 @@ public class ConsultaPlataforma extends HttpServlet{
 		}
 
 		RequestDispatcher rd;
-		if(strEs.equals("opConsultaFuncion")){
+		switch(strEs){
+		case "opConsultaFuncionEsp":
 			request.setAttribute("plataformas", listPlataformas);
 			rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
-		}else{
+			rd.forward(request, response);
+			break;
+		default:
 			rd = request.getRequestDispatcher("/index.jsp");
+			rd.forward(request, response);
+			break;
 		}
-		rd.forward(request, response);
-	}
 
-
-	private void ListarPlataformas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ // ver desp
-		String action = request.getServletPath();
-		try{
-			switch(action){
-			case "/consultarPlataforma":
-				// ListarPlataformas(request, response);
-				break;
-			default:
-				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-				dispatcher.forward(request, response);
-				break;
+		/*	if(strEs.equals("opConsultaFuncion")){
+				request.setAttribute("plataformas", listPlataformas);
+				rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
+			}else{
+				rd = request.getRequestDispatcher("/index.jsp");
 			}
-		}catch(Exception ex){
-			throw new ServletException(ex);
-		}
-
+			rd.forward(request, response);*/
 	}
 }
+
