@@ -1,6 +1,6 @@
 <%@page import="logica.Espectaculo"%>
 <%@page import="java.util.ArrayList"%>
-<%-- <%@page import="datatypes.DtUsuario"%> --%>
+<%@page import="datatypes.DtUsuario"%>
 <%@page import="java.util.List"%>
 <%@page import="datatypes.DtEspectaculo"%>
 <%@page import="interfaces.Fabrica"%>
@@ -28,8 +28,11 @@
 				Espectaculo:</span> <select class="form-control" name="nomEspectaculo">
 				<%
 					ArrayList<Espectaculo> listEspectadores = (ArrayList<Espectaculo>) request.getAttribute("espectaculo");
+				DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
+				String nicknameUsuarioLogueado = dtUsuLogueado.getNickname();
 				for (Espectaculo nomEspectador : listEspectadores) {
-					if (nomEspectador.getArtista().equals("artAldrin")) {
+
+					if (nomEspectador.getArtista().equals(nicknameUsuarioLogueado)) {
 				%>
 				<option><%=nomEspectador.getNombre()%></option>
 				<%
@@ -89,8 +92,8 @@
 		</div>
 
 		<div class="input-group mb-3">
-			<span class="input-group-text">Seleccionar imagen:</span> <input
-				type="file" name="imagen" id="imagen" class="form-control">
+			<span class="input-group-text">Imagen:</span> <input type="file"
+				name="imagen" id="imagen" class="form-control">
 		</div>
 
 		<!--  	<div class="input-group mb-3">

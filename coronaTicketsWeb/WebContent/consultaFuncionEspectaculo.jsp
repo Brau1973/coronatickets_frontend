@@ -83,7 +83,7 @@
 	<script type="text/javascript">
 	function procesar(tipo) {
 	    document.getElementById("boton").value = tipo;
-	    document.forms[3].submit();
+	    document.forms[7].submit();
 	}
     </script>
 
@@ -91,7 +91,7 @@
 	function myFunction() {
 	    var x = document.getElementById("mySelect").value;
 	    document.getElementById("demo").innerHTML = "" + x;
-	    document.forms[3].submit();
+	    document.forms[7].submit();
 	}
     </script>
 

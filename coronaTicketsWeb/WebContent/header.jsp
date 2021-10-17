@@ -64,10 +64,6 @@
               </li>
 			<li class="nav-item"><a class="nav-link"
 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li>
-
-			<!--  <li class="nav-item"><a class="nav-link"
-				href="paginaParaCopiar.jsp">Espectaculos</a></li>-->
-
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Espectaculos </a>
@@ -76,17 +72,17 @@
 						<button class="dropdown-item" type="submit">Alta Espectaculo</button>
 					</form>
 					<div class="dropdown-divider"></div>
-					<form action="ConsultaEspectaculo" method="post">
-						<button class="dropdown-item" type="submit">Consulta
+					<form action="DatosConsulta" method="post">
+						<button class="dropdown-item" type="submit" name="pageNavega" value="MenuConsultaEspectaculo">Consulta
 							 Espectaculo</button>
 					</form>
 		        	</div>
       		</li>
-
-			<li class="nav-item"><a class="nav-link" href="index.jsp">Funciones</a></li>
+			<li class="nav-item"><a class="nav-link" href="index.jsp">Plataformas</a></li>
+			
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-expanded="true">Plataformas</a>
+				role="button" data-toggle="dropdown" aria-expanded="false">Funciones</a>
 				<div class="dropdown-menu">
 
 					<form action="Consultas" method="post">

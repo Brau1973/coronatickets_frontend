@@ -10,15 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtFuncion;
 import datatypes.DtPaqueteEspectaculo;
 import interfaces.Fabrica;
 import interfaces.IControladorEspectaculo;
-import interfaces.IControladorPlataforma;
-import interfaces.IControladorFuncion;
-import interfaces.IControladorPaquete;
 
 /**
  * Servlet implementation class ConsultaEspectaculo
@@ -50,43 +48,32 @@ public class ConsultaEspectaculo extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IControladorPlataforma iconP = Fabrica.getInstancia().getIControladorPlataforma();
 		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
-		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
-		IControladorPaquete iconPq = Fabrica.getInstancia().getIControladorPaquete();
-
+		System.out.println("Servlet consultaEspectaculo");
 		String strPlataforma = request.getParameter("nomPlataforma");
-		List<String> listPlataformas = new ArrayList<String>();
-		String strEspectaculo = request.getParameter("nomEspectaculos");
+		String strEspectaculo = "";
 		List<DtEspectaculo> listEspectaculos = new ArrayList<DtEspectaculo>();
-		List<DtFuncion> dtFun = new ArrayList<DtFuncion>();
-		List<DtPaqueteEspectaculo> dtPaq = new ArrayList<DtPaqueteEspectaculo>();
+		List<DtFuncion> listFunciones = new ArrayList<DtFuncion>();
+		List<DtPaqueteEspectaculo> listPaquetes = new ArrayList<DtPaqueteEspectaculo>();
 		RequestDispatcher rd;
 		if (strPlataforma != null) {
-			if (request.getParameter("boton").equals("btnPlataformas")) {
+			if (request.getParameter("boton").equals("botonPlataformas")) {
 				listEspectaculos = iconE.listarEspectaculos(strPlataforma);
-			} else if (request.getParameter("boton").equals("btnEspectaculos")) {
+				strEspectaculo = request.getParameter("nomEsp");
+			} else if (request.getParameter("boton").equals("botonEspectaculos")) {
 				listEspectaculos = iconE.listarEspectaculos(strPlataforma);
-				dtFun = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
-				dtPaq = iconE.obtenerEspectaculo(strEspectaculo).getPaqueteEspectaculoDt();
-			} else if (request.getParameter("boton").equals("btnDatosFunciones")) {
-				String strFuncion = request.getParameter("nomFuncion");
-				
-			
+				strEspectaculo = request.getParameter("nomEsp");
+				listFunciones = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
+				listPaquetes = iconE.obtenerEspectaculo(strEspectaculo).getPaqueteEspectaculoDt();
 			}
 		}
-		try {
-			listPlataformas = iconP.listarPlataformasStr();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("plataformas", listPlataformas);
-		request.setAttribute("espectaculo", listEspectaculos);
-		request.setAttribute("funciones", dtFun);
-		request.setAttribute("paquetes", dtPaq);
-		
+		HttpSession s = request.getSession();
+	     s.setAttribute("allEspectaculos", listEspectaculos);
+	     s.setAttribute("plataformaSelected", strPlataforma);
+	     s.setAttribute("espectaculoSelected", strEspectaculo);
+	     s.setAttribute("funciones", listFunciones);
+	     s.setAttribute("paquetes", listPaquetes);
 		rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
 		rd.forward(request, response);
 	}
-
 }
