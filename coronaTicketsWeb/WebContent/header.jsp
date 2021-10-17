@@ -52,15 +52,9 @@
                         role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> Usuarios </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<<<<<<< HEAD
-                      <form action="GetUsuarios" method="post">
-						<button class="dropdown-item" type="submit">Seguir a Usuario</button>
-					</form>
-=======
                       <form action="GetUsuariosNoSeguidos" method="post">
 						<button class="dropdown-item" type="submit">Seguir Usuario</button>
 					  </form>
->>>>>>> 318ea52a9cdeeaa641fb67d5a28ba6b011b10237
                       <div class="dropdown-divider"></div>
                       <form action="GetUsuariosSeguidos" method="post">
 						<button class="dropdown-item" type="submit">Dejar de seguir Usuario</button>
@@ -78,7 +72,7 @@
 					</form>
 					<div class="dropdown-divider"></div>
 					<form action="DatosConsulta" method="post">
-						<button class="dropdown-item" type="submit">Consulta
+						<button class="dropdown-item" type="submit" name="pageNavega" value="MenuConsultaEspectaculo">Consulta
 							 Espectaculo</button>
 					</form>
 		        	</div>

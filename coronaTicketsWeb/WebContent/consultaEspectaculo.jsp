@@ -20,21 +20,23 @@
 <title>Consulta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
-<body>
-	<br></br>
+<body class="headerSpace">
 	<h1>Consulta de Espectaculo</h1>
 	<form action="ConsultaEspectaculo" method="post" id="formConsultaEspectaculo">
-		<input type="hidden" name="boton" id="boton" value="" >
+		<input type="hidden" name="boton" id="boton" value="">
 
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma"
-				onchange="procesar('btnPlataformas')">
+				onchange="procesar('botonPlataformas')">
+				<option selected disabled>Seleccione Plataforma</option>
 				<%
-				   ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
+					HttpSession s = request.getSession();
+				String plataformaSelected = (String)s.getAttribute("plataformaSelected");
+				ArrayList<String> listPlataformas = (ArrayList<String>) s.getAttribute("allPlataformas");
 				for (String nomPlataforma : listPlataformas) {
 				%>
-				<option><%=nomPlataforma%></option>
+				<option <% if(plataformaSelected != null && plataformaSelected.equals(nomPlataforma)){%>selected="selected"<%} %>><%=nomPlataforma%></option>
 				<%
 				   }
 				%>
@@ -44,17 +46,19 @@
 
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
-			<select class="form-control" name="nomEspectaculos"
-				onchange="procesar('btnEspectaculos')">
+			<select class="form-control" name="nomEsp"
+				onchange="procesar('botonEspectaculos')">
+				<option selected disabled>Seleccione Espectaculo</option>
 				<%
-				if(request.getParameter("espectaculos") != null){
-				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) request.getAttribute("espectaculos");
-				for (DtEspectaculo nomEspectaculo : listEspectaculos) {
+				String espectaculoSelected = (String)s.getAttribute("espectaculoSelected");
+				   ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) s.getAttribute("allEspectaculos");
+				if(listEspectaculos != null){
+				for (DtEspectaculo espectaculo : listEspectaculos) {
 				%>
-				<option><%=nomEspectaculo.getNombre()%></option>
+				<option <% if(espectaculoSelected != null && espectaculoSelected.equals(espectaculo.getNombre())){%>selected="selected"<%} %>><%=espectaculo.getNombre()%></option>
 				<%
 				   }
-				
+				}
 				%>
 			</select>
 		</div>
@@ -62,7 +66,6 @@
 		<table class="table table-striped">
 		<thead>
 			<tr>
-				<th scope="col">#</th>
 				<th scope="col">Descripcion</th>
 				<th scope="col">Duracion</th>
 				<th scope="col">Espectadores Min</th>
@@ -73,11 +76,12 @@
 		</thead>
 		<tbody>
 		<%
-				int i = 1;
-					for (DtEspectaculo dte : listEspectaculos) {
+		if(listEspectaculos != null){
+			int i = 1;
+			for (DtEspectaculo dte : listEspectaculos) {
+				if(espectaculoSelected != null && espectaculoSelected.equals(dte.getNombre())){
 			%>
 			<tr>
-				<th scope="row"><%=i%></th>
 				<td><%=dte.getDescripcion()%></td>
 				<td><%=dte.getDuracion()%></td>
 				<td><%=dte.getCantMin()%></td>
@@ -86,17 +90,18 @@
 				<td><%=dte.getRegistro()%></td>
 			</tr>
 			<%
-				}
+				} 
+				i++;
 			}
+		}
 			%>
 		</tbody>
 	</table>
 	
 	<div class="input-group mb-3">
-			<label class="input-group-text" id="basic-addon3"> Funciones</label>
+			<span class="input-group-text" id="basic-addon3"> Funciones</span>
 				<%
-				if(request.getParameter("funciones") != null){
-				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) request.getAttribute("funciones");
+				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) s.getAttribute("funciones");
 				
 				%>
 		</div>
@@ -115,6 +120,7 @@
 		<tbody>
 		<%
 				int j = 1;
+				if(listFunciones != null){
 					for (DtFuncion dtf : listFunciones) {
 			%>
 			<tr>
@@ -126,24 +132,24 @@
 				<td><%=dtf.getArtistas()%></td>
 			</tr>
 			<%
-			}
+				j++;
+				} 
 				}
-		%>
+			%>
 		</tbody>
 	</table>
 	
 	<div class="input-group mb-3">
-			<label class="input-group-text" id="basic-addon3"> Paquetes</label>
+			<span class="input-group-text" id="basic-addon3"> Paquetes</span> 
 				<%
-				if(request.getParameter("paquetes") != null){
-				   ArrayList<DtPaqueteEspectaculo> listPaquetes = (ArrayList<DtPaqueteEspectaculo>) request.getAttribute("paquetes");
+				   ArrayList<DtPaqueteEspectaculo> listPaquetes = (ArrayList<DtPaqueteEspectaculo>) s.getAttribute("paquetes");
 				%>
 		</div>
 	
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th scope="col">#</th>
+				<th scope="col">#</th>		
 				<th scope="col">Nombre</th>
 				<th scope="col">Descripcion</th>
 				<th scope="col">Fecha Inicio</th>
@@ -155,6 +161,7 @@
 		<tbody>
 		<%
 				int k = 1;
+				if(listPaquetes != null){ 
 					for (DtPaqueteEspectaculo dtp : listPaquetes) {
 			%>
 			<tr>
@@ -167,6 +174,7 @@
 				<td><%=dtp.getDescuento()%></td>
 			</tr>
 			<%
+				k++;
 				}
 				}
 			%>
@@ -174,7 +182,6 @@
 	</table>
 	</form>
 	
-	<p id="demo"></p>
 	<script type="text/javascript">
 	function procesar(tipo) {
 	    document.getElementById("boton").value = tipo;
