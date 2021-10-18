@@ -34,6 +34,7 @@
 	<%
 		HttpSession sesion = request.getSession();
 	DtUsuario dtU = (DtUsuario) sesion.getAttribute("user");
+	String imageUser = (String) sesion.getAttribute("imgUser");
 	%>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
 	<div class="container-md">
@@ -110,7 +111,14 @@
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="true">
-				<img src="imagenes/userImg.png" height="30px" >
+				<%
+					if (imageUser != null && !imageUser.isEmpty()) {
+				
+				%>
+					<img src="data:image/jpg;base64,${imgUser}" height="30px"/>
+				<%}else{ %>
+					<img src="imagenes/userImg.png" height="30px" >
+				<%} %>
 				<%=dtU.getNombre() %></a>
 				
 				<div class="dropdown-menu">
