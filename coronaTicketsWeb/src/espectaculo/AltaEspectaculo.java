@@ -59,8 +59,8 @@ public class AltaEspectaculo extends HttpServlet {
 		}else {
 			try {
 				iconE.altaEspectaculo(dte, plataforma);
-				request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el espectculo");
-			}catch (EspectaculoRepetidoExcepcion e) {
+				request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema el espectculo "+nombre);
+			}catch (Exception e) {
 				request.setAttribute("mensaje", e.getMessage());
 				//e.printStackTrace();
 			}
