@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import datatypes.DtEspectaculo;
 import datatypes.DtUsuario;
 import excepciones.EspectaculoRepetidoExcepcion;
 import interfaces.Fabrica;
 import interfaces.IControladorEspectaculo;
+import manejadores.ManejadorEspectaculo;
 
 /**
  * Servlet implementation class AltaEspectaculo
@@ -39,7 +41,7 @@ public class AltaEspectaculo extends HttpServlet {
 		String plataforma = request.getParameter("nomPlataforma");
 		HttpSession sesion = request.getSession();
 		DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
-		String artista = dtUsuLogueado.getNickname(); // pasar artista con el q ingresó al sistema
+		String artista = dtUsuLogueado.getNickname(); // pasar artista con el q ingresÃ³ al sistema
 		String nombre = request.getParameter("nomEspectaculo");
 		String descripcion = request.getParameter("descEspectaculo");
 		Integer duracion = Integer.valueOf(request.getParameter("durEspectaculo"));
@@ -51,12 +53,17 @@ public class AltaEspectaculo extends HttpServlet {
 		DtEspectaculo dte = new DtEspectaculo(artista, plataforma, nombre, descripcion, duracion, espectadoresMin,
 				espectadoresMax, url, costo, fechaAlta);
 		RequestDispatcher rd;
-		try {
-			iconE.altaEspectaculo(dte, plataforma);
-			request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el espectculo");
-		} catch (Exception e) {
-			//request.setAttribute("mensaje", e.getMessage());
-			e.printStackTrace();
+		ManejadorEspectaculo mE = ManejadorEspectaculo.getInstancia();
+		if(mE.buscarEspectaculo(nombre) != null){
+			request.setAttribute("mensaje", "Ya existe el espectaculo "+nombre);
+		}else {
+			try {
+				iconE.altaEspectaculo(dte, plataforma);
+				request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el espectculo");
+			}catch (EspectaculoRepetidoExcepcion e) {
+				request.setAttribute("mensaje", e.getMessage());
+				//e.printStackTrace();
+			}
 		}
 		rd = request.getRequestDispatcher("/notificacion.jsp");
 		rd.forward(request, response);
