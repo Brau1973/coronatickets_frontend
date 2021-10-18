@@ -25,15 +25,9 @@
 <title>Alta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
-<<<<<<< HEAD
-<body>
-	<br></br> 
-	<form action="AltaEspectaculo" method="post">
-=======
 <body class="headerSpace">
 	<h1>Alta Espectaculo</h1>
 	<form action="AltaEspectaculo" method="post" id="formAltaEspectaculo">
->>>>>>> 651e7afae3dcad4006544f386c6112c497206ea9
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
@@ -94,14 +88,9 @@
 		<!-- fecha de alta -->
 		<!-- se da de alta el espectaculo en la fecha actual-->
 		<!-- fecha de alta -->
-<<<<<<< HEAD
-		<button type="reset" class="btn btn-primary">Cancelar</button>
-		<button type="submit" class="btn btn-primary">Confirmar</button>
-=======
 		<button type="submit" class="btn btn-primary"
 			>Confirmar</button>
 		<button type="reset" class="btn btn-primary">Cancelar</button>
->>>>>>> 651e7afae3dcad4006544f386c6112c497206ea9
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
