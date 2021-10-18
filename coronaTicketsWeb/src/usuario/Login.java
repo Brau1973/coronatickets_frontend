@@ -1,7 +1,13 @@
 package usuario;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,11 +54,31 @@ public class Login extends HttpServlet {
 		String userPass = request.getParameter("user_pass");
 		System.out.println("Login servlet");
 		IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
-		DtUsuario dt= iconU.getLoginUsuario(userName);
-		if(dt != null) {
+		DtUsuario dt = null;
+		if(userName.contains("@")) {
+			dt= iconU.getLoginUsuarioMail(userName);
+		}else {
+			dt= iconU.getLoginUsuario(userName);
+		}
+		
+		if(dt != null && dt.getContrasenia().equals(userPass)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", dt);
 			session.setAttribute("loged", true);
+			if(dt.getImagen() != null) {
+				byte[] foto = dt.getImagen();
+				BufferedImage image = null;
+				InputStream in = new ByteArrayInputStream(foto);
+				try{
+					image = ImageIO.read(in);
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
+				ByteArrayOutputStream output = new ByteArrayOutputStream();
+				ImageIO.write(image, "jpg", output);
+				String imageBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
+				session.setAttribute("imgUser", imageBase64);
+			}
 			rd = request.getRequestDispatcher("/index.jsp");
 		}else {
 			System.out.println("No existe usuario y contraseña.");

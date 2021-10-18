@@ -38,7 +38,7 @@ public class DejarDeSeguirUsuario extends HttpServlet {
 		String nicknameUsuarioLogueado = dtUsuLogueado.getNickname();
 		String nicknameUsuarioADejarDeSeguir = request.getParameter("nomUsuario");
 		RequestDispatcher rd;
-		iconU.seguirUsuario(nicknameUsuarioLogueado, nicknameUsuarioADejarDeSeguir);
+		iconU.dejarDeSeguirUsuario(nicknameUsuarioLogueado, nicknameUsuarioADejarDeSeguir);
 		request.setAttribute("mensaje", "Ya no sigues a " + nicknameUsuarioADejarDeSeguir);
 		rd = request.getRequestDispatcher("/notificacion.jsp");
 		rd.forward(request, response);
