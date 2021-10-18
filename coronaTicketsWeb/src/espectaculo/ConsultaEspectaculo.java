@@ -17,9 +17,6 @@ import datatypes.DtFuncion;
 import datatypes.DtPaqueteEspectaculo;
 import interfaces.Fabrica;
 import interfaces.IControladorEspectaculo;
-import interfaces.IControladorPlataforma;
-import interfaces.IControladorFuncion;
-import interfaces.IControladorPaquete;
 
 /**
  * Servlet implementation class ConsultaEspectaculo

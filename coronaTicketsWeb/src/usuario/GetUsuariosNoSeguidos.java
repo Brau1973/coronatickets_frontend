@@ -35,13 +35,18 @@ public class GetUsuariosNoSeguidos extends HttpServlet {
 	  HttpSession sesion = request.getSession();
 	  DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
 	  listUsuariosNoSeguidos = iconU.listarNicknameUsuariosNoSeguidos(dtUsuLogueado.getNickname());
-	  RequestDispatcher rd;
-	  for (String nomUsuario : listUsuariosNoSeguidos) {
-		  System.out.println(nomUsuario);
-	  }
+//	  for (String nomUsuario : listUsuariosNoSeguidos) {
+//		  System.out.println(nomUsuario);
+//	  }
 	  System.out.println(listUsuariosNoSeguidos);
-      request.setAttribute("usuariosNoSeguidos", listUsuariosNoSeguidos);
-      rd = request.getRequestDispatcher("/seguirUsuario.jsp");
+	  RequestDispatcher rd;
+	  if(!listUsuariosNoSeguidos.isEmpty()){
+	      request.setAttribute("usuariosNoSeguidos", listUsuariosNoSeguidos);
+	      rd = request.getRequestDispatcher("/seguirUsuario.jsp");
+	  }else{
+		  request.setAttribute("mensaje", "Estimado "+dtUsuLogueado.getNickname()+" , usted ya sigue a todos los usuarios del sistema");
+	      rd = request.getRequestDispatcher("/notificacion.jsp");
+	  }
       rd.forward(request, response);
 	}
 	

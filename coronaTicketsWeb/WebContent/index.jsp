@@ -15,5 +15,6 @@
 </head>
 <body class="container p-5 my-5 bg-light text-dark">
 	<img src="imagenes/img.png" class="img-fluid" alt="CoronaTickets">
+
 </body>
 </html>
