@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import datatypes.DtFuncion;
+import excepciones.FuncionYaRegistradaEnEspectaculoExcepcion;
 import interfaces.Fabrica;
 import interfaces.IControladorFuncion;
 
@@ -38,7 +39,6 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
-
 		String nombre = request.getParameter("nomFuncion");
 		String espectaculo = request.getParameter("nomEspectaculo");
 
@@ -72,17 +72,17 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 		foto = new byte[sizeimg];
 		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
 		dis.readFully(foto);
-
+		RequestDispatcher rd;
 		DtFuncion dtFuncion = new DtFuncion(nombre, fechaInicio, horaInicio, new Date(), listArtistas);
 		try{
 			iconF.altaFuncion(dtFuncion, espectaculo, foto);
-		}catch(Exception e){
-			e.printStackTrace();
+			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
+			rd = request.getRequestDispatcher("/notificacion.jsp");
+			rd.forward(request, response);
+		}catch(FuncionYaRegistradaEnEspectaculoExcepcion e){
+			request.setAttribute("mensaje", e.getMessage());
+			rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
+			rd.forward(request, response);
 		}
-
-		RequestDispatcher rd;
-		request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion " + nombre);
-		rd = request.getRequestDispatcher("/notificacion.jsp");
-		rd.forward(request, response);
 	}
 }

@@ -11,46 +11,45 @@
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<%
-		String id = request.getParameter("nomPlataforma");
-	%>
-
 	<form class="container p-5 my-5 bg-light text-dark"
-		action="ConsultaFuncionEspectaculo" method="post">
+		action="ConsultaFuncionEspectaculo" method="post"
+		id="formConsultaEspectaculo">
 		<input type=hidden name="boton" id="boton" value="">
 		<h3>Consulta de Funcion de Espectaculo</h3>
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
-			<select class="form-control" name="nomPlataforma" id="mySelect"
-				onclick="myFunction()">
+			<select class="form-control" name="nomPlataforma"
+				onchange="procesar('selPlataformas')"><option selected
+					disabled>Seleccione Plataforma</option>
 				<%
-					if (request.getAttribute("plataformas") != null) {
-					ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
-					for (String nomPlataforma : listPlataformas) {
+					HttpSession s = request.getSession();
+				String plataformaSelected = (String) s.getAttribute("plataformaSelected");
+				ArrayList<String> listPlataformas = (ArrayList<String>) s.getAttribute("allPlataformas");
+				for (String nomPlataforma : listPlataformas) {
 				%>
-				<option><%=nomPlataforma%></option>
-				<%
-					}
-				} else {
-				%>
-				<option><%=id%></option>
+				<option
+					<%if (plataformaSelected != null && plataformaSelected.equals(nomPlataforma)) {%>
+					selected="selected" <%}%>><%=nomPlataforma%></option>
 				<%
 					}
 				%>
 			</select>
 		</div>
 
-
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
 			<select class="form-control" name="nomEspectaculo"
-				onclick="procesar('selEspectaculo')">
+				onchange="procesar('selEspectaculo')">
+				<option selected disabled>Seleccione Espectaculo</option>
 				<%
-					if (request.getAttribute("espectaculos") != null) {
-					ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) request.getAttribute("espectaculos");
+					String espectaculoSelected = (String) s.getAttribute("espectaculoSelected");
+				ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) s.getAttribute("espectaculos");
+				if (listEspectaculos != null) {
 					for (DtEspectaculo nomEspectaculo : listEspectaculos) {
 				%>
-				<option><%=nomEspectaculo.getNombre()%></option>
+				<option
+					<%if (espectaculoSelected != null && espectaculoSelected.equals(nomEspectaculo.getNombre())) {%>
+					selected="selected" <%}%>><%=nomEspectaculo.getNombre()%></option>
 				<%
 					}
 				}
@@ -61,10 +60,11 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Funciones</span> <select
 				class="form-control" name="nomFuncion"
-				onclick="procesar('selFuncion')">
+				onchange="procesar('selFuncion')">
+				<option selected disabled>Seleccione Funcion</option>
 				<%
-					if (request.getAttribute("funciones") != null) {
 					ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) request.getAttribute("funciones");
+				if (request.getAttribute("funciones") != null) {
 					for (DtFuncion nomFuncion : listFunciones) {
 				%>
 				<option><%=nomFuncion.getNombre()%></option>
@@ -74,9 +74,9 @@
 				%>
 			</select>
 		</div>
-		<button class="btn btn-dark" name="btnOpcion"
+		<!--  	<button class="btn btn-dark" name="btnOpcion"
 			value="opConsultaFuncionEsp" type="submit"
-			formaction="ConsultaPlataforma">Actualizar</button>
+			formaction="ConsultaPlataforma">Actualizar</button>-->
 	</form>
 
 	<p id="demo"></p>
@@ -86,7 +86,6 @@
 	    document.forms[7].submit();
 	}
     </script>
-
 	<script>
 	function myFunction() {
 	    var x = document.getElementById("mySelect").value;
@@ -94,7 +93,5 @@
 	    document.forms[7].submit();
 	}
     </script>
-
-
 </body>
 </html>
