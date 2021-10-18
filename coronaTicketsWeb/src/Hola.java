@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datatypes.DtPlataforma;
-import excepciones.PlataformaRepetidaExcepcion;
 import interfaces.Fabrica;
 import interfaces.IControladorPlataforma;
 

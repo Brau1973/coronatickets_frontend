@@ -6,22 +6,15 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="resources/index.css" rel="stylesheet"></link>
+
 <script src="resources/index.css"></script>
 
 <title>Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
-<body>
-	<br>
-	<br>
-	<p>
-	<h1>Bienvenidos</h1>
-	</p>
+<body class="container p-5 my-5 bg-light text-dark">
+	<img src="imagenes/img.png" class="img-fluid" alt="CoronaTickets">
+
 </body>
 </html>
