@@ -25,6 +25,7 @@
 <title>Alta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
+<br></br>
 <body class="headerSpace">
 	<h1>Alta Espectaculo</h1>
 	<form action="AltaEspectaculo" method="post" id="formAltaEspectaculo">

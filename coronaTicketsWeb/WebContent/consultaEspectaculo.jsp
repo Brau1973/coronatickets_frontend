@@ -20,6 +20,7 @@
 <title>Consulta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
+<br></br>
 <body class="headerSpace">
 	<h1>Consulta de Espectaculo</h1>
 	<form action="ConsultaEspectaculo" method="post" id="formConsultaEspectaculo">
