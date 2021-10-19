@@ -53,7 +53,7 @@
 </head>
 <body class="headerSpace">
 	<h1>Alta Usuario</h1>
-	<form action="AltaUsuario" method="post" enctype="multipart/form-data">>
+	<form action="AltaUsuario" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">

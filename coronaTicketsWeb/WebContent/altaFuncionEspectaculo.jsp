@@ -43,28 +43,26 @@
 		</div>
 
 		<div action="/action_page.php" class="was-validated">
-
 			<div class="input-group mb-3">
 				<span class="input-group-text">Nombre:</span> <input type="text"
 					class="form-control" name="nomFuncion" required>
-				<div class="valid-feedback">Valido.</div>
-				<div class="invalid-feedback">Ingresar nombre de funcion.</div>
+				<div class="valid-feedback"></div>
+				<div class="invalid-feedback">Ingrese el nombre</div>
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">Fecha:</span> <input type="date"
 					name="fechaFuncion" class="form-control" required>
-				<div class="valid-feedback">Valido.</div>
-				<div class="invalid-feedback">Ingrese fecha de funcion.</div>
+				<div class="valid-feedback"></div>
+				<div class="invalid-feedback">Ingrese la fecha</div>
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">Hora:</span> <input type="time"
 					name="horaFuncion" class="form-control" required>
-				<div class="valid-feedback">Valido.</div>
-				<div class="invalid-feedback">Ingrese hora de inicio.</div>
+				<div class="valid-feedback"></div>
+				<div class="invalid-feedback">Ingrese hora inicio</div>
 			</div>
-
 		</div>
 
 		<link
@@ -95,15 +93,6 @@
 			<span class="input-group-text">Imagen:</span> <input type="file"
 				name="imagen" id="imagen" class="form-control">
 		</div>
-
-		<!--  	<div class="input-group mb-3">
-			<span class="input-group-text">Nombre:</span> <input type="text"
-				class="form-control" name="nomFuncion" id="nomFuncion"
-				placeholder="Ingrese nombre" required>
-			<div class="valid-feedback">Valido.</div>
-			<div class="invalid-feedback">Ingresar nombre de funcion.</div>
-		</div>
-		-->
 		<button class="btn btn-primary" type="submit">Registrar</button>
 		<button class="btn btn-dark" type="submit">Cancelar</button>
 	</form>
@@ -115,6 +104,5 @@
 	    })
 	})
     </script>
-
 </body>
 </html>

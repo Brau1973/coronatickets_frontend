@@ -33,12 +33,12 @@
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma">
 				<%
-				   ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
+					ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
 				for (String nomPlataforma : listPlataformas) {
 				%>
 				<option><%=nomPlataforma%></option>
 				<%
-				   }
+					}
 				%>
 			</select>
 		</div>
@@ -88,8 +88,7 @@
 		<!-- fecha de alta -->
 		<!-- se da de alta el espectaculo en la fecha actual-->
 		<!-- fecha de alta -->
-		<button type="submit" class="btn btn-primary"
-			>Confirmar</button>
+		<button type="submit" class="btn btn-primary">Confirmar</button>
 		<button type="reset" class="btn btn-primary">Cancelar</button>
 	</form>
 
@@ -104,13 +103,5 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-	<!-- <script type="text/javascript">
-		function procesar(tipo) {
-			document.getElementById("boton").value = tipo;
-			document.getElementById("formAltaEspectaculo").submit();
-		}
-	</script> -->
-
-
 </body>
 </html>

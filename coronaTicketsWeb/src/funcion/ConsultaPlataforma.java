@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import interfaces.Fabrica;
 import interfaces.IControladorPlataforma;
@@ -38,9 +39,10 @@ public class ConsultaPlataforma extends HttpServlet{
 		}
 
 		RequestDispatcher rd;
+		HttpSession s = request.getSession();
+		s.setAttribute("allPlataformas", listPlataformas);
 		switch(strEs){
 		case "opConsultaFuncionEsp":
-			request.setAttribute("plataformas", listPlataformas);
 			rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
 			rd.forward(request, response);
 			break;
@@ -49,14 +51,6 @@ public class ConsultaPlataforma extends HttpServlet{
 			rd.forward(request, response);
 			break;
 		}
-
-		/*	if(strEs.equals("opConsultaFuncion")){
-				request.setAttribute("plataformas", listPlataformas);
-				rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
-			}else{
-				rd = request.getRequestDispatcher("/index.jsp");
-			}
-			rd.forward(request, response);*/
 	}
 }
 

@@ -72,7 +72,6 @@ public class AltaUsuario extends HttpServlet{
 
 		// }
 		try{
-
 			// Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(fechaNac);
 			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 			Date fechaNacimiento = null;
@@ -84,24 +83,21 @@ public class AltaUsuario extends HttpServlet{
 
 			if(tipoU.equals("Espectador")){
 				System.out.println("aca estoy" + tipoU);
-
 				DtUsuario dte = new DtEspectador(nickname, nombre, apellido, correo, fechaNacimiento, contrasenia, foto, null, null);
-
 				iconU.altaUsuario(dte);
 			}
 
 			else if(tipoU.equals("Artista")){
 				DtUsuario dta = new DtArtista(nickname, nombre, apellido, correo, fechaNacimiento, contrasenia, foto, null, null, descripcion, biografia, url);
-
 				iconU.altaUsuario(dta);
 			}
-
+			request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el usuario");
 		}catch(UsuarioRepetidoExcepcion e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			request.setAttribute("mensaje",e.getMessage());
 		}
+
 		RequestDispatcher rd;
-		request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el usuario");
+
 		rd = request.getRequestDispatcher("/notificacion.jsp");
 		rd.forward(request, response);
 
