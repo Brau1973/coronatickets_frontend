@@ -69,7 +69,7 @@ public class AltaUsuario extends HttpServlet{
 		foto = new byte[sizeimg];
 		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
 		dis.readFully(foto);
-
+		RequestDispatcher rd;
 		// }
 		try{
 			// Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(fechaNac);
@@ -91,14 +91,14 @@ public class AltaUsuario extends HttpServlet{
 				DtUsuario dta = new DtArtista(nickname, nombre, apellido, correo, fechaNacimiento, contrasenia, foto, null, null, descripcion, biografia, url);
 				iconU.altaUsuario(dta);
 			}
-			request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el usuario");
+			request.setAttribute("message", "Se ha ingresado correctamente al sistema, el usuario");
+			rd = request.getRequestDispatcher("/index.jsp");
 		}catch(UsuarioRepetidoExcepcion e){
-			request.setAttribute("mensaje",e.getMessage());
+			request.setAttribute("message", e.getMessage());
+			rd = request.getRequestDispatcher("/altaUsuario.jsp");
 		}
 
-		RequestDispatcher rd;
 
-		rd = request.getRequestDispatcher("/notificacion.jsp");
 		rd.forward(request, response);
 
 	}

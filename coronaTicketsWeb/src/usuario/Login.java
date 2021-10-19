@@ -82,7 +82,6 @@ public class Login extends HttpServlet {
 			rd = request.getRequestDispatcher("/index.jsp");
 		}else {
 			request.setAttribute("message", "No existe el usuario y contraseña.");
-			System.out.println("No existe usuario y contraseña.");
 		}
 		rd.forward(request, response);
 	}
