@@ -6,3 +6,11 @@
 	margin-right: 400px;
 	margin-left: 400px;
 }
+
+.posicionToast{
+	position: absolute;
+	display: block;
+	bottom: 20px;
+	right: 20px;
+	background: #f03535e0 !important;
+}

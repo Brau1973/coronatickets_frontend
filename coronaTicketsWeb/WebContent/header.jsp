@@ -33,6 +33,7 @@
 <body>
 	<%
 		HttpSession sesion = request.getSession();
+	String mensaje = (String)request.getAttribute("message");
 	DtUsuario dtU = (DtUsuario) sesion.getAttribute("user");
 	String imageUser = (String) sesion.getAttribute("imgUser");
 	%>
@@ -54,8 +55,9 @@
                         role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> Usuarios </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <%if(dtU == null){ %>
                       <a class="dropdown-item" href="altaUsuario.jsp">Alta Usuario</a>
-                      <div class="dropdown-divider"></div>
+                      <%}else{ %>
                       <form action="GetUsuariosNoSeguidos" method="post">
 						<button class="dropdown-item" type="submit">Seguir Usuario</button>
 					  </form>
@@ -63,38 +65,41 @@
                       <form action="GetUsuariosSeguidos" method="post">
 						<button class="dropdown-item" type="submit">Dejar de seguir Usuario</button>
 					  </form>
+					  <%} %>
                     </div>
               </li>
  
-			<li class="nav-item"><a class="nav-link"
-				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li>
+<!-- 			<li class="nav-item"><a class="nav-link" -->
+<!-- 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li> -->
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Espectaculos </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			          <form action="Datos" method="post">
-						<button class="dropdown-item" type="submit">Alta Espectaculo</button>
-					</form>
+			          <%if(dtU instanceof DtArtista){ %>
+			         	 <form action="Datos" method="post">
+							<button class="dropdown-item" type="submit">Alta Espectaculo</button>
+						</form>
 					<div class="dropdown-divider"></div>
+					<%} %>
 					<form action="DatosConsulta" method="post">
 						<button class="dropdown-item" type="submit" name="pageNavega" value="MenuConsultaEspectaculo">Consulta
 							 Espectaculo</button>
 					</form>
 		        	</div>
       		</li>
-			<li class="nav-item"><a class="nav-link" href="index.jsp">Plataformas</a></li>
+<!-- 			<li class="nav-item"><a class="nav-link" href="index.jsp">Plataformas</a></li> -->
 			
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="false">Funciones</a>
 				<div class="dropdown-menu">
-
+					<%if(dtU instanceof DtArtista){ %>
 					<form action="Consultas" method="post">
 						<button class="dropdown-item" type="submit">Alta Funcion
 							de Espectaculo</button>
 					</form>
-
 					<div class="dropdown-divider"></div>
+					<%} %>
 
 					<form action="ConsultaPlataforma" method="post">
 						<button class="dropdown-item" name="btnOpcion"
@@ -125,9 +130,9 @@
 					<form action="Login" method="get">
 		 				<button class="dropdown-item" type="submit">Cerrar sesion</button>
 			 		</form>
-					<div class="dropdown-divider"></div>
+<!-- 					<div class="dropdown-divider"></div> -->
 <!-- 					<form action="ConsultaFuncionEspectaculo" method="post"> -->
-						<button class="dropdown-item" type="submit">Ver Perfil</button>
+<!-- 						<button class="dropdown-item" type="submit">Ver Perfil</button> -->
 <!-- 					</form> -->
 
 				</div>
@@ -147,21 +152,33 @@
 		<%
 			}
 		%>
-		<!-- 		<form class="form-inline" action="login.jsp"> -->
-		<!-- 			<button class="btn btn-success" type="submit">Login2</button> -->
-		<!-- 		</form> -->
-<!-- 		<form action="Login" method="get"> -->
-<!-- 			<button class="btn btn-success" type="submit">Logout</button> -->
-<!-- 		</form> -->
-<%-- 		<% --%>
-<%-- 		%> --%>
 	</div>
 	</nav>
+	
+	<!-- Toast -->
+ 	<%if(mensaje != null && !mensaje.isEmpty()){ %>
+ 	<script type="text/javascript">
+		window.onload = function(){
+		 	$( "#toast_message" ).removeClass( "hide" );
+		 	$( "#toast_message" ).addClass( "show" );
+		 	setTimeout(function() {
+		 	 	$( "#toast_message" ).removeClass( "show" );
+		 	 	$( "#toast_message" ).addClass( "hide" );
+		 	}, 4000);
+		}
+ 	</script>
+	<div id="toast_message" class="toast hide posicionToast" role="alert"
+		aria-live="assertive" aria-atomic="true">
+		<div class="toast-body">${message}</div>
+	</div>
+	<%} else{%>
+	<script type="text/javascript">
+		window.onload = function(){
+			$( "#toast_message" ).removeClass( "show" );
+			$( "#toast_message" ).addClass( "hide" );
+		}
+ 	</script>
+	<%}%>
 
 </body>
 </html>
-<!-- 
-<a class="navbar-brand" href="#"> <img src="imagenes/logo.png"
-		alt="CoronaTickets" style="width: 90px;">
-	</a>
- -->
