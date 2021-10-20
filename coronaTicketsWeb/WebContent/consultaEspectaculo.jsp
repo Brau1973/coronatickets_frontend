@@ -17,6 +17,7 @@
 	crossorigin="anonymous" />
 
 <link href="https://fonts.googleapis.com/css?"/>
+<link href="resources/index.css" rel="stylesheet"></link>
 <title>Consulta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>

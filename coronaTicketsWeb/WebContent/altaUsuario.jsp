@@ -49,6 +49,7 @@
 	
 	
 <title>Alta Usuario</title>
+<link href="resources/index.css" rel="stylesheet"></link>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
@@ -58,26 +59,26 @@
 		<div class="input-group mb-3">
 			<%
 			//cargo variables del formulario
-			String tipoDeUsuario = (String)request.getAttribute("tipoDeUsuario");
-			String nickname = (String)request.getAttribute("nickname");
-			String nombre = (String)request.getAttribute("nombre");
-			String apellido = (String)request.getAttribute("apellido");
-			String contraseña = (String)request.getAttribute("contraseña");
-			String correo = (String)request.getAttribute("correo");
-			String fechaDeNacimiento = (String)request.getAttribute("fechaDeNacimiento");
-			String imagen = (String)request.getAttribute("imagen");
-			String descripcion = (String)request.getAttribute("descripcion");
-			String biografia = (String)request.getAttribute("biografia");
-			String url = (String)request.getAttribute("url");
+			String tipoDeUsuario = (String)sesion.getAttribute("tipoDeUsuario");
+// 			String nickname = (String)sesion.getAttribute("nickname");
+// 			String nombre = (String)sesion.getAttribute("nombre");
+// 			String apellido = (String)sesion.getAttribute("apellido");
+// 			String contrasenia = (String)sesion.getAttribute("contrasenia");
+// 			String correo = (String)sesion.getAttribute("correo");
+// 			String fechaDeNacimiento = (String)sesion.getAttribute("fechaDeNacimiento");
+// 			String imagen = (String)sesion.getAttribute("imagen");
+// 			String descripcion = (String)sesion.getAttribute("descripcion");
+// 			String biografia = (String)sesion.getAttribute("biografia");
+// 			String url = (String)sesion.getAttribute("url");
 			%>
 			<div class="input-group-prepend">
 				<label class="input-group-text" for="tipoUsuario">Tipo de Usuario</label>
 			</div>
 			<select class="tipoUsuario" id="tipoUsuario"
-				name="tipoUsuario" onchange="eventoTipoUsuario()">
+				name="tipoUsuario" onchange="eventoTipoUsuario()" required>
 				<option selected  >Seleccione una tipo de Usuario</option>
-				<option value="Artista" >Artista</option>
-				<option value="Espectador">Espectador</option>
+				<option value="Artista" <% if(tipoDeUsuario != null && tipoDeUsuario.equals("Artista")){%>selected="selected"<%} %>>Artista</option>
+				<option value="Espectador" <% if(tipoDeUsuario != null && tipoDeUsuario.equals("Espectador")){%>selected="selected"<%} %>>Espectador</option>
 			</select>
 		</div>
 	<div class="form-group">
@@ -103,13 +104,13 @@
 		<div class="form-group">
 			<label for="contrasenaUsuario">Contraseña</label> <input type="password"
 				name="passUsuario" class="form-control"
-				id="contrasenaUsuario" value="${contraseña}"
+				id="contrasenaUsuario" value="${contrasenia}"
 				placeholder="Ingrese la contraseña del usuario" required >
 		</div>
 		<div class="form-group">
 			<label for="contrasena2Usuario"></label> <input type="password"
 				name="pass2Usuario" class="form-control"
-				id="contrasena2Usuario" value="${contraseña}"
+				id="contrasena2Usuario" value="${contrasenia}"
 				placeholder="confirme la contraseña" required onkeyup="compararContrasenias()">
 		</div>
 		<div class="form-group">

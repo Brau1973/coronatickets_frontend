@@ -82,6 +82,12 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 			iconF.altaFuncion(dtFuncion, espectaculo, foto);
 			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
 			rd = request.getRequestDispatcher("/notificacion.jsp");
+			
+			session.removeAttribute("nomFuncion");
+			session.removeAttribute("fechaFuncion");
+			session.removeAttribute("horaFuncion");
+			session.removeAttribute("nombreEspectaculoSelected");
+			
 			rd.forward(request, response);
 		}catch(FuncionYaRegistradaEnEspectaculoExcepcion e){
 			request.setAttribute("message", e.getMessage());

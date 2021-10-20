@@ -75,19 +75,20 @@ public class ConsultaFuncionEspectaculo extends HttpServlet{
 					listArtistas.add(artistai.getNombre());
 				}
 				request.setAttribute("mostrarArtistas", listArtistas);
-
-				byte[] foto = func.getImagen();
-				BufferedImage image = null;
-				InputStream in = new ByteArrayInputStream(foto);
-				try{
-					image = ImageIO.read(in);
-				}catch(IOException e1){
-					e1.printStackTrace();
+				if(func.getImagen() != null) {
+					byte[] foto = func.getImagen();
+					BufferedImage image = null;
+					InputStream in = new ByteArrayInputStream(foto);
+					try{
+						image = ImageIO.read(in);
+					}catch(IOException e1){
+						e1.printStackTrace();
+					}
+					ByteArrayOutputStream output = new ByteArrayOutputStream();
+					ImageIO.write(image, "jpg", output);
+					String imageBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
+					request.setAttribute("mostrarFoto", imageBase64);
 				}
-				ByteArrayOutputStream output = new ByteArrayOutputStream();
-				ImageIO.write(image, "jpg", output);
-				String imageBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
-				request.setAttribute("mostrarFoto", imageBase64);
 				rd = request.getRequestDispatcher("/datosFunciones.jsp");
 				rd.forward(request, response);
 			}

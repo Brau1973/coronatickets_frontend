@@ -98,7 +98,7 @@ public class AltaUsuario extends HttpServlet{
 			sesion.removeAttribute("nickname");
 			sesion.removeAttribute("nombre");
 			sesion.removeAttribute("apellido");
-			sesion.removeAttribute("contraseña");
+			sesion.removeAttribute("contrasenia");
 			sesion.removeAttribute("correo");
 			sesion.removeAttribute("fechaDeNacimiento");
 			sesion.removeAttribute("imagen");
@@ -116,7 +116,7 @@ public class AltaUsuario extends HttpServlet{
 			sesion.setAttribute("nickname",nickname);
 			sesion.setAttribute("nombre",nombre);
 			sesion.setAttribute("apellido",apellido);
-			sesion.setAttribute("contraseña",contrasenia);
+			sesion.setAttribute("contrasenia",contrasenia);
 			sesion.setAttribute("correo",correo);
 			sesion.setAttribute("fechaDeNacimiento",fechaNac);
 			sesion.setAttribute("imagen",imagen);

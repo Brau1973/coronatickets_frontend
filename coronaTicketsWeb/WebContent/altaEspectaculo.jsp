@@ -30,10 +30,10 @@
 		crossorigin="anonymous"></script>
 
 <title>Alta Espectaculo</title>
+<link href="resources/index.css" rel="stylesheet"></link>
 <%@include file="header.jsp"%>
 </head>
-<body >
-	<br></br>
+<body class="headerSpace">
 	<h1>Alta Espectaculo</h1>
 	<form action="AltaEspectaculo" method="post" id="formAltaEspectaculo">
 		<input type="hidden" name="boton" id="boton" value="">
@@ -41,15 +41,6 @@
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma">
 				<%
-				//cargo variables del formulario
-				String nombreEspectaculo = (String)request.getAttribute("nombreEspectaculo");
-				String descripcionEspectaculo = (String)request.getAttribute("descripcionEspectaculo");
-				String duracionEspectaculo = (String)request.getAttribute("duracionEspectaculo");
-				String espectadoresMinEspectaculo = (String)request.getAttribute("espectadoresMinEspectaculo");
-				String espectadoresMaxEspectaculo = (String)request.getAttribute("espectadoresMaxEspectaculo");
-				String urlEspectaculo = (String)request.getAttribute("urlEspectaculo");
-				String costoEspectaculo = (String)request.getAttribute("costoEspectaculo");		
-				
 				HttpSession s = request.getSession();
 				String plataformaSelected = (String)s.getAttribute("plataformaSelected");
 				ArrayList<String> listPlataformas = (ArrayList<String>) s.getAttribute("allPlataformas");
