@@ -32,7 +32,8 @@
 <title>Alta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
-<body class="headerSpace">
+<body >
+	<br></br>
 	<h1>Alta Espectaculo</h1>
 	<form action="AltaEspectaculo" method="post" id="formAltaEspectaculo">
 		<input type="hidden" name="boton" id="boton" value="">
@@ -43,8 +44,11 @@
 				//cargo variables del formulario
 				String nombreEspectaculo = (String)request.getAttribute("nombreEspectaculo");
 				String descripcionEspectaculo = (String)request.getAttribute("descripcionEspectaculo");
-				String horaFuncion = (String)request.getAttribute("horaFuncion");
-				String nombreEspectaculoSelected = (String)request.getAttribute("nombreEspectaculoSelected");
+				String duracionEspectaculo = (String)request.getAttribute("duracionEspectaculo");
+				String espectadoresMinEspectaculo = (String)request.getAttribute("espectadoresMinEspectaculo");
+				String espectadoresMaxEspectaculo = (String)request.getAttribute("espectadoresMaxEspectaculo");
+				String urlEspectaculo = (String)request.getAttribute("urlEspectaculo");
+				String costoEspectaculo = (String)request.getAttribute("costoEspectaculo");		
 				
 				HttpSession s = request.getSession();
 				String plataformaSelected = (String)s.getAttribute("plataformaSelected");
@@ -69,29 +73,29 @@
 				placeholder="Ingrese una descripcion para el espectaculo" required>
 		</div>
 		<div class="form-group">
-			<label for="duracionEspectaculo">Duracion</label> <input type="text"
+			<label for="duracionEspectaculo">Duracion</label> <input type="text" value="${duracionEspectaculo}"
 				name="durEspectaculo" class="form-control" id="duracionEspectaculo"
 				placeholder="Ingrese la duracion del espectaculo" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
-			<label for="quantity">Espectadores mínimos:</label> <input
+			<label for="quantity">Espectadores mínimos:</label> <input value="${espectadoresMinEspectaculo}"
 				type="number" id="quantity" name="espectadoresMin" min="1"
 				max="1000000" style="width: 100px" required>
 		</div>
 		<div class="form-group">
-			<label for="quantity">Espectadores máximos:</label> <input
+			<label for="quantity">Espectadores máximos:</label> <input value="${espectadoresMaxEspectaculo}"
 				type="number" id="quantity" name="espectadoresMax" min="1"
 				max="1000000" style="width: 100px" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
-			<label for="urlEspectaculo">URL</label> <input type="text"
+			<label for="urlEspectaculo">URL</label> <input type="text" value="${urlEspectaculo}"
 				name="urlEspectaculo" class="form-control" id="urlEspectaculo"
 				placeholder="Ingrese la URL del espectaculo" required>
 		</div>
 		<div class="form-group">
-			<label for="exampleInputPassword1">Costo</label> <input type="number"
+			<label for="exampleInputPassword1">Costo</label> <input type="number" value="${costoEspectaculo}"
 				name="costoEspectaculo" class="form-control"
 				id="exampleInputPassword1"
 				placeholder="Ingrese el costo del espectaculo" required>

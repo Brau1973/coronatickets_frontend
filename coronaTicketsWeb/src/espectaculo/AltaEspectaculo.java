@@ -62,14 +62,18 @@ public class AltaEspectaculo extends HttpServlet {
 				iconE.altaEspectaculo(dte, plataforma);
 				request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema el espectculo "+nombre);
 				rd = request.getRequestDispatcher("/notificacion.jsp");
-			}catch (EspectaculoRepetidoExcepcion e) {
+			}catch (Exception e) {
 				request.setAttribute("message", e.getMessage());
 				
 				//guardo los campos del formulario en la sesion
 				sesion.setAttribute("plataformaSelected",plataforma);
 				sesion.setAttribute("nombreEspectaculo",nombre);
-				sesion.setAttribute("horaFuncion",hora);
-				sesion.setAttribute("nombreEspectaculoSelected",espectaculo);
+				sesion.setAttribute("descripcionEspectaculo",descripcion);
+				sesion.setAttribute("duracionEspectaculo",duracion);
+				sesion.setAttribute("espectadoresMinEspectaculo",espectadoresMin);
+				sesion.setAttribute("espectadoresMaxEspectaculo",espectadoresMax);
+				sesion.setAttribute("urlEspectaculo",url);
+				sesion.setAttribute("costoEspectaculo",costo);
 				//e.printStackTrace();
 			}
 //		}
