@@ -76,8 +76,8 @@
 						aria-expanded="false"> Espectaculos </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			          <%if(dtU instanceof DtArtista){ %>
-			         	 <form action="Datos" method="post">
-							<button class="dropdown-item" type="submit">Alta Espectaculo</button>
+			         	 <form action="DatosConsulta" method="post">
+							<button class="dropdown-item" type="submit" name="pageNavega" value="MenuAltaEspectaculo">Alta Espectaculo</button>
 						</form>
 					<div class="dropdown-divider"></div>
 					<%} %>

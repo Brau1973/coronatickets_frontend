@@ -37,6 +37,7 @@ public class AltaEspectaculo extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("/altaEspectaculo.jsp");
 		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
 		String plataforma = request.getParameter("nomPlataforma");
 		HttpSession sesion = request.getSession();
@@ -52,20 +53,27 @@ public class AltaEspectaculo extends HttpServlet {
 		Date fechaAlta = new Date();
 		DtEspectaculo dte = new DtEspectaculo(artista, plataforma, nombre, descripcion, duracion, espectadoresMin,
 				espectadoresMax, url, costo, fechaAlta);
-		RequestDispatcher rd;
+		
 		ManejadorEspectaculo mE = ManejadorEspectaculo.getInstancia();
-		if(mE.buscarEspectaculo(nombre) != null){
-			request.setAttribute("mensaje", "Ya existe el espectaculo "+nombre);
-		}else {
+//		if(mE.buscarEspectaculo(nombre) != null){
+//			request.setAttribute("mensaje", "Ya existe el espectaculo "+nombre);
+//		}else {
 			try {
 				iconE.altaEspectaculo(dte, plataforma);
 				request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema el espectculo "+nombre);
-			}catch (Exception e) {
-				request.setAttribute("mensaje", e.getMessage());
+				rd = request.getRequestDispatcher("/notificacion.jsp");
+			}catch (EspectaculoRepetidoExcepcion e) {
+				request.setAttribute("message", e.getMessage());
+				
+				//guardo los campos del formulario en la sesion
+				sesion.setAttribute("plataformaSelected",plataforma);
+				sesion.setAttribute("nombreEspectaculo",nombre);
+				sesion.setAttribute("horaFuncion",hora);
+				sesion.setAttribute("nombreEspectaculoSelected",espectaculo);
 				//e.printStackTrace();
 			}
-		}
-		rd = request.getRequestDispatcher("/notificacion.jsp");
+//		}
+		
 		rd.forward(request, response);
 	}
 }

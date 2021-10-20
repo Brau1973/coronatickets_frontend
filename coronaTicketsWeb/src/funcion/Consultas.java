@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import interfaces.Fabrica;
 import interfaces.IControladorUsuario;
@@ -33,13 +34,14 @@ public class Consultas extends HttpServlet{
 		List<String> listArtistas = new ArrayList<String>();
 		ManejadorEspectaculo mE = ManejadorEspectaculo.getInstancia();
 		List<Espectaculo> listEspectaculos = mE.obtenerEspectaculo();
+		HttpSession session = request.getSession();
 		try{
 			listArtistas = iconU.listarNicknameArtistas();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		request.setAttribute("usuario", listArtistas);
-		request.setAttribute("espectaculo", listEspectaculos);
+		session.setAttribute("usuario", listArtistas);
+		session.setAttribute("espectaculo", listEspectaculos);
 		 RequestDispatcher rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
 		rd.forward(request, response);
 	}

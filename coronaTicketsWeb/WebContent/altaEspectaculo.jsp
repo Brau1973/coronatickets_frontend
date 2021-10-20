@@ -40,22 +40,30 @@
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma">
 				<%
-					ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
+				//cargo variables del formulario
+				String nombreEspectaculo = (String)request.getAttribute("nombreEspectaculo");
+				String descripcionEspectaculo = (String)request.getAttribute("descripcionEspectaculo");
+				String horaFuncion = (String)request.getAttribute("horaFuncion");
+				String nombreEspectaculoSelected = (String)request.getAttribute("nombreEspectaculoSelected");
+				
+				HttpSession s = request.getSession();
+				String plataformaSelected = (String)s.getAttribute("plataformaSelected");
+				ArrayList<String> listPlataformas = (ArrayList<String>) s.getAttribute("allPlataformas");
 				for (String nomPlataforma : listPlataformas) {
 				%>
-				<option><%=nomPlataforma%></option>
+				<option <% if(plataformaSelected != null && plataformaSelected.equals(nomPlataforma)){%>selected="selected"<%} %>><%=nomPlataforma%></option>
 				<%
-					}
+				   }
 				%>
 			</select>
 		</div>
 		<div class="form-group">
 			<label for="nombreEspectaculo">Nombre</label> <input type="text"
-				name="nomEspectaculo" class="form-control" id="nombreEspectaculo"
+				name="nomEspectaculo" class="form-control" id="nombreEspectaculo" value="${nombreEspectaculo}"
 				placeholder="Ingrese un nombre para el espectaculo" required>
 		</div>
 		<div class="form-group">
-			<label for="descripcionEspectaculo">Descripcion</label> <input
+			<label for="descripcionEspectaculo">Descripcion</label> <input value="${descripcionEspectaculo}"
 				type="text" name="descEspectaculo" class="form-control"
 				id="descripcionEspectaculo"
 				placeholder="Ingrese una descripcion para el espectaculo" required>

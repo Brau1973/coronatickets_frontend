@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import datatypes.DtFuncion;
@@ -39,6 +40,7 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
+		HttpSession session = request.getSession();
 		String nombre = request.getParameter("nomFuncion");
 		String espectaculo = request.getParameter("nomEspectaculo");
 
@@ -61,8 +63,10 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 
 		List<String> listArtistas = new ArrayList<String>();
 		String[] artistasInvitados = request.getParameterValues("selArtista");
-		for(String artista :artistasInvitados){
-			listArtistas.add(artista);
+		if(artistasInvitados != null) {
+			for(String artista :artistasInvitados){
+				listArtistas.add(artista);
+			}
 		}
 
 		Part imagenFuncion = request.getPart("imagen");
@@ -80,7 +84,16 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 			rd = request.getRequestDispatcher("/notificacion.jsp");
 			rd.forward(request, response);
 		}catch(FuncionYaRegistradaEnEspectaculoExcepcion e){
-			request.setAttribute("mensaje", e.getMessage());
+			request.setAttribute("message", e.getMessage());
+			
+			//guardo los campos del formulario en la sesion
+			session.setAttribute("nomFuncion",nombre);
+			session.setAttribute("fechaFuncion",fecha);
+			session.setAttribute("horaFuncion",hora);
+			session.setAttribute("nombreEspectaculoSelected",espectaculo);
+			
+			
+			System.out.println(nombre);
 			rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
 			rd.forward(request, response);
 		}
