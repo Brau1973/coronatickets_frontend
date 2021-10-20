@@ -56,6 +56,20 @@
 	<form action="AltaUsuario" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
+			<%
+			//cargo variables del formulario
+			String tipoDeUsuario = (String)request.getAttribute("tipoDeUsuario");
+			String nickname = (String)request.getAttribute("nickname");
+			String nombre = (String)request.getAttribute("nombre");
+			String apellido = (String)request.getAttribute("apellido");
+			String contraseña = (String)request.getAttribute("contraseña");
+			String correo = (String)request.getAttribute("correo");
+			String fechaDeNacimiento = (String)request.getAttribute("fechaDeNacimiento");
+			String imagen = (String)request.getAttribute("imagen");
+			String descripcion = (String)request.getAttribute("descripcion");
+			String biografia = (String)request.getAttribute("biografia");
+			String url = (String)request.getAttribute("url");
+			%>
 			<div class="input-group-prepend">
 				<label class="input-group-text" for="tipoUsuario">Tipo de Usuario</label>
 			</div>
@@ -69,7 +83,7 @@
 	<div class="form-group">
 			<label for="nicknameUsuario">Nickname</label> <input type="text"
 				name="nickUsuario" class="form-control"
-				id="nicknameUsuario"
+				id="nicknameUsuario" value="${nickname}"
 				placeholder="Ingrese el nickname del usuario" required>
 	
 	</div>
@@ -77,63 +91,63 @@
 		<div class="form-group">
 			<label for="nombreUsuario">Nombre</label> <input type="text"
 				name="nomUsuario" class="form-control"
-				id="nombreUsuario"
+				id="nombreUsuario" value="${nombre}"
 				placeholder="Ingrese el nombre del usuario" required>
 		</div>
 		<div class="form-group">
 			<label for="apellidoUsuario">Apellido</label> <input type="text"
 				name="lastnUsuario" class="form-control"
-				id="apellidoUsuario"
+				id="apellidoUsuario" value="${apellido}"
 				placeholder="Ingrese el apellido del usuario" required>
 		</div>
 		<div class="form-group">
 			<label for="contrasenaUsuario">Contraseña</label> <input type="password"
 				name="passUsuario" class="form-control"
-				id="contrasenaUsuario"
+				id="contrasenaUsuario" value="${contraseña}"
 				placeholder="Ingrese la contraseña del usuario" required >
 		</div>
 		<div class="form-group">
 			<label for="contrasena2Usuario"></label> <input type="password"
 				name="pass2Usuario" class="form-control"
-				id="contrasena2Usuario"
+				id="contrasena2Usuario" value="${contraseña}"
 				placeholder="confirme la contraseña" required onkeyup="compararContrasenias()">
 		</div>
 		<div class="form-group">
 			<label for="correoUsuario">Correo</label> <input type="text"
 				name="emailUsuario" class="form-control"
-				id="correoUsuario"
+				id="correoUsuario" value="${correo}"
 				placeholder="Ingrese el correo del usuario" required>
 		</div>
 		<div class="input-group mb-3">
 			<span class="input-group-text">Fecha de nacimiento</span> <input type="date"
 				name="fechaUsuario" class="form-control"
-				id="fechaNacUsuario"
+				id="fechaNacUsuario" value="${fechaDeNacimiento}"
 				placeholder="Ingrese la fecha de nacimiento del usuario" required>
 		</div>
 			<div class="input-group mb-3">
 			<span class="input-group-text">Seleccione una imagen</span> <input
-				type="file" name="imagen" id="imagen" class="form-control">
+				type="file" name="imagen" id="imagen" class="form-control" value="${imagen}">
 		</div>
 		
 		<div class="form-group" id="divDescripcion">
 			<label for="descripcionUsuario" >Descripcion</label> 
 			<input type="text"
 				name="descUsuario" class="form-control"
-				id="descripcionUsuario"
+				id="descripcionUsuario" value="${descripcion}"
 				placeholder="Ingrese la descripcion del usuario">
 		</div>
 		<div class="form-group" id="divBiografia">
 			<label for="biografiaUsuario">Biografia</label> 
 			<input type="text"
 				name="bioUsuario" class="form-control"
-				id="biografiaUsuario"
+				id="biografiaUsuario" value="${biografia}"
 				placeholder="Ingrese la biografia del usuario">
 		</div>
 		<div class="form-group" id="divUrl">
 			<label for="urlUsuario">Url</label> 
 			<input type="text"
 				name="linkUsuario" class="form-control"
-				id="urlUsuario"
+				id="urlUsuario" value="${url}"
 				placeholder="Ingrese la url del usuario">
 		</div>
 		
