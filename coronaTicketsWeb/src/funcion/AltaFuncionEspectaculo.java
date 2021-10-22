@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import datatypes.DtFuncion;
@@ -38,8 +39,8 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		RequestDispatcher rd = request.getRequestDispatcher("Consultas");
 		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
+		HttpSession session = request.getSession();
 		String nombre = request.getParameter("nomFuncion");
 		String espectaculo = request.getParameter("nomEspectaculo");
 
@@ -62,8 +63,10 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 
 		List<String> listArtistas = new ArrayList<String>();
 		String[] artistasInvitados = request.getParameterValues("selArtista");
-		for(String artista :artistasInvitados){
-			listArtistas.add(artista);
+		if(artistasInvitados != null) {
+			for(String artista :artistasInvitados){
+				listArtistas.add(artista);
+			}
 		}
 
 		Part imagenFuncion = request.getPart("imagen");
@@ -73,20 +76,32 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 		foto = new byte[sizeimg];
 		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
 		dis.readFully(foto);
+		RequestDispatcher rd;
 		DtFuncion dtFuncion = new DtFuncion(nombre, fechaInicio, horaInicio, new Date(), listArtistas);
 		try{
 			iconF.altaFuncion(dtFuncion, espectaculo, foto);
-			// request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
-			// rd = request.getRequestDispatcher("/notificacion.jsp");
-			// rd.forward(request, response);
-			rd = request.getRequestDispatcher("/index.jsp");
+			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
+			rd = request.getRequestDispatcher("/notificacion.jsp");
+			
+			session.removeAttribute("nomFuncion");
+			session.removeAttribute("fechaFuncion");
+			session.removeAttribute("horaFuncion");
+			session.removeAttribute("nombreEspectaculoSelected");
+			
 			rd.forward(request, response);
 		}catch(FuncionYaRegistradaEnEspectaculoExcepcion e){
-			request.setAttribute("message", "No existe el usuario y contraseña.");
+			request.setAttribute("message", e.getMessage());
+			
+			//guardo los campos del formulario en la sesion
+			session.setAttribute("nomFuncion",nombre);
+			session.setAttribute("fechaFuncion",fecha);
+			session.setAttribute("horaFuncion",hora);
+			session.setAttribute("nombreEspectaculoSelected",espectaculo);
+			
+			
+			System.out.println(nombre);
+			rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
 			rd.forward(request, response);
-			// request.setAttribute("mensaje", e.getMessage());
-			// rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
 		}
-
 	}
 }

@@ -30,6 +30,7 @@
 		crossorigin="anonymous"></script>
 
 <title>Alta Espectaculo</title>
+<link href="resources/index.css" rel="stylesheet"></link>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
@@ -40,50 +41,52 @@
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma">
 				<%
-					ArrayList<String> listPlataformas = (ArrayList<String>) request.getAttribute("plataformas");
+				HttpSession s = request.getSession();
+				String plataformaSelected = (String)s.getAttribute("plataformaSelected");
+				ArrayList<String> listPlataformas = (ArrayList<String>) s.getAttribute("allPlataformas");
 				for (String nomPlataforma : listPlataformas) {
 				%>
-				<option><%=nomPlataforma%></option>
+				<option <% if(plataformaSelected != null && plataformaSelected.equals(nomPlataforma)){%>selected="selected"<%} %>><%=nomPlataforma%></option>
 				<%
-					}
+				   }
 				%>
 			</select>
 		</div>
 		<div class="form-group">
 			<label for="nombreEspectaculo">Nombre</label> <input type="text"
-				name="nomEspectaculo" class="form-control" id="nombreEspectaculo"
+				name="nomEspectaculo" class="form-control" id="nombreEspectaculo" value="${nombreEspectaculo}"
 				placeholder="Ingrese un nombre para el espectaculo" required>
 		</div>
 		<div class="form-group">
-			<label for="descripcionEspectaculo">Descripcion</label> <input
+			<label for="descripcionEspectaculo">Descripcion</label> <input value="${descripcionEspectaculo}"
 				type="text" name="descEspectaculo" class="form-control"
 				id="descripcionEspectaculo"
 				placeholder="Ingrese una descripcion para el espectaculo" required>
 		</div>
 		<div class="form-group">
-			<label for="duracionEspectaculo">Duracion</label> <input type="text"
+			<label for="duracionEspectaculo">Duracion</label> <input type="text" value="${duracionEspectaculo}"
 				name="durEspectaculo" class="form-control" id="duracionEspectaculo"
 				placeholder="Ingrese la duracion del espectaculo" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
-			<label for="quantity">Espectadores mínimos:</label> <input
+			<label for="quantity">Espectadores mínimos:</label> <input value="${espectadoresMinEspectaculo}"
 				type="number" id="quantity" name="espectadoresMin" min="1"
 				max="1000000" style="width: 100px" required>
 		</div>
 		<div class="form-group">
-			<label for="quantity">Espectadores máximos:</label> <input
+			<label for="quantity">Espectadores máximos:</label> <input value="${espectadoresMaxEspectaculo}"
 				type="number" id="quantity" name="espectadoresMax" min="1"
 				max="1000000" style="width: 100px" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
-			<label for="urlEspectaculo">URL</label> <input type="text"
+			<label for="urlEspectaculo">URL</label> <input type="text" value="${urlEspectaculo}"
 				name="urlEspectaculo" class="form-control" id="urlEspectaculo"
 				placeholder="Ingrese la URL del espectaculo" required>
 		</div>
 		<div class="form-group">
-			<label for="exampleInputPassword1">Costo</label> <input type="number"
+			<label for="exampleInputPassword1">Costo</label> <input type="number" value="${costoEspectaculo}"
 				name="costoEspectaculo" class="form-control"
 				id="exampleInputPassword1"
 				placeholder="Ingrese el costo del espectaculo" required>

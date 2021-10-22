@@ -49,6 +49,7 @@
 	
 	
 <title>Alta Usuario</title>
+<link href="resources/index.css" rel="stylesheet"></link>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
@@ -56,20 +57,34 @@
 	<form action="AltaUsuario" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
+			<%
+			//cargo variables del formulario
+			String tipoDeUsuario = (String)sesion.getAttribute("tipoDeUsuario");
+// 			String nickname = (String)sesion.getAttribute("nickname");
+// 			String nombre = (String)sesion.getAttribute("nombre");
+// 			String apellido = (String)sesion.getAttribute("apellido");
+// 			String contrasenia = (String)sesion.getAttribute("contrasenia");
+// 			String correo = (String)sesion.getAttribute("correo");
+// 			String fechaDeNacimiento = (String)sesion.getAttribute("fechaDeNacimiento");
+// 			String imagen = (String)sesion.getAttribute("imagen");
+// 			String descripcion = (String)sesion.getAttribute("descripcion");
+// 			String biografia = (String)sesion.getAttribute("biografia");
+// 			String url = (String)sesion.getAttribute("url");
+			%>
 			<div class="input-group-prepend">
 				<label class="input-group-text" for="tipoUsuario">Tipo de Usuario</label>
 			</div>
 			<select class="tipoUsuario" id="tipoUsuario"
-				name="tipoUsuario" onchange="eventoTipoUsuario()">
+				name="tipoUsuario" onchange="eventoTipoUsuario()" required>
 				<option selected  >Seleccione una tipo de Usuario</option>
-				<option value="Artista" >Artista</option>
-				<option value="Espectador">Espectador</option>
+				<option value="Artista" <% if(tipoDeUsuario != null && tipoDeUsuario.equals("Artista")){%>selected="selected"<%} %>>Artista</option>
+				<option value="Espectador" <% if(tipoDeUsuario != null && tipoDeUsuario.equals("Espectador")){%>selected="selected"<%} %>>Espectador</option>
 			</select>
 		</div>
 	<div class="form-group">
 			<label for="nicknameUsuario">Nickname</label> <input type="text"
 				name="nickUsuario" class="form-control"
-				id="nicknameUsuario"
+				id="nicknameUsuario" value="${nickname}"
 				placeholder="Ingrese el nickname del usuario" required>
 	
 	</div>
@@ -77,63 +92,63 @@
 		<div class="form-group">
 			<label for="nombreUsuario">Nombre</label> <input type="text"
 				name="nomUsuario" class="form-control"
-				id="nombreUsuario"
+				id="nombreUsuario" value="${nombre}"
 				placeholder="Ingrese el nombre del usuario" required>
 		</div>
 		<div class="form-group">
 			<label for="apellidoUsuario">Apellido</label> <input type="text"
 				name="lastnUsuario" class="form-control"
-				id="apellidoUsuario"
+				id="apellidoUsuario" value="${apellido}"
 				placeholder="Ingrese el apellido del usuario" required>
 		</div>
 		<div class="form-group">
 			<label for="contrasenaUsuario">Contraseña</label> <input type="password"
 				name="passUsuario" class="form-control"
-				id="contrasenaUsuario"
+				id="contrasenaUsuario" value="${contrasenia}"
 				placeholder="Ingrese la contraseña del usuario" required >
 		</div>
 		<div class="form-group">
 			<label for="contrasena2Usuario"></label> <input type="password"
 				name="pass2Usuario" class="form-control"
-				id="contrasena2Usuario"
+				id="contrasena2Usuario" value="${contrasenia}"
 				placeholder="confirme la contraseña" required onkeyup="compararContrasenias()">
 		</div>
 		<div class="form-group">
 			<label for="correoUsuario">Correo</label> <input type="text"
 				name="emailUsuario" class="form-control"
-				id="correoUsuario"
+				id="correoUsuario" value="${correo}"
 				placeholder="Ingrese el correo del usuario" required>
 		</div>
 		<div class="input-group mb-3">
 			<span class="input-group-text">Fecha de nacimiento</span> <input type="date"
 				name="fechaUsuario" class="form-control"
-				id="fechaNacUsuario"
+				id="fechaNacUsuario" value="${fechaDeNacimiento}"
 				placeholder="Ingrese la fecha de nacimiento del usuario" required>
 		</div>
 			<div class="input-group mb-3">
 			<span class="input-group-text">Seleccione una imagen</span> <input
-				type="file" name="imagen" id="imagen" class="form-control">
+				type="file" name="imagen" id="imagen" class="form-control" value="${imagen}">
 		</div>
 		
 		<div class="form-group" id="divDescripcion">
 			<label for="descripcionUsuario" >Descripcion</label> 
 			<input type="text"
 				name="descUsuario" class="form-control"
-				id="descripcionUsuario"
+				id="descripcionUsuario" value="${descripcion}"
 				placeholder="Ingrese la descripcion del usuario">
 		</div>
 		<div class="form-group" id="divBiografia">
 			<label for="biografiaUsuario">Biografia</label> 
 			<input type="text"
 				name="bioUsuario" class="form-control"
-				id="biografiaUsuario"
+				id="biografiaUsuario" value="${biografia}"
 				placeholder="Ingrese la biografia del usuario">
 		</div>
 		<div class="form-group" id="divUrl">
 			<label for="urlUsuario">Url</label> 
 			<input type="text"
 				name="linkUsuario" class="form-control"
-				id="urlUsuario"
+				id="urlUsuario" value="${url}"
 				placeholder="Ingrese la url del usuario">
 		</div>
 		

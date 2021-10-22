@@ -74,22 +74,12 @@
 				%>
 			</select>
 		</div>
-		<!--  	<button class="btn btn-dark" name="btnOpcion"
-			value="opConsultaFuncionEsp" type="submit"
-			formaction="ConsultaPlataforma">Actualizar</button>-->
 	</form>
 
 	<p id="demo"></p>
 	<script type="text/javascript">
 	function procesar(tipo) {
 	    document.getElementById("boton").value = tipo;
-	    document.forms[7].submit();
-	}
-    </script>
-	<script>
-	function myFunction() {
-	    var x = document.getElementById("mySelect").value;
-	    document.getElementById("demo").innerHTML = "" + x;
 	    document.forms[7].submit();
 	}
     </script>

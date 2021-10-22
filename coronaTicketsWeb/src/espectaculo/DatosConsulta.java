@@ -60,6 +60,9 @@ public class DatosConsulta extends HttpServlet {
 		case "MenuConsultaEspectaculo":
 			rd = request.getRequestDispatcher("/consultaEspectaculo.jsp");
 			break;
+		case "MenuAltaEspectaculo":
+			rd = request.getRequestDispatcher("/altaEspectaculo.jsp");
+			break;
 
 		default:
 			rd = request.getRequestDispatcher("/index.jsp");
