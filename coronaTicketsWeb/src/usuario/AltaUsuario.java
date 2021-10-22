@@ -47,6 +47,7 @@ public class AltaUsuario extends HttpServlet{
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		RequestDispatcher rd = request.getRequestDispatcher("altaUsuario.jsp") ;
 		IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
 		String nickname = request.getParameter("nickUsuario");
 		String nombre = request.getParameter("nomUsuario");
@@ -69,7 +70,7 @@ public class AltaUsuario extends HttpServlet{
 		foto = new byte[sizeimg];
 		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
 		dis.readFully(foto);
-		RequestDispatcher rd;
+	//	RequestDispatcher rd;
 		// }
 		try{
 			// Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(fechaNac);
@@ -91,7 +92,7 @@ public class AltaUsuario extends HttpServlet{
 				DtUsuario dta = new DtArtista(nickname, nombre, apellido, correo, fechaNacimiento, contrasenia, foto, null, null, descripcion, biografia, url);
 				iconU.altaUsuario(dta);
 			}
-			request.setAttribute("message", "Se ha ingresado correctamente al sistema, el usuario");
+		//	request.setAttribute("message", "Se ha ingresado correctamente al sistema, el usuario");
 			rd = request.getRequestDispatcher("/index.jsp");
 		}catch(UsuarioRepetidoExcepcion e){
 			request.setAttribute("message", e.getMessage());

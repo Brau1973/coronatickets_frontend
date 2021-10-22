@@ -25,7 +25,7 @@
 		<h3>Alta Funcion de Espectaculo</h3>
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Seleccionar
-				Espectaculo:</span> <select class="form-control" name="nomEspectaculo">
+				Espectaculo</span> <select class="form-control" name="nomEspectaculo">
 				<%
 					ArrayList<Espectaculo> listEspectadores = (ArrayList<Espectaculo>) request.getAttribute("espectaculo");
 				DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
@@ -44,21 +44,21 @@
 
 		<div action="/action_page.php" class="was-validated">
 			<div class="input-group mb-3">
-				<span class="input-group-text">Nombre:</span> <input type="text"
+				<span class="input-group-text">Nombre</span> <input type="text"
 					class="form-control" name="nomFuncion" required>
 				<div class="valid-feedback"></div>
 				<div class="invalid-feedback">Ingrese el nombre</div>
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">Fecha:</span> <input type="date"
+				<span class="input-group-text">Fecha</span> <input type="date"
 					name="fechaFuncion" class="form-control" required>
 				<div class="valid-feedback"></div>
 				<div class="invalid-feedback">Ingrese la fecha</div>
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">Hora:</span> <input type="time"
+				<span class="input-group-text">Hora</span> <input type="time"
 					name="horaFuncion" class="form-control" required>
 				<div class="valid-feedback"></div>
 				<div class="invalid-feedback">Ingrese hora inicio</div>
@@ -76,7 +76,7 @@
 			src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
 
 		<div class="input-group mb-3">
-			<span class="input-group-text">Artistas invitados:</span> <select
+			<span class="input-group-text">Artistas invitados</span> <select
 				multiple="multiple" name="selArtista" class="form-control">
 				<%
 					ArrayList<String> listArtistas = (ArrayList<String>) request.getAttribute("usuario");
@@ -90,7 +90,7 @@
 		</div>
 
 		<div class="input-group mb-3">
-			<span class="input-group-text">Imagen:</span> <input type="file"
+			<span class="input-group-text">Imagen</span> <input type="file"
 				name="imagen" id="imagen" class="form-control">
 		</div>
 		<button class="btn btn-primary" type="submit">Registrar</button>

@@ -38,6 +38,7 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		RequestDispatcher rd = request.getRequestDispatcher("Consultas");
 		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
 		String nombre = request.getParameter("nomFuncion");
 		String espectaculo = request.getParameter("nomEspectaculo");
@@ -72,17 +73,20 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 		foto = new byte[sizeimg];
 		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
 		dis.readFully(foto);
-		RequestDispatcher rd;
 		DtFuncion dtFuncion = new DtFuncion(nombre, fechaInicio, horaInicio, new Date(), listArtistas);
 		try{
 			iconF.altaFuncion(dtFuncion, espectaculo, foto);
-			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
-			rd = request.getRequestDispatcher("/notificacion.jsp");
+			// request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
+			// rd = request.getRequestDispatcher("/notificacion.jsp");
+			// rd.forward(request, response);
+			rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 		}catch(FuncionYaRegistradaEnEspectaculoExcepcion e){
-			request.setAttribute("mensaje", e.getMessage());
-			rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
+			request.setAttribute("message", "No existe el usuario y contraseña.");
 			rd.forward(request, response);
+			// request.setAttribute("mensaje", e.getMessage());
+			// rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
 		}
+
 	}
 }
