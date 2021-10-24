@@ -39,8 +39,8 @@ public class ConsultaPlataforma extends HttpServlet{
 		}
 
 		RequestDispatcher rd;
-		HttpSession s = request.getSession();
-		s.setAttribute("allPlataformas", listPlataformas);
+		HttpSession session = request.getSession();
+		session.setAttribute("allPlataformas", listPlataformas);
 		switch(strEs){
 		case "opConsultaFuncionEsp":
 			rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
@@ -53,4 +53,3 @@ public class ConsultaPlataforma extends HttpServlet{
 		}
 	}
 }
-

@@ -80,7 +80,8 @@
 	<script type="text/javascript">
 	function procesar(tipo) {
 	    document.getElementById("boton").value = tipo;
-	    document.forms[7].submit();
+	    document.getElementById("formConsultaEspectaculo").submit();
+	  //  document.forms[7].submit();
 	}
     </script>
 </body>
