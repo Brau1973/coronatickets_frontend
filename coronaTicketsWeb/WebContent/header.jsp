@@ -69,8 +69,24 @@
                     </div>
               </li>
  
-<!-- 			<li class="nav-item"><a class="nav-link" -->
-<!-- 				href="consultaFuncionEspectaculo.jsp">Paquetes</a></li> -->
+				<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-expanded="true">Paquetes</a>
+				<div class="dropdown-menu">
+					<%if(dtU instanceof DtArtista){ %>
+					<form action="index.jsp" method="post">
+						<button class="dropdown-item" type="submit">Crear Paquetes de Espectaculos</button>
+					</form>
+					<div class="dropdown-divider"></div>
+					<%} %>
+
+					<form action="DatosConsultaPaquete" method="post">
+						<button class="dropdown-item" type="submit" name="pageNavega" value="MenuConsultaPaqEspectaculo">Consulta de Paquete de Espectaculos</button>
+					</form>
+
+				</div>
+			</li>
+			
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Espectaculos </a>

@@ -12,13 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtEspectaculo;
-import datatypes.DtFuncion;
-import datatypes.DtPaqueteEspectaculo;
 import interfaces.Fabrica;
-import interfaces.IControladorEspectaculo;
-import interfaces.IControladorFuncion;
-import interfaces.IControladorPaquete;
 import interfaces.IControladorPlataforma;
 
 /**
@@ -53,8 +47,8 @@ public class DatosConsulta extends HttpServlet {
 		  listPlataformas = iconP.listarPlataformasStr();
 	      RequestDispatcher rd;
 	     
-	      HttpSession s = request.getSession();
-	      s.setAttribute("allPlataformas", listPlataformas);
+	      HttpSession ses = request.getSession();
+	      ses.setAttribute("allPlataformas", listPlataformas);
 	      String page = (String) request.getParameter("pageNavega");
 	      switch (page) {
 		case "MenuConsultaEspectaculo":
