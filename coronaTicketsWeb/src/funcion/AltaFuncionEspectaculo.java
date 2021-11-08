@@ -19,25 +19,27 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import publicadores.ControladorFuncionPublish;
+import publicadores.ControladorFuncionPublishService;
+import publicadores.ControladorFuncionPublishServiceLocator;
 import publicadores.DtFuncion;
-
+import publicadores.Funcion;
 
 @MultipartConfig
 @WebServlet("/AltaFuncionEspectaculo")
-public class AltaFuncionEspectaculo extends HttpServlet{
+public class AltaFuncionEspectaculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AltaFuncionEspectaculo(){
+	public AltaFuncionEspectaculo() {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	@SuppressWarnings("deprecation")
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-	//	IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String nombre = request.getParameter("nomFuncion");
 		String espectaculo = request.getParameter("nomEspectaculo");
@@ -53,16 +55,16 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 		String fecha = request.getParameter("fechaFuncion");
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = null;
-		try{
+		try {
 			fechaInicio = formato.parse(fecha);
-		}catch(ParseException e1){
+		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
 
-		List<String> listArtistas = new ArrayList<String>();
+		ArrayList<String> listArtistas =null;
 		String[] artistasInvitados = request.getParameterValues("selArtista");
-		if(artistasInvitados != null) {
-			for(String artista :artistasInvitados){
+		if (artistasInvitados != null) {
+			for (String artista : artistasInvitados) {
 				listArtistas.add(artista);
 			}
 		}
@@ -75,31 +77,44 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
 		dis.readFully(foto);
 		RequestDispatcher rd;
-	//	DtFuncion dtFuncion = new DtFuncion(nombre, fechaInicio, horaInicio, new Date(), listArtistas);
-		try{
-		//	iconF.altaFuncion(dtFuncion, espectaculo, foto);
+			DtFuncion dtFuncion = null;
+			dtFuncion.setNombre(nombre);
+			dtFuncion.setFecha(null);
+			dtFuncion.setHoraInicio(null);
+			dtFuncion.setRegistro(null);
+			dtFuncion.setArtistas(null);
+		try {
+			agregarFuncion(dtFuncion, espectaculo, foto) ;
+			//	iconF.altaFuncion(dtFuncion, espectaculo, foto);
 			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
 			rd = request.getRequestDispatcher("/notificacion.jsp");
-			
+
 			session.removeAttribute("nomFuncion");
 			session.removeAttribute("fechaFuncion");
 			session.removeAttribute("horaFuncion");
 			session.removeAttribute("nombreEspectaculoSelected");
-			
+
 			rd.forward(request, response);
-		}catch(Exception e){
+		} catch (Exception e) {
 			request.setAttribute("message", e.getMessage());
-			
+
 			//guardo los campos del formulario en la sesion
-			session.setAttribute("nomFuncion",nombre);
-			session.setAttribute("fechaFuncion",fecha);
-			session.setAttribute("horaFuncion",hora);
-			session.setAttribute("nombreEspectaculoSelected",espectaculo);
-			
-			
+			session.setAttribute("nomFuncion", nombre);
+			session.setAttribute("fechaFuncion", fecha);
+			session.setAttribute("horaFuncion", hora);
+			session.setAttribute("nombreEspectaculoSelected", espectaculo);
+
 			System.out.println(nombre);
 			rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
 			rd.forward(request, response);
 		}
 	}
+	
+	public void agregarFuncion(DtFuncion dtFuncion, String nombreEspectaculo, byte[] imagen) throws Exception {
+		ControladorFuncionPublishService cps = new ControladorFuncionPublishServiceLocator();
+		ControladorFuncionPublish port = cps.getControladorFuncionPublishPort();
+		port.altaFuncion(dtFuncion,nombreEspectaculo,imagen);
+	}
+	
+	
 }

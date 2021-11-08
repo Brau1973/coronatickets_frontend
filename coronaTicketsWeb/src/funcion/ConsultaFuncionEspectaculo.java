@@ -32,6 +32,9 @@ import publicadores.ControladorFuncionPublishServiceLocator;
 import publicadores.ControladorPlataformaPublish;
 import publicadores.ControladorPlataformaPublishService;
 import publicadores.ControladorPlataformaPublishServiceLocator;
+import publicadores.ControladorUsuarioPublish;
+import publicadores.ControladorUsuarioPublishService;
+import publicadores.ControladorUsuarioPublishServiceLocator;
 import publicadores.Funcion;
 
 @WebServlet("/ConsultaFuncionEspectaculo")
@@ -49,12 +52,10 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = "";
-		Funcion func = new Funcion();
+		Funcion func = null;
 		ArrayList<DtEspectaculo> listEspectaculosDt = null;
-		List<DtFuncion> listFunciones = new ArrayList<DtFuncion>();
-		
-		//ArrayList<DtFuncion> listFunciones = null;
-		List<Artista> dtArt = new ArrayList<Artista>();
+		ArrayList<DtFuncion> listFunciones = null;
+		ArrayList<Artista> dtArt = null;
 
 		RequestDispatcher rd;
 		if (strPlataforma != null) {
@@ -65,7 +66,6 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 					e.printStackTrace();
 				}
 				strEspectaculo = request.getParameter("nomEspectaculo");
-
 			} else if (request.getParameter("boton").equals("selEspectaculo")) {
 				try {
 					listEspectaculosDt = obtenerEspectaculos(strPlataforma);
@@ -73,7 +73,6 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 					e.printStackTrace();
 				}
 				strEspectaculo = request.getParameter("nomEspectaculo");
-				//listFunciones = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
 				try {
 					listFunciones = obtenerFunciones(strEspectaculo);
 				} catch (Exception e) {
@@ -84,13 +83,18 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 
 			} else if (request.getParameter("boton").equals("selFuncion")) {
 				String strFuncion = request.getParameter("nomFuncion");
-				//	func = iconF.obtenerFuncion(strFuncion);
+				try {
+					func = obtenerNombreFuncion(strFuncion);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
 				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + formato.format(func.getFecha()) + "<br/>Hora: " + func.getHoraInicio() + "<br/>Registro: " + formato.format(func.getRegistro()));
-			//	dtArt = func.getArtistas();
+				//func.getArtistas();
 				List<String> listArtistas = new ArrayList<String>();
-				for (Artista artistai : dtArt) {
+				for (Artista artistai : func.getArtistas()) {
 					listArtistas.add(artistai.getNombre());
 				}
 				request.setAttribute("mostrarArtistas", listArtistas);
@@ -144,9 +148,9 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 		return lstFunciones;
 	}
 	
-
-	
-	
-	
-	
+	public Funcion obtenerNombreFuncion(String strFuncion) throws Exception {
+		ControladorFuncionPublishService cps = new ControladorFuncionPublishServiceLocator();
+		ControladorFuncionPublish port = cps.getControladorFuncionPublishPort();
+		return port.obtenerFuncion(strFuncion);
+	}
 }
