@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtUsuario;
-import interfaces.Fabrica;
-import interfaces.IControladorUsuario;
+import publicadores.*;
+//import interfaces.Fabrica;
+//import interfaces.IControladorUsuario;
 
 /**
  * Servlet implementation class DejarDeSeguirUsuario
@@ -32,13 +32,13 @@ public class DejarDeSeguirUsuario extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
+		//IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
 		HttpSession sesion = request.getSession();
 		DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
 		String nicknameUsuarioLogueado = dtUsuLogueado.getNickname();
 		String nicknameUsuarioADejarDeSeguir = request.getParameter("nomUsuario");
 		RequestDispatcher rd;
-		iconU.dejarDeSeguirUsuario(nicknameUsuarioLogueado, nicknameUsuarioADejarDeSeguir);
+	//	iconU.dejarDeSeguirUsuario(nicknameUsuarioLogueado, nicknameUsuarioADejarDeSeguir);
 		request.setAttribute("mensaje", "Ya no sigues a " + nicknameUsuarioADejarDeSeguir);
 		rd = request.getRequestDispatcher("/notificacion.jsp");
 		rd.forward(request, response);

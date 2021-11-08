@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtPaqueteEspectaculo;
-import interfaces.Fabrica;
-import interfaces.IControladorPaquete;
+import publicadores.DtPaqueteEspectaculo;
 
 @WebServlet("/DatosConsultaPaquete")
 public class DatosConsultaPaquete extends HttpServlet{
@@ -29,13 +27,13 @@ public class DatosConsultaPaquete extends HttpServlet{
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		IControladorPaquete iconPaq = Fabrica.getInstancia().getIControladorPaquete();
-		List<DtPaqueteEspectaculo> listPaquetes = new ArrayList<DtPaqueteEspectaculo>();
+	//	IControladorPaquete iconPaq = Fabrica.getInstancia().getIControladorPaquete();
+	//	List<DtPaqueteEspectaculo> listPaquetes = new ArrayList<DtPaqueteEspectaculo>();
 		RequestDispatcher rd;
 
-		listPaquetes = iconPaq.obtenerPaquetes();
+	//	listPaquetes = iconPaq.obtenerPaquetes();
 		HttpSession s = request.getSession();
-		s.setAttribute("allPaquetes", listPaquetes);
+	//	s.setAttribute("allPaquetes", listPaquetes);
 		String page = (String) request.getParameter("pageNavega");
 		switch(page){
 		case "MenuConsultaPaqEspectaculo":

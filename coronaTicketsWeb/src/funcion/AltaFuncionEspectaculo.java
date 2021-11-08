@@ -19,10 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import datatypes.DtFuncion;
-import excepciones.FuncionYaRegistradaEnEspectaculoExcepcion;
-import interfaces.Fabrica;
-import interfaces.IControladorFuncion;
+import publicadores.DtFuncion;
+
 
 @MultipartConfig
 @WebServlet("/AltaFuncionEspectaculo")
@@ -39,7 +37,7 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
+	//	IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
 		HttpSession session = request.getSession();
 		String nombre = request.getParameter("nomFuncion");
 		String espectaculo = request.getParameter("nomEspectaculo");
@@ -77,9 +75,9 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
 		dis.readFully(foto);
 		RequestDispatcher rd;
-		DtFuncion dtFuncion = new DtFuncion(nombre, fechaInicio, horaInicio, new Date(), listArtistas);
+	//	DtFuncion dtFuncion = new DtFuncion(nombre, fechaInicio, horaInicio, new Date(), listArtistas);
 		try{
-			iconF.altaFuncion(dtFuncion, espectaculo, foto);
+		//	iconF.altaFuncion(dtFuncion, espectaculo, foto);
 			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
 			rd = request.getRequestDispatcher("/notificacion.jsp");
 			
@@ -89,7 +87,7 @@ public class AltaFuncionEspectaculo extends HttpServlet{
 			session.removeAttribute("nombreEspectaculoSelected");
 			
 			rd.forward(request, response);
-		}catch(FuncionYaRegistradaEnEspectaculoExcepcion e){
+		}catch(Exception e){
 			request.setAttribute("message", e.getMessage());
 			
 			//guardo los campos del formulario en la sesion

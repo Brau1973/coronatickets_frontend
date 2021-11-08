@@ -9,6 +9,6 @@
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<h2>${mensaje}</h2>
+	<h3>${mensaje}</h3>
 </body>
 </html>

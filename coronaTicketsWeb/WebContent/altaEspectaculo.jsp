@@ -1,19 +1,14 @@
-<%@page import="logica.Espectaculo"%>
-<%@page import="logica.Plataforma"%>
-<%@page import="datatypes.DtUsuario"%>
+<%@page import="publicadores.DtUsuario"%>
+<%@page import="publicadores.DtEspectaculo"%>
+<%@page import="publicadores.DtPlataforma"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="datatypes.DtEspectaculo"%>
-<%@page import="datatypes.DtPlataforma"%>
-<%@page import="interfaces.Fabrica"%>
-<%@page import="interfaces.IControladorEspectaculo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
@@ -22,12 +17,12 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous" />
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
 
 <title>Alta Espectaculo</title>
 <link href="resources/index.css" rel="stylesheet"></link>
@@ -42,53 +37,60 @@
 			<select class="form-control" name="nomPlataforma">
 				<%
 				HttpSession s = request.getSession();
-				String plataformaSelected = (String)s.getAttribute("plataformaSelected");
+				String plataformaSelected = (String) s.getAttribute("plataformaSelected");
 				ArrayList<String> listPlataformas = (ArrayList<String>) s.getAttribute("allPlataformas");
 				for (String nomPlataforma : listPlataformas) {
 				%>
-				<option <% if(plataformaSelected != null && plataformaSelected.equals(nomPlataforma)){%>selected="selected"<%} %>><%=nomPlataforma%></option>
+				<option
+					<%if (plataformaSelected != null && plataformaSelected.equals(nomPlataforma)) {%>
+					selected="selected" <%}%>><%=nomPlataforma%></option>
 				<%
-				   }
+				}
 				%>
 			</select>
 		</div>
 		<div class="form-group">
 			<label for="nombreEspectaculo">Nombre</label> <input type="text"
-				name="nomEspectaculo" class="form-control" id="nombreEspectaculo" value="${nombreEspectaculo}"
+				name="nomEspectaculo" class="form-control" id="nombreEspectaculo"
+				value="${nombreEspectaculo}"
 				placeholder="Ingrese un nombre para el espectaculo" required>
 		</div>
 		<div class="form-group">
-			<label for="descripcionEspectaculo">Descripcion</label> <input value="${descripcionEspectaculo}"
-				type="text" name="descEspectaculo" class="form-control"
-				id="descripcionEspectaculo"
+			<label for="descripcionEspectaculo">Descripcion</label> <input
+				value="${descripcionEspectaculo}" type="text" name="descEspectaculo"
+				class="form-control" id="descripcionEspectaculo"
 				placeholder="Ingrese una descripcion para el espectaculo" required>
 		</div>
 		<div class="form-group">
-			<label for="duracionEspectaculo">Duracion</label> <input type="text" value="${duracionEspectaculo}"
-				name="durEspectaculo" class="form-control" id="duracionEspectaculo"
+			<label for="duracionEspectaculo">Duracion</label> <input type="text"
+				value="${duracionEspectaculo}" name="durEspectaculo"
+				class="form-control" id="duracionEspectaculo"
 				placeholder="Ingrese la duracion del espectaculo" required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
-			<label for="quantity">Espectadores mínimos:</label> <input value="${espectadoresMinEspectaculo}"
-				type="number" id="quantity" name="espectadoresMin" min="1"
-				max="1000000" style="width: 100px" required>
+			<label for="quantity">Espectadores mínimos:</label> <input
+				value="${espectadoresMinEspectaculo}" type="number" id="quantity"
+				name="espectadoresMin" min="1" max="1000000" style="width: 100px"
+				required>
 		</div>
 		<div class="form-group">
-			<label for="quantity">Espectadores máximos:</label> <input value="${espectadoresMaxEspectaculo}"
-				type="number" id="quantity" name="espectadoresMax" min="1"
-				max="1000000" style="width: 100px" required>
+			<label for="quantity">Espectadores máximos:</label> <input
+				value="${espectadoresMaxEspectaculo}" type="number" id="quantity"
+				name="espectadoresMax" min="1" max="1000000" style="width: 100px"
+				required>
 		</div>
 		<!-- cant espectadores -->
 		<div class="form-group">
-			<label for="urlEspectaculo">URL</label> <input type="text" value="${urlEspectaculo}"
-				name="urlEspectaculo" class="form-control" id="urlEspectaculo"
-				placeholder="Ingrese la URL del espectaculo" required>
+			<label for="urlEspectaculo">URL</label> <input type="text"
+				value="${urlEspectaculo}" name="urlEspectaculo" class="form-control"
+				id="urlEspectaculo" placeholder="Ingrese la URL del espectaculo"
+				required>
 		</div>
 		<div class="form-group">
-			<label for="exampleInputPassword1">Costo</label> <input type="number" value="${costoEspectaculo}"
-				name="costoEspectaculo" class="form-control"
-				id="exampleInputPassword1"
+			<label for="exampleInputPassword1">Costo</label> <input type="number"
+				value="${costoEspectaculo}" name="costoEspectaculo"
+				class="form-control" id="exampleInputPassword1"
 				placeholder="Ingrese el costo del espectaculo" required>
 		</div>
 		<div>
@@ -101,7 +103,7 @@
 		<button type="submit" class="btn btn-primary">Confirmar</button>
 		<button type="reset" class="btn btn-primary">Cancelar</button>
 	</form>
-	
+
 
 </body>
 </html>

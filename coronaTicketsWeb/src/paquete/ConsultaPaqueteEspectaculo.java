@@ -1,6 +1,8 @@
 package paquete;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtPaqueteEspectaculo;
-import interfaces.Fabrica;
-import interfaces.IControladorEspectaculo;
-import logica.PaqueteEspectaculos;
-import manejadores.ManejadorPaquete;
+import publicadores.DtEspectaculo;
+import publicadores.DtPaqueteEspectaculo;
+//import interfaces.Fabrica;
+//import interfaces.IControladorEspectaculo;
+//import interfaces.IControladorPaquete;
+import publicadores.Espectaculo;
+import publicadores.PaqueteEspectaculos;
+//import manejadores.ManejadorPaquete;
 
 @WebServlet("/ConsultaPaqueteEspectaculo")
 public class ConsultaPaqueteEspectaculo extends HttpServlet{
@@ -29,27 +34,38 @@ public class ConsultaPaqueteEspectaculo extends HttpServlet{
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
+	//	IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
+	//	IControladorPaquete iconPaq = Fabrica.getInstancia().getIControladorPaquete();
 		String strPaquete = request.getParameter("nomPaquete");
 		// String strEspectaculo = "";
-		// List<DtEspectaculo> listEspectaculos = new ArrayList<DtEspectaculo>();
-		DtPaqueteEspectaculo listPaquetess = null;
+		List<Espectaculo> listEspectaculos = new ArrayList<Espectaculo>();
+		List<DtEspectaculo> listDtEspectaculos = new ArrayList<DtEspectaculo>();
+
 		PaqueteEspectaculos listPaquetes = new PaqueteEspectaculos();
+		DtPaqueteEspectaculo dtPaqueteEsp = null;
 
 		RequestDispatcher rd;
 		if(strPaquete != null){
 			if(request.getParameter("boton").equals("selPaquete")){
-				// listEspectaculos = iconE.listarEspectaculos(strPaquete);
+
 				// strEspectaculo = request.getParameter("nomEsp");
 				// listFunciones = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
-				ManejadorPaquete mP = ManejadorPaquete.getInstancia();
-				listPaquetes = mP.buscarPaquete(strPaquete);
-				listPaquetess = new DtPaqueteEspectaculo(listPaquetes.getNombre(), listPaquetes.getDescripcion(), listPaquetes.getFechaInicio(), listPaquetes.getFechaFin(), listPaquetes.getFechaAlta(), listPaquetes.getDescuento());
+				// listDtEspectaculos = iconE.listarEspectaculos("Youtube");
+
+			//	ManejadorPaquete mP = ManejadorPaquete.getInstancia();
+		//		listPaquetes = mP.buscarPaquete(strPaquete);
+		//		dtPaqueteEsp = new DtPaqueteEspectaculo(listPaquetes.getNombre(), listPaquetes.getDescripcion(), listPaquetes.getFechaInicio(), listPaquetes.getFechaFin(), listPaquetes.getFechaAlta(), listPaquetes.getDescuento());
+
+			//	listDtEspectaculos = iconPaq.mapEntityToDt(listPaquetes).getEspectaculos();
+				// listEspectaculos = listPaquetes.getEspectaculos();
+				// listDtEspectaculos=listPaquetess.getEspectaculos();
+				// listDtEspectaculos=new DtEspectaculo(listEspectaculos.ge, plataforma, nombre, descripcion, duracion, cantMin, cantMax, url, costo, registro)
 				// session.setAttribute("paqueteSelected", strPaquete);
 			}
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("paquetesEspec", listPaquetess);
+		session.setAttribute("paquetesEspec", dtPaqueteEsp);
+		session.setAttribute("listEspecPaquete", listDtEspectaculos);
 		session.setAttribute("paqueteSelected", strPaquete);
 		rd = request.getRequestDispatcher("/consultaPaqueteEspectaculo.jsp");
 		rd.forward(request, response);

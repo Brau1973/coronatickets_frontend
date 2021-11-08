@@ -19,70 +19,88 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtEspectaculo;
-import datatypes.DtFuncion;
-import interfaces.Fabrica;
-import interfaces.IControladorEspectaculo;
-import interfaces.IControladorFuncion;
-import logica.Artista;
-import logica.Funcion;
+import publicadores.DtEspectaculo;
+import publicadores.DtFuncion;
+import publicadores.Espectaculo;
+import publicadores.Artista;
+import publicadores.ControladorEspectaculoPublish;
+import publicadores.ControladorEspectaculoPublishService;
+import publicadores.ControladorEspectaculoPublishServiceLocator;
+import publicadores.ControladorFuncionPublish;
+import publicadores.ControladorFuncionPublishService;
+import publicadores.ControladorFuncionPublishServiceLocator;
+import publicadores.ControladorPlataformaPublish;
+import publicadores.ControladorPlataformaPublishService;
+import publicadores.ControladorPlataformaPublishServiceLocator;
+import publicadores.Funcion;
 
 @WebServlet("/ConsultaFuncionEspectaculo")
-public class ConsultaFuncionEspectaculo extends HttpServlet{
+public class ConsultaFuncionEspectaculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ConsultaFuncionEspectaculo(){
+	public ConsultaFuncionEspectaculo() {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	@SuppressWarnings("deprecation")
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
-		IControladorFuncion iconF = Fabrica.getInstancia().getIControladorFuncion();
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = "";
 		Funcion func = new Funcion();
-		
-		List<DtEspectaculo> listEspectaculosDt = new ArrayList<DtEspectaculo>();
+		ArrayList<DtEspectaculo> listEspectaculosDt = null;
 		List<DtFuncion> listFunciones = new ArrayList<DtFuncion>();
+		
+		//ArrayList<DtFuncion> listFunciones = null;
 		List<Artista> dtArt = new ArrayList<Artista>();
 
 		RequestDispatcher rd;
-		if(strPlataforma != null){
-			if(request.getParameter("boton").equals("selPlataformas")){
-				listEspectaculosDt = iconE.listarEspectaculos(strPlataforma);
+		if (strPlataforma != null) {
+			if (request.getParameter("boton").equals("selPlataformas")) {
+				try {
+					listEspectaculosDt = obtenerEspectaculos(strPlataforma);	
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				strEspectaculo = request.getParameter("nomEspectaculo");
 
-			}else if(request.getParameter("boton").equals("selEspectaculo")){
-				listEspectaculosDt = iconE.listarEspectaculos(strPlataforma);
+			} else if (request.getParameter("boton").equals("selEspectaculo")) {
+				try {
+					listEspectaculosDt = obtenerEspectaculos(strPlataforma);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				strEspectaculo = request.getParameter("nomEspectaculo");
-				listFunciones = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
-			request.setAttribute("funciones", listFunciones);
+				//listFunciones = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
+				try {
+					listFunciones = obtenerFunciones(strEspectaculo);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				request.setAttribute("funciones", listFunciones);
 
-			}else if(request.getParameter("boton").equals("selFuncion")){
+			} else if (request.getParameter("boton").equals("selFuncion")) {
 				String strFuncion = request.getParameter("nomFuncion");
-				func = iconF.obtenerFuncion(strFuncion);
+				//	func = iconF.obtenerFuncion(strFuncion);
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
 				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + formato.format(func.getFecha()) + "<br/>Hora: " + func.getHoraInicio() + "<br/>Registro: " + formato.format(func.getRegistro()));
-				dtArt = func.getArtistas();
+			//	dtArt = func.getArtistas();
 				List<String> listArtistas = new ArrayList<String>();
-				for(Artista artistai :dtArt){
+				for (Artista artistai : dtArt) {
 					listArtistas.add(artistai.getNombre());
 				}
 				request.setAttribute("mostrarArtistas", listArtistas);
-				if(func.getImagen() != null) {
+				if (func.getImagen() != null) {
 					byte[] foto = func.getImagen();
 					BufferedImage image = null;
 					InputStream in = new ByteArrayInputStream(foto);
-					try{
+					try {
 						image = ImageIO.read(in);
-					}catch(IOException e1){
+					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
 					ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -103,4 +121,32 @@ public class ConsultaFuncionEspectaculo extends HttpServlet{
 		rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
 		rd.forward(request, response);
 	}
+
+	public ArrayList<DtEspectaculo> obtenerEspectaculos(String strPlataforma) throws Exception {
+		ControladorEspectaculoPublishService cps = new ControladorEspectaculoPublishServiceLocator();
+		ControladorEspectaculoPublish port = cps.getControladorEspectaculoPublishPort();
+		DtEspectaculo[] espectaculos = port.listarEspectaculos(strPlataforma);
+		ArrayList<DtEspectaculo> lstEspectaculo = new ArrayList<>();
+		for (int i = 0; i < espectaculos.length; ++i) {
+			lstEspectaculo.add(espectaculos[i]);
+		}
+		return lstEspectaculo;
+	}
+	
+	public ArrayList<DtFuncion> obtenerFunciones(String strEspectaculo) throws Exception {
+		ControladorFuncionPublishService cps = new ControladorFuncionPublishServiceLocator();
+		ControladorFuncionPublish port = cps.getControladorFuncionPublishPort();
+		DtFuncion[] funciones = port.listarFunciones(strEspectaculo);
+		ArrayList<DtFuncion> lstFunciones = new ArrayList<>();
+		for (int i = 0; i < funciones.length; ++i) {
+			lstFunciones.add(funciones[i]);
+		}
+		return lstFunciones;
+	}
+	
+
+	
+	
+	
+	
 }

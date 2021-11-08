@@ -10,13 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtUsuario;
-import interfaces.Fabrica;
-import interfaces.IControladorUsuario;
+import publicadores.DtUsuario;
 
-/**
- * Servlet implementation class SeguirUsuario
- */
 @WebServlet("/SeguirUsuario")
 public class SeguirUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,12 +27,12 @@ public class SeguirUsuario extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
+	//	IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
 		HttpSession sesion = request.getSession();
 		DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
 		String usuarioASeguir = request.getParameter("nomUsuario");
 		RequestDispatcher rd;
-		iconU.seguirUsuario(dtUsuLogueado.getNickname(), usuarioASeguir);
+		//iconU.seguirUsuario(dtUsuLogueado.getNickname(), usuarioASeguir);
 		request.setAttribute("mensaje", "Ahora sigues al usuario " + usuarioASeguir);
 		rd = request.getRequestDispatcher("/notificacion.jsp");
 		rd.forward(request, response);

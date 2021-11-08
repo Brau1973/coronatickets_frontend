@@ -1,4 +1,4 @@
-<%@page import="datatypes.*"%>
+<%@page import="publicadores.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,7 +22,7 @@
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<h1>Consulta de Paquete de Espectaculos</h1>
+	<h3>Consulta de Paquete de Espectaculos</h3>
 	<form action="ConsultaPaqueteEspectaculo" method="post"
 		id="formConsultaPaqueteEspectaculo">
 		<input type="hidden" name="boton" id="boton" value="">
@@ -34,13 +34,14 @@
 				<option selected disabled>Seleccione Paquete</option>
 				<%
 					HttpSession s = request.getSession();
-				String plataformaSelected = (String) s.getAttribute("paqueteSelected");
-				ArrayList<DtPaqueteEspectaculo> listPaquetess = (ArrayList<DtPaqueteEspectaculo>) s.getAttribute("allPaquetes");
-				for (DtPaqueteEspectaculo paquete : listPaquetess) {
+				String paqueteSelected = (String) s.getAttribute("paqueteSelected");
+				ArrayList<DtPaqueteEspectaculo> listDePaquetes = (ArrayList<DtPaqueteEspectaculo>) s.getAttribute("allPaquetes");
+
+				for (DtPaqueteEspectaculo dtPaquete : listDePaquetes) {
 				%>
 				<option
-					<%if (plataformaSelected != null && plataformaSelected.equals(paquete.getNombre())) {%>
-					selected="selected" <%}%>><%=paquete.getNombre()%></option>
+					<%if (paqueteSelected != null && paqueteSelected.equals(dtPaquete.getNombre())) {%>
+					selected="selected" <%}%>><%=dtPaquete.getNombre()%></option>
 				<%
 					}
 				%>
@@ -48,16 +49,13 @@
 		</div>
 
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="basic-addon3"> Paquetes</span>
 			<%
 				DtPaqueteEspectaculo listPaquetes = (DtPaqueteEspectaculo) s.getAttribute("paquetesEspec");
 			%>
 		</div>
-
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
 					<th scope="col">Nombre</th>
 					<th scope="col">Descripcion</th>
 					<th scope="col">Fecha Inicio</th>
@@ -68,11 +66,9 @@
 			</thead>
 			<tbody>
 				<%
-					int k = 1;
-				if (listPaquetes != null) {
+					if (listPaquetes != null) {
 				%>
 				<tr>
-					<th scope="row"><%=k%></th>
 					<td><%=listPaquetes.getNombre()%></td>
 					<td><%=listPaquetes.getDescripcion()%></td>
 					<td><%=listPaquetes.getFechaInicio()%></td>
@@ -81,9 +77,52 @@
 					<td><%=listPaquetes.getDescuento()%></td>
 				</tr>
 				<%
-					k++;
+					}
+				%>
+			</tbody>
+		</table>
+
+
+		<%
+			ArrayList<DtEspectaculo> lisEspectaculPaq = (ArrayList<DtEspectaculo>) s.getAttribute("listEspecPaquete");
+		%>
+		<table class="table table-striped">
+			<h5>Espectaculos</h5>
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Artista</th>
+					<th scope="col">Descripcion</th>
+					<th scope="col">Duracion</th>
+					<th scope="col">Min</th>
+					<th scope="col">Max</th>
+					<th scope="col">Costo</th>
+					<th scope="col">Fecha Registro</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+					if (lisEspectaculPaq != null) {
+					int i = 1;
+					for (DtEspectaculo dte : lisEspectaculPaq) {
+						//if(paqueteSelected != null && paqueteSelected.equals(dte.getNombre())){
+				%>
+				<tr>
+					<th scope="row"><%=i%></th>
+					<td><%=dte.getNombre()%></td>
+					<td><%=dte.getArtista()%></td>
+					<td><%=dte.getDescripcion()%></td>
+					<td><%=dte.getDuracion()%></td>
+					<td><%=dte.getCantMin()%></td>
+					<td><%=dte.getCantMax()%></td>
+					<td><%=dte.getCosto()%></td>
+					<td><%=dte.getRegistro()%></td>
+				</tr>
+				<%
+					i++;
 				}
-				//}
+				}
 				%>
 			</tbody>
 		</table>

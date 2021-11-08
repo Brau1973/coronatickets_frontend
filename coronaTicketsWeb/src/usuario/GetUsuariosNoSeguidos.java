@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtUsuario;
-import interfaces.Fabrica;
-import interfaces.IControladorUsuario;
+import publicadores.DtUsuario;
 
 @WebServlet("/GetUsuariosNoSeguidos")
 public class GetUsuariosNoSeguidos extends HttpServlet {
@@ -30,11 +28,11 @@ public class GetUsuariosNoSeguidos extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-	  IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
+	//  IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
 	  List<String> listUsuariosNoSeguidos = new ArrayList<String>();
 	  HttpSession sesion = request.getSession();
 	  DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
-	  listUsuariosNoSeguidos = iconU.listarNicknameUsuariosNoSeguidos(dtUsuLogueado.getNickname());
+	//  listUsuariosNoSeguidos = iconU.listarNicknameUsuariosNoSeguidos(dtUsuLogueado.getNickname());
 //	  for (String nomUsuario : listUsuariosNoSeguidos) {
 //		  System.out.println(nomUsuario);
 //	  }

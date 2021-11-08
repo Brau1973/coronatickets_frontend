@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datatypes.DtUsuario;
-import interfaces.Fabrica;
-import interfaces.IControladorUsuario;
+import publicadores.DtUsuario;
+
 
 @WebServlet("/GetUsuariosSeguidos")
 public class GetUsuariosSeguidos extends HttpServlet {
@@ -30,11 +29,11 @@ public class GetUsuariosSeguidos extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-	  IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
+	//  IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
 	  List<String> listUsuariosSeguidos = new ArrayList<String>();
 	  HttpSession sesion = request.getSession();
 	  DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
-	  listUsuariosSeguidos = iconU.listarNicknameUsuariosSeguidos(dtUsuLogueado.getNickname());
+	//  listUsuariosSeguidos = iconU.listarNicknameUsuariosSeguidos(dtUsuLogueado.getNickname());
 	  RequestDispatcher rd;
 //	  for (String nomUsuario : listUsuariosSeguidos) {
 //		  System.out.println(nomUsuario);

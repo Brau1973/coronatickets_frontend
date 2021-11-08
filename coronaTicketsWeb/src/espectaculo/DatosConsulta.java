@@ -1,8 +1,8 @@
 package espectaculo;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import interfaces.Fabrica;
-import interfaces.IControladorPlataforma;
+//import interfaces.Fabrica;
+//import interfaces.IControladorPlataforma;
+//import publicadores.ControladorEspectaculoPublish;
+//import publicadores.ControladorEspectaculoPublishService;
+//import publicadores.ControladorEspectaculoPublishServiceLocator;
+import publicadores.ControladorPlataformaPublish;
+import publicadores.ControladorPlataformaPublishService;
+import publicadores.ControladorPlataformaPublishServiceLocator;
+//import publicadores.DtEspectaculo;
 
 /**
  * Servlet implementation class DatosConsulta
@@ -22,9 +29,6 @@ import interfaces.IControladorPlataforma;
 public class DatosConsulta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public DatosConsulta() {
         super();
         // TODO Auto-generated constructor stub
@@ -42,13 +46,20 @@ public class DatosConsulta extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IControladorPlataforma iconP = Fabrica.getInstancia().getIControladorPlataforma();
-		  List<String> listPlataformas = new ArrayList<String>();
-		  listPlataformas = iconP.listarPlataformasStr();
+//		IControladorPlataforma iconP = Fabrica.getInstancia().getIControladorPlataforma();
+		//List<String> listPlataformas = new ArrayList<String>();
+	String[] listPlataformas=null;
+	try {
+		listPlataformas = consultaPlat();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		//  listPlataformas = iconP.listarPlataformasStr();
 	      RequestDispatcher rd;
 	     
 	      HttpSession ses = request.getSession();
-	      ses.setAttribute("allPlataformas", listPlataformas);
+	      ses.setAttribute("allPlataformas",listPlataformas);// listPlataformas);
 	      String page = (String) request.getParameter("pageNavega");
 	      switch (page) {
 		case "MenuConsultaEspectaculo":
@@ -62,7 +73,11 @@ public class DatosConsulta extends HttpServlet {
 			rd = request.getRequestDispatcher("/index.jsp");
 			break;
 		}
-	      
 	      rd.forward(request, response);
+	}
+	public String[] consultaPlat() throws Exception {
+		ControladorPlataformaPublishService cps = new ControladorPlataformaPublishServiceLocator();
+		ControladorPlataformaPublish port = cps.getControladorPlataformaPublishPort();
+		return port.listarPlataformasStr();
 	}
 }

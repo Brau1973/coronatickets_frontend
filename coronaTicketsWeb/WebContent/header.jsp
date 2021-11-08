@@ -1,15 +1,12 @@
-<%@page import="datatypes.DtArtista"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="datatypes.DtUsuario"%>
-<%@page import="datatypes.DtArtista"%>
+<%@page import="publicadores.DtArtista"%>
+<%@page import="publicadores.DtUsuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
@@ -32,8 +29,8 @@
 </head>
 <body>
 	<%
-		HttpSession sesion = request.getSession();
-	String mensaje = (String)request.getAttribute("message");
+	HttpSession sesion = request.getSession();
+	String mensaje = (String) request.getAttribute("message");
 	DtUsuario dtU = (DtUsuario) sesion.getAttribute("user");
 	String imageUser = (String) sesion.getAttribute("imgUser");
 	%>
@@ -51,71 +48,103 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsuarios"
-                        role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"> Usuarios </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <%if(dtU == null){ %>
-                      <a class="dropdown-item" href="altaUsuario.jsp">Alta Usuario</a>
-                      <%}else{ %>
-                      <form action="GetUsuariosNoSeguidos" method="post">
-						<button class="dropdown-item" type="submit">Seguir Usuario</button>
-					  </form>
-                      <div class="dropdown-divider"></div>
-                      <form action="GetUsuariosSeguidos" method="post">
-						<button class="dropdown-item" type="submit">Dejar de seguir Usuario</button>
-					  </form>
-					  <%} %>
-                    </div>
-              </li>
- 
-				<li class="nav-item dropdown"><a
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-expanded="false">Plataforma</a>
+				<div class="dropdown-menu">
+					<form action="altaPlataforma.jsp" method="post">
+						<button class="dropdown-item" type="submit">Alta
+							Plataforma</button>
+					</form>
+				</div></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#"
+				id="navbarDropdownUsuarios" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false"> Usuarios </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<%
+					if (dtU == null) {
+					%>
+					<a class="dropdown-item" href="altaUsuario.jsp">Alta Usuario</a>
+					<%
+					} else {
+					%>
+					<form action="GetUsuariosNoSeguidos" method="post">
+						<button class="dropdown-item" type="submit">Seguir
+							Usuario</button>
+					</form>
+					<div class="dropdown-divider"></div>
+					<form action="GetUsuariosSeguidos" method="post">
+						<button class="dropdown-item" type="submit">Dejar de
+							seguir Usuario</button>
+					</form>
+					<%
+					}
+					%>
+				</div></li>
+
+			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="true">Paquetes</a>
 				<div class="dropdown-menu">
-					<%if(dtU instanceof DtArtista){ %>
+					<%
+					if (dtU instanceof DtArtista) {
+					%>
 					<form action="index.jsp" method="post">
-						<button class="dropdown-item" type="submit">Crear Paquetes de Espectaculos</button>
+						<button class="dropdown-item" type="submit">Crear
+							Paquetes de Espectaculos</button>
 					</form>
 					<div class="dropdown-divider"></div>
-					<%} %>
+					<%
+					}
+					%>
 
 					<form action="DatosConsultaPaquete" method="post">
-						<button class="dropdown-item" type="submit" name="pageNavega" value="MenuConsultaPaqEspectaculo">Consulta de Paquete de Espectaculos</button>
+						<button class="dropdown-item" type="submit" name="pageNavega"
+							value="MenuConsultaPaqEspectaculo">Consulta de Paquete
+							de Espectaculos</button>
 					</form>
 
-				</div>
-			</li>
-			
-			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> Espectaculos </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			          <%if(dtU instanceof DtArtista){ %>
-			         	 <form action="DatosConsulta" method="post">
-							<button class="dropdown-item" type="submit" name="pageNavega" value="MenuAltaEspectaculo">Alta Espectaculo</button>
-						</form>
-					<div class="dropdown-divider"></div>
-					<%} %>
+				</div></li>
+
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> Espectaculos </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<%
+					if (dtU instanceof DtArtista) {
+					%>
 					<form action="DatosConsulta" method="post">
-						<button class="dropdown-item" type="submit" name="pageNavega" value="MenuConsultaEspectaculo">Consulta
-							 Espectaculo</button>
+						<button class="dropdown-item" type="submit" name="pageNavega"
+							value="MenuAltaEspectaculo">Alta Espectaculo</button>
 					</form>
-		        	</div>
-      		</li>
-<!-- 			<li class="nav-item"><a class="nav-link" href="index.jsp">Plataformas</a></li> -->
-			
+					<div class="dropdown-divider"></div>
+					<%
+					}
+					%>
+					<form action="DatosConsulta" method="post">
+						<button class="dropdown-item" type="submit" name="pageNavega"
+							value="MenuConsultaEspectaculo">Consulta Espectaculo</button>
+					</form>
+				</div></li>
+			<!-- 			<li class="nav-item"><a class="nav-link" href="index.jsp">Plataformas</a></li> -->
+
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="false">Funciones</a>
 				<div class="dropdown-menu">
-					<%if(dtU instanceof DtArtista){ %>
+					<%
+					if (dtU instanceof DtArtista) {
+					%>
 					<form action="Consultas" method="post">
 						<button class="dropdown-item" type="submit">Alta Funcion
 							de Espectaculo</button>
 					</form>
 					<div class="dropdown-divider"></div>
-					<%} %>
+					<%
+					}
+					%>
 
 					<form action="ConsultaPlataforma" method="post">
 						<button class="dropdown-item" name="btnOpcion"
@@ -123,78 +152,81 @@
 							Funcion Espectaculo</button>
 					</form>
 
-				</div>
-			</li>
+				</div></li>
 			<%
-				if (dtU != null) {
-			
+			if (dtU != null) {
 			%>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-expanded="true">
-				<%
-					if (imageUser != null && !imageUser.isEmpty()) {
-				
-				%>
-					<img src="data:image/jpg;base64,${imgUser}" height="30px"/>
-				<%}else{ %>
-					<img src="imagenes/userImg.png" height="30px" >
-				<%} %>
-				<%=dtU.getNombre() %></a>
-				
+				role="button" data-toggle="dropdown" aria-expanded="true"> <%
+ if (imageUser != null && !imageUser.isEmpty()) {
+ %> <img src="data:image/jpg;base64,${imgUser}" height="30px" /> <%
+ } else {
+ %> <img src="imagenes/userImg.png" height="30px"> <%
+ }
+ %> <%=dtU.getNombre()%></a>
+
 				<div class="dropdown-menu">
 					<form action="Login" method="get">
-		 				<button class="dropdown-item" type="submit">Cerrar sesion</button>
-			 		</form>
-<!-- 					<div class="dropdown-divider"></div> -->
-<!-- 					<form action="ConsultaFuncionEspectaculo" method="post"> -->
-<!-- 						<button class="dropdown-item" type="submit">Ver Perfil</button> -->
-<!-- 					</form> -->
+						<button class="dropdown-item" type="submit">Cerrar sesion</button>
+					</form>
+					<!-- 					<div class="dropdown-divider"></div> -->
+					<!-- 					<form action="ConsultaFuncionEspectaculo" method="post"> -->
+					<!-- 						<button class="dropdown-item" type="submit">Ver Perfil</button> -->
+					<!-- 					</form> -->
 
-				</div>
-			</li>
-			<%} %>
+				</div></li>
+			<%
+			}
+			%>
 		</ul>
 	</div>
 
 	<div>
 		<%
-			if (dtU == null) {
-			
+		if (dtU == null) {
 		%>
 		<form class="form-inline" action="login.jsp">
 			<button class="btn btn-success" type="submit">Login</button>
 		</form>
 		<%
-			}
+		}
 		%>
 	</div>
 	</nav>
-	
+
 	<!-- Toast -->
- 	<%if(mensaje != null && !mensaje.isEmpty()){ %>
- 	<script type="text/javascript">
-		window.onload = function(){
-		 	$( "#toast_message" ).removeClass( "hide" );
-		 	$( "#toast_message" ).addClass( "show" );
-		 	setTimeout(function() {
-		 	 	$( "#toast_message" ).removeClass( "show" );
-		 	 	$( "#toast_message" ).addClass( "hide" );
-		 	}, 4000);
+	<%
+	if (mensaje != null && !mensaje.isEmpty()) {
+	%>
+	<script type="text/javascript">
+		window.onload = function() {
+			$("#toast_message").removeClass("hide");
+			$("#toast_message").addClass("show");
+			setTimeout(function() {
+				$("#toast_message").removeClass("show");
+				$("#toast_message").addClass("hide");
+			}, 4000);
 		}
- 	</script>
+	</script>
 	<div id="toast_message" class="toast hide posicionToast" role="alert"
 		aria-live="assertive" aria-atomic="true">
 		<div class="toast-body">${message}</div>
 	</div>
-	<%} else{%>
+	<%
+	} else {
+	%>
 	<script type="text/javascript">
-		window.onload = function(){
-			$( "#toast_message" ).removeClass( "show" );
-			$( "#toast_message" ).addClass( "hide" );
+		window.onload = function() {
+			$("#toast_message").removeClass("show");
+			$("#toast_message").addClass("hide");
 		}
- 	</script>
-	<%}%>
+	</script>
+	<%
+
+
+	}
+	%>
 
 </body>
 </html>

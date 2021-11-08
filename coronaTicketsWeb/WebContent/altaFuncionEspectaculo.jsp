@@ -1,10 +1,8 @@
-<%@page import="logica.Espectaculo"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="datatypes.DtUsuario"%>
+<%@page import="publicadores.Espectaculo"%>
+<%@page import="publicadores.DtUsuario"%>
+<%@page import="publicadores.DtEspectaculo"%>
 <%@page import="java.util.List"%>
-<%@page import="datatypes.DtEspectaculo"%>
-<%@page import="interfaces.Fabrica"%>
-<%@page import="interfaces.IControladorEspectaculo"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
