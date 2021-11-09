@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -90,8 +92,11 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 				}
 				
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-
-				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + formato.format(func.getFecha()) + "<br/>Hora: " + func.getHoraInicio() + "<br/>Registro: " + formato.format(func.getRegistro()));
+				Calendar fechaN = new GregorianCalendar();
+				fechaN=func.getFecha();
+				//String a=formato.format(func.getFecha());
+				
+				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + func.getFecha().getTime()+ "<br/>Hora: " + func.getHoraInicio() + "<br/>Registro: " + func.getRegistro().getTime());
 				//func.getArtistas();
 				List<String> listArtistas = new ArrayList<String>();
 				for (Artista artistai : func.getArtistas()) {

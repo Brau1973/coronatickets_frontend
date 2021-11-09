@@ -6,7 +6,9 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,9 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+
 import publicadores.ControladorFuncionPublish;
 import publicadores.ControladorFuncionPublishService;
 import publicadores.ControladorFuncionPublishServiceLocator;
+import publicadores.DtEspectador;
 import publicadores.DtFuncion;
 import publicadores.Funcion;
 
@@ -61,12 +65,14 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		ArrayList<String> listArtistas =null;
+		String[] listArtistas = null;
 		String[] artistasInvitados = request.getParameterValues("selArtista");
+
 		if (artistasInvitados != null) {
-			for (String artista : artistasInvitados) {
-				listArtistas.add(artista);
-			}
+			//		for (String artista : artistasInvitados) {
+			//			listArtistas.add(artista);
+			//	}
+			/* for (int i = 0; i < artistasInvitados.length; ++i) { listArtistas[i].add(artistasInvitados[i]); } */
 		}
 
 		Part imagenFuncion = request.getPart("imagen");
@@ -77,15 +83,19 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
 		dis.readFully(foto);
 		RequestDispatcher rd;
-			DtFuncion dtFuncion = null;
-			dtFuncion.setNombre(nombre);
-			dtFuncion.setFecha(null);
-			dtFuncion.setHoraInicio(null);
-			dtFuncion.setRegistro(null);
-			dtFuncion.setArtistas(null);
+		//			DtFuncion dtFuncion = null;
+		//			dtFuncion = new DtFuncion();
+		//			dtFuncion.setNombre(nombre);
+		//			dtFuncion.setFecha(null);
+		//			dtFuncion.setHoraInicio(null);
+		//			dtFuncion.setRegistro(null);
+		//			dtFuncion.setArtistas(artistasInvitados);
+		Calendar fechaN = new GregorianCalendar();
+		fechaN.setTime(new Date());
+		DtFuncion dtFuncion = new DtFuncion(nombre, fechaN,null , fechaN, artistasInvitados);
+
 		try {
-			agregarFuncion(dtFuncion, espectaculo, foto) ;
-			//	iconF.altaFuncion(dtFuncion, espectaculo, foto);
+			agregarFuncion(dtFuncion, espectaculo, foto);
 			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
 			rd = request.getRequestDispatcher("/notificacion.jsp");
 
@@ -109,12 +119,11 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 			rd.forward(request, response);
 		}
 	}
-	
-	public void agregarFuncion(DtFuncion dtFuncion, String nombreEspectaculo, byte[] imagen) throws Exception {
+
+	public void agregarFuncion(DtFuncion dtFuncion, String nombreEspectaculo, byte[] foto) throws Exception {
 		ControladorFuncionPublishService cps = new ControladorFuncionPublishServiceLocator();
 		ControladorFuncionPublish port = cps.getControladorFuncionPublishPort();
-		port.altaFuncion(dtFuncion,nombreEspectaculo,imagen);
+		port.altaFuncion(dtFuncion, nombreEspectaculo, foto);
 	}
-	
-	
+
 }

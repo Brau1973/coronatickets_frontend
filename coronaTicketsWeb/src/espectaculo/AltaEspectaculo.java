@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import publicadores.Espectaculo;
 import publicadores.Usuario;
@@ -24,9 +23,6 @@ import publicadores.ControladorPlataformaPublishServiceLocator;
 import publicadores.DtEspectaculo;
 import publicadores.DtPlataforma;
 
-/**
- * Servlet implementation class AltaEspectaculo
- */
 @WebServlet("/AltaEspectaculo")
 public class AltaEspectaculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
