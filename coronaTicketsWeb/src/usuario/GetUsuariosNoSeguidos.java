@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import publicadores.ControladorUsuarioPublish;
+import publicadores.ControladorUsuarioPublishService;
+import publicadores.ControladorUsuarioPublishServiceLocator;
 import publicadores.DtUsuario;
 
 @WebServlet("/GetUsuariosNoSeguidos")
@@ -22,30 +25,44 @@ public class GetUsuariosNoSeguidos extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-	//  IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
-	  List<String> listUsuariosNoSeguidos = new ArrayList<String>();
-	  HttpSession sesion = request.getSession();
-	  DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
-	//  listUsuariosNoSeguidos = iconU.listarNicknameUsuariosNoSeguidos(dtUsuLogueado.getNickname());
-//	  for (String nomUsuario : listUsuariosNoSeguidos) {
-//		  System.out.println(nomUsuario);
-//	  }
-	  System.out.println(listUsuariosNoSeguidos);
-	  RequestDispatcher rd;
-	  if(!listUsuariosNoSeguidos.isEmpty()){
-	      request.setAttribute("usuariosNoSeguidos", listUsuariosNoSeguidos);
-	      rd = request.getRequestDispatcher("/seguirUsuario.jsp");
-	  }else{
-		  request.setAttribute("mensaje", "Estimado "+dtUsuLogueado.getNickname()+" , usted ya sigue a todos los usuarios del sistema");
-	      rd = request.getRequestDispatcher("/notificacion.jsp");
-	  }
-      rd.forward(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<String> listUsuariosNoSeguidos = null;
+		HttpSession sesion = request.getSession();
+		DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
+		//	  for (String nomUsuario : listUsuariosNoSeguidos) {
+		//		  System.out.println(nomUsuario);
+		//	  }
+		
+		try {
+			listUsuariosNoSeguidos = obtenerUsuariosNoSeguidos(dtUsuLogueado.getNickname());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(listUsuariosNoSeguidos);
+		RequestDispatcher rd;
+		if (!listUsuariosNoSeguidos.isEmpty()) {
+			request.setAttribute("usuariosNoSeguidos", listUsuariosNoSeguidos);
+			rd = request.getRequestDispatcher("/seguirUsuario.jsp");
+		} else {
+			request.setAttribute("mensaje", "Estimado " + dtUsuLogueado.getNickname() + " , usted ya sigue a todos los usuarios del sistema");
+			rd = request.getRequestDispatcher("/notificacion.jsp");
+		}
+		rd.forward(request, response);
 	}
-	
+
+	public ArrayList<String> obtenerUsuariosNoSeguidos(String userName) throws Exception {
+		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
+		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
+		String[] usuarios = port.listarNicknameUsuariosNoSeguidos(userName);
+		ArrayList<String> lstUsuarios = new ArrayList<>();
+		for (int i = 0; i < usuarios.length; ++i) {
+			lstUsuarios.add(usuarios[i]);
+		}
+		return lstUsuarios;
+	}
+
 }

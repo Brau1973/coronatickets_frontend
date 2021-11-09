@@ -129,47 +129,47 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg063" SIZE=20></TD>
-</TR>
-</TABLE>
-<BR>
-<INPUT TYPE="SUBMIT" VALUE="Invoke">
-<INPUT TYPE="RESET" VALUE="Clear">
-</FORM>
-<%
-break;
-case 65:
-valid = false;
-%>
-<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
-<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
-<TABLE>
-<TR>
-<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg068" SIZE=20></TD>
-</TR>
-</TABLE>
-<BR>
-<INPUT TYPE="SUBMIT" VALUE="Invoke">
-<INPUT TYPE="RESET" VALUE="Clear">
-</FORM>
-<%
-break;
-case 70:
-valid = false;
-%>
-<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
-<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
-<TABLE>
-<TR>
-<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg073" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg049" SIZE=20></TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg1:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg175" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg151" SIZE=20></TD>
+</TR>
+</TABLE>
+<BR>
+<INPUT TYPE="SUBMIT" VALUE="Invoke">
+<INPUT TYPE="RESET" VALUE="Clear">
+</FORM>
+<%
+break;
+case 53:
+valid = false;
+%>
+<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
+<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg056" SIZE=20></TD>
+</TR>
+</TABLE>
+<BR>
+<INPUT TYPE="SUBMIT" VALUE="Invoke">
+<INPUT TYPE="RESET" VALUE="Clear">
+</FORM>
+<%
+break;
+case 58:
+valid = false;
+%>
+<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
+<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg075" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>
@@ -209,8 +209,6 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0101" SIZE=20></TD>
-</TR>
 </TABLE>
 <BR>
 <INPUT TYPE="SUBMIT" VALUE="Invoke">
@@ -218,7 +216,7 @@ valid = false;
 </FORM>
 <%
 break;
-case 103:
+case 89:
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -226,7 +224,7 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0112" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0106" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>
@@ -235,7 +233,41 @@ valid = false;
 </FORM>
 <%
 break;
-case 114:
+case 108:
+valid = false;
+%>
+<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
+<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0117" SIZE=20></TD>
+</TR>
+</TABLE>
+<BR>
+<INPUT TYPE="SUBMIT" VALUE="Invoke">
+<INPUT TYPE="RESET" VALUE="Clear">
+</FORM>
+<%
+break;
+case 119:
+valid = false;
+%>
+<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
+<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0122" SIZE=20></TD>
+</TR>
+</TABLE>
+<BR>
+<INPUT TYPE="SUBMIT" VALUE="Invoke">
+<INPUT TYPE="RESET" VALUE="Clear">
+</FORM>
+<%
+break;
+case 124:
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -246,17 +278,17 @@ valid = false;
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">descripcion:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="descripcion119" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="descripcion129" SIZE=20></TD>
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">link:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="link121" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="link131" SIZE=20></TD>
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">biografia:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="biografia123" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="biografia133" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>
@@ -265,7 +297,7 @@ valid = false;
 </FORM>
 <%
 break;
-case 125:
+case 135:
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -273,40 +305,8 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0128" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0144" SIZE=20></TD>
 </TR>
-</TABLE>
-<BR>
-<INPUT TYPE="SUBMIT" VALUE="Invoke">
-<INPUT TYPE="RESET" VALUE="Clear">
-</FORM>
-<%
-break;
-case 130:
-valid = false;
-%>
-<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
-<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
-<TABLE>
-<TR>
-<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0139" SIZE=20></TD>
-</TR>
-</TABLE>
-<BR>
-<INPUT TYPE="SUBMIT" VALUE="Invoke">
-<INPUT TYPE="RESET" VALUE="Clear">
-</FORM>
-<%
-break;
-case 141:
-valid = false;
-%>
-<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
-<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
-<TABLE>
-<TR>
-<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
 </TABLE>
 <BR>
 <INPUT TYPE="SUBMIT" VALUE="Invoke">
