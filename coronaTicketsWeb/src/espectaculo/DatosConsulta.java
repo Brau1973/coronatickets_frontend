@@ -1,6 +1,8 @@
 package espectaculo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logica.Plataforma;
+import manejadores.ManejadorPlataforma;
 import publicadores.ControladorPlataformaPublish;
 import publicadores.ControladorPlataformaPublishService;
 import publicadores.ControladorPlataformaPublishServiceLocator;
@@ -27,17 +31,23 @@ public class DatosConsulta extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//List<String> listPlataformas = new ArrayList<String>();
-		String[] listPlataformas = null;
+		List<String> listPlataformas = new ArrayList<String>();
+		String[] arrayPlataformas = null;
 		try {
-			listPlataformas = consultaPlat();
+			arrayPlataformas = consultaPlat();
+			System.out.println("arrayPlataformas.length: "+arrayPlataformas.length);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		//  listPlataformas = iconP.listarPlataformasStr();
+		for(int i = 0;i<arrayPlataformas.length;i++) {
+			listPlataformas.add(arrayPlataformas[i]);		
+		}
+		
 		RequestDispatcher rd;
 
 		HttpSession ses = request.getSession();
+		
 		ses.setAttribute("allPlataformas", listPlataformas);// listPlataformas);
 		String page = (String) request.getParameter("pageNavega");
 		switch (page) {

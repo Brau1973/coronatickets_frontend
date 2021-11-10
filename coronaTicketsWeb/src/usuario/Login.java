@@ -41,8 +41,8 @@ public class Login extends HttpServlet {
 		String userPass = request.getParameter("user_pass");
 		System.out.println("Login servlet");
 		//	IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
-		publicadores.DtUsuario dtu = null;
-		publicadores.DtArtista dt = null;
+		DtUsuario dtu = null;
+		DtArtista dt = null;
 		if (userName.contains("@")) {
 			try {
 				dtu = getLoginUsuarioMail(userName);
@@ -51,6 +51,7 @@ public class Login extends HttpServlet {
 			}
 		} else {
 			try {	
+				System.out.println("1:"+userName);
 				dt = getLoginDtArtista(userName);
 				System.out.println("1:"+userName);
 				System.out.println("1.1:"+dt.getNickname());
@@ -89,19 +90,19 @@ public class Login extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	public publicadores.DtUsuario getLoginUsuario(String userName) throws Exception {
+	public DtUsuario getLoginUsuario(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
 		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
 		return port.getLoginUsuario(userName);
 	}
 
-	public publicadores.DtArtista getLoginDtArtista(String userName) throws Exception {
+	public DtArtista getLoginDtArtista(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
 		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
 		return port.getLoginArtista(userName);
 	}
 	
-	public publicadores.DtUsuario getLoginUsuarioMail(String userName) throws Exception {
+	public DtUsuario getLoginUsuarioMail(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
 		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
 		return port.getLoginUsuarioMail(userName);

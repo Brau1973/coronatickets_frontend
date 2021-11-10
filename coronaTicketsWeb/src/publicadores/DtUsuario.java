@@ -8,46 +8,126 @@
 package publicadores;
 
 public class DtUsuario  implements java.io.Serializable {
+    private java.lang.String apellido;
+
+    private java.lang.String contrasenia;
+
+    private java.lang.String email;
+
+    private byte[] imagen;
+
     private java.lang.String nickname;
 
     private java.lang.String nombre;
 
-    private java.lang.String apellido;
-
-    private java.lang.String email;
-
-    private java.util.Calendar fNacimiento;
+    private java.lang.String[] seguidores;
 
     private java.lang.String[] seguidos;
 
-    private java.lang.String[] seguidores;
-
-    private java.lang.String contrasenia;
-
-    private byte[] imagen;
+    private java.util.Calendar fNacimiento;
 
     public DtUsuario() {
     }
 
     public DtUsuario(
+           java.lang.String apellido,
+           java.lang.String contrasenia,
+           java.lang.String email,
+           byte[] imagen,
            java.lang.String nickname,
            java.lang.String nombre,
-           java.lang.String apellido,
-           java.lang.String email,
-           java.util.Calendar fNacimiento,
-           java.lang.String[] seguidos,
            java.lang.String[] seguidores,
-           java.lang.String contrasenia,
-           byte[] imagen) {
+           java.lang.String[] seguidos,
+           java.util.Calendar fNacimiento) {
+           this.apellido = apellido;
+           this.contrasenia = contrasenia;
+           this.email = email;
+           this.imagen = imagen;
            this.nickname = nickname;
            this.nombre = nombre;
-           this.apellido = apellido;
-           this.email = email;
-           this.fNacimiento = fNacimiento;
-           this.seguidos = seguidos;
            this.seguidores = seguidores;
-           this.contrasenia = contrasenia;
-           this.imagen = imagen;
+           this.seguidos = seguidos;
+           this.fNacimiento = fNacimiento;
+    }
+
+
+    /**
+     * Gets the apellido value for this DtUsuario.
+     * 
+     * @return apellido
+     */
+    public java.lang.String getApellido() {
+        return apellido;
+    }
+
+
+    /**
+     * Sets the apellido value for this DtUsuario.
+     * 
+     * @param apellido
+     */
+    public void setApellido(java.lang.String apellido) {
+        this.apellido = apellido;
+    }
+
+
+    /**
+     * Gets the contrasenia value for this DtUsuario.
+     * 
+     * @return contrasenia
+     */
+    public java.lang.String getContrasenia() {
+        return contrasenia;
+    }
+
+
+    /**
+     * Sets the contrasenia value for this DtUsuario.
+     * 
+     * @param contrasenia
+     */
+    public void setContrasenia(java.lang.String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+
+    /**
+     * Gets the email value for this DtUsuario.
+     * 
+     * @return email
+     */
+    public java.lang.String getEmail() {
+        return email;
+    }
+
+
+    /**
+     * Sets the email value for this DtUsuario.
+     * 
+     * @param email
+     */
+    public void setEmail(java.lang.String email) {
+        this.email = email;
+    }
+
+
+    /**
+     * Gets the imagen value for this DtUsuario.
+     * 
+     * @return imagen
+     */
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+
+    /**
+     * Sets the imagen value for this DtUsuario.
+     * 
+     * @param imagen
+     */
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 
 
@@ -92,62 +172,30 @@ public class DtUsuario  implements java.io.Serializable {
 
 
     /**
-     * Gets the apellido value for this DtUsuario.
+     * Gets the seguidores value for this DtUsuario.
      * 
-     * @return apellido
+     * @return seguidores
      */
-    public java.lang.String getApellido() {
-        return apellido;
+    public java.lang.String[] getSeguidores() {
+        return seguidores;
     }
 
 
     /**
-     * Sets the apellido value for this DtUsuario.
+     * Sets the seguidores value for this DtUsuario.
      * 
-     * @param apellido
+     * @param seguidores
      */
-    public void setApellido(java.lang.String apellido) {
-        this.apellido = apellido;
+    public void setSeguidores(java.lang.String[] seguidores) {
+        this.seguidores = seguidores;
     }
 
-
-    /**
-     * Gets the email value for this DtUsuario.
-     * 
-     * @return email
-     */
-    public java.lang.String getEmail() {
-        return email;
+    public java.lang.String getSeguidores(int i) {
+        return this.seguidores[i];
     }
 
-
-    /**
-     * Sets the email value for this DtUsuario.
-     * 
-     * @param email
-     */
-    public void setEmail(java.lang.String email) {
-        this.email = email;
-    }
-
-
-    /**
-     * Gets the fNacimiento value for this DtUsuario.
-     * 
-     * @return fNacimiento
-     */
-    public java.util.Calendar getFNacimiento() {
-        return fNacimiento;
-    }
-
-
-    /**
-     * Sets the fNacimiento value for this DtUsuario.
-     * 
-     * @param fNacimiento
-     */
-    public void setFNacimiento(java.util.Calendar fNacimiento) {
-        this.fNacimiento = fNacimiento;
+    public void setSeguidores(int i, java.lang.String _value) {
+        this.seguidores[i] = _value;
     }
 
 
@@ -180,70 +228,22 @@ public class DtUsuario  implements java.io.Serializable {
 
 
     /**
-     * Gets the seguidores value for this DtUsuario.
+     * Gets the fNacimiento value for this DtUsuario.
      * 
-     * @return seguidores
+     * @return fNacimiento
      */
-    public java.lang.String[] getSeguidores() {
-        return seguidores;
+    public java.util.Calendar getFNacimiento() {
+        return fNacimiento;
     }
 
 
     /**
-     * Sets the seguidores value for this DtUsuario.
+     * Sets the fNacimiento value for this DtUsuario.
      * 
-     * @param seguidores
+     * @param fNacimiento
      */
-    public void setSeguidores(java.lang.String[] seguidores) {
-        this.seguidores = seguidores;
-    }
-
-    public java.lang.String getSeguidores(int i) {
-        return this.seguidores[i];
-    }
-
-    public void setSeguidores(int i, java.lang.String _value) {
-        this.seguidores[i] = _value;
-    }
-
-
-    /**
-     * Gets the contrasenia value for this DtUsuario.
-     * 
-     * @return contrasenia
-     */
-    public java.lang.String getContrasenia() {
-        return contrasenia;
-    }
-
-
-    /**
-     * Sets the contrasenia value for this DtUsuario.
-     * 
-     * @param contrasenia
-     */
-    public void setContrasenia(java.lang.String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
-
-    /**
-     * Gets the imagen value for this DtUsuario.
-     * 
-     * @return imagen
-     */
-    public byte[] getImagen() {
-        return imagen;
-    }
-
-
-    /**
-     * Sets the imagen value for this DtUsuario.
-     * 
-     * @param imagen
-     */
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
+    public void setFNacimiento(java.util.Calendar fNacimiento) {
+        this.fNacimiento = fNacimiento;
     }
 
     private java.lang.Object __equalsCalc = null;
@@ -258,33 +258,33 @@ public class DtUsuario  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
+            ((this.apellido==null && other.getApellido()==null) || 
+             (this.apellido!=null &&
+              this.apellido.equals(other.getApellido()))) &&
+            ((this.contrasenia==null && other.getContrasenia()==null) || 
+             (this.contrasenia!=null &&
+              this.contrasenia.equals(other.getContrasenia()))) &&
+            ((this.email==null && other.getEmail()==null) || 
+             (this.email!=null &&
+              this.email.equals(other.getEmail()))) &&
+            ((this.imagen==null && other.getImagen()==null) || 
+             (this.imagen!=null &&
+              java.util.Arrays.equals(this.imagen, other.getImagen()))) &&
             ((this.nickname==null && other.getNickname()==null) || 
              (this.nickname!=null &&
               this.nickname.equals(other.getNickname()))) &&
             ((this.nombre==null && other.getNombre()==null) || 
              (this.nombre!=null &&
               this.nombre.equals(other.getNombre()))) &&
-            ((this.apellido==null && other.getApellido()==null) || 
-             (this.apellido!=null &&
-              this.apellido.equals(other.getApellido()))) &&
-            ((this.email==null && other.getEmail()==null) || 
-             (this.email!=null &&
-              this.email.equals(other.getEmail()))) &&
-            ((this.fNacimiento==null && other.getFNacimiento()==null) || 
-             (this.fNacimiento!=null &&
-              this.fNacimiento.equals(other.getFNacimiento()))) &&
-            ((this.seguidos==null && other.getSeguidos()==null) || 
-             (this.seguidos!=null &&
-              java.util.Arrays.equals(this.seguidos, other.getSeguidos()))) &&
             ((this.seguidores==null && other.getSeguidores()==null) || 
              (this.seguidores!=null &&
               java.util.Arrays.equals(this.seguidores, other.getSeguidores()))) &&
-            ((this.contrasenia==null && other.getContrasenia()==null) || 
-             (this.contrasenia!=null &&
-              this.contrasenia.equals(other.getContrasenia()))) &&
-            ((this.imagen==null && other.getImagen()==null) || 
-             (this.imagen!=null &&
-              java.util.Arrays.equals(this.imagen, other.getImagen())));
+            ((this.seguidos==null && other.getSeguidos()==null) || 
+             (this.seguidos!=null &&
+              java.util.Arrays.equals(this.seguidos, other.getSeguidos()))) &&
+            ((this.fNacimiento==null && other.getFNacimiento()==null) || 
+             (this.fNacimiento!=null &&
+              this.fNacimiento.equals(other.getFNacimiento())));
         __equalsCalc = null;
         return _equals;
     }
@@ -296,45 +296,14 @@ public class DtUsuario  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getNickname() != null) {
-            _hashCode += getNickname().hashCode();
-        }
-        if (getNombre() != null) {
-            _hashCode += getNombre().hashCode();
-        }
         if (getApellido() != null) {
             _hashCode += getApellido().hashCode();
         }
-        if (getEmail() != null) {
-            _hashCode += getEmail().hashCode();
-        }
-        if (getFNacimiento() != null) {
-            _hashCode += getFNacimiento().hashCode();
-        }
-        if (getSeguidos() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getSeguidos());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getSeguidos(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
-        if (getSeguidores() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getSeguidores());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getSeguidores(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
         if (getContrasenia() != null) {
             _hashCode += getContrasenia().hashCode();
+        }
+        if (getEmail() != null) {
+            _hashCode += getEmail().hashCode();
         }
         if (getImagen() != null) {
             for (int i=0;
@@ -347,6 +316,37 @@ public class DtUsuario  implements java.io.Serializable {
                 }
             }
         }
+        if (getNickname() != null) {
+            _hashCode += getNickname().hashCode();
+        }
+        if (getNombre() != null) {
+            _hashCode += getNombre().hashCode();
+        }
+        if (getSeguidores() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getSeguidores());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getSeguidores(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getSeguidos() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getSeguidos());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getSeguidos(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
+        if (getFNacimiento() != null) {
+            _hashCode += getFNacimiento().hashCode();
+        }
         __hashCodeCalc = false;
         return _hashCode;
     }
@@ -358,6 +358,34 @@ public class DtUsuario  implements java.io.Serializable {
     static {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://publicadores/", "dtUsuario"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("apellido");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "apellido"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("contrasenia");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "contrasenia"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("email");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "email"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("imagen");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "imagen"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "base64Binary"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("nickname");
         elemField.setXmlName(new javax.xml.namespace.QName("", "nickname"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
@@ -372,25 +400,12 @@ public class DtUsuario  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("apellido");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "apellido"));
+        elemField.setFieldName("seguidores");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "seguidores"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("email");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "email"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("FNacimiento");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "fNacimiento"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
+        elemField.setNillable(true);
+        elemField.setMaxOccursUnbounded(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("seguidos");
@@ -401,24 +416,9 @@ public class DtUsuario  implements java.io.Serializable {
         elemField.setMaxOccursUnbounded(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("seguidores");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "seguidores"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(true);
-        elemField.setMaxOccursUnbounded(true);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("contrasenia");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "contrasenia"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("imagen");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "imagen"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "base64Binary"));
+        elemField.setFieldName("FNacimiento");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "fNacimiento"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
