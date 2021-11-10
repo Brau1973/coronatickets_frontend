@@ -7,10 +7,6 @@
 
 package publicadores;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class Espectaculo  implements java.io.Serializable {
     private int cantMaxEsp;
 
@@ -59,53 +55,121 @@ public class Espectaculo  implements java.io.Serializable {
     }
 
 
+    /**
+     * Gets the cantMaxEsp value for this Espectaculo.
+     * 
+     * @return cantMaxEsp
+     */
     public int getCantMaxEsp() {
         return cantMaxEsp;
     }
 
+
+    /**
+     * Sets the cantMaxEsp value for this Espectaculo.
+     * 
+     * @param cantMaxEsp
+     */
     public void setCantMaxEsp(int cantMaxEsp) {
         this.cantMaxEsp = cantMaxEsp;
     }
 
+
+    /**
+     * Gets the cantMinEsp value for this Espectaculo.
+     * 
+     * @return cantMinEsp
+     */
     public int getCantMinEsp() {
         return cantMinEsp;
     }
 
+
+    /**
+     * Sets the cantMinEsp value for this Espectaculo.
+     * 
+     * @param cantMinEsp
+     */
     public void setCantMinEsp(int cantMinEsp) {
         this.cantMinEsp = cantMinEsp;
     }
 
+
+    /**
+     * Gets the costo value for this Espectaculo.
+     * 
+     * @return costo
+     */
     public int getCosto() {
         return costo;
     }
 
+
+    /**
+     * Sets the costo value for this Espectaculo.
+     * 
+     * @param costo
+     */
     public void setCosto(int costo) {
         this.costo = costo;
     }
 
 
+    /**
+     * Gets the descripcion value for this Espectaculo.
+     * 
+     * @return descripcion
+     */
     public java.lang.String getDescripcion() {
         return descripcion;
     }
 
 
+    /**
+     * Sets the descripcion value for this Espectaculo.
+     * 
+     * @param descripcion
+     */
     public void setDescripcion(java.lang.String descripcion) {
         this.descripcion = descripcion;
     }
 
+
+    /**
+     * Gets the duracion value for this Espectaculo.
+     * 
+     * @return duracion
+     */
     public int getDuracion() {
         return duracion;
     }
 
 
+    /**
+     * Sets the duracion value for this Espectaculo.
+     * 
+     * @param duracion
+     */
     public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 
+
+    /**
+     * Gets the funciones value for this Espectaculo.
+     * 
+     * @return funciones
+     */
     public publicadores.Funcion[] getFunciones() {
         return funciones;
     }
 
+
+    /**
+     * Sets the funciones value for this Espectaculo.
+     * 
+     * @param funciones
+     */
     public void setFunciones(publicadores.Funcion[] funciones) {
         this.funciones = funciones;
     }
@@ -118,20 +182,42 @@ public class Espectaculo  implements java.io.Serializable {
         this.funciones[i] = _value;
     }
 
+
+    /**
+     * Gets the nombre value for this Espectaculo.
+     * 
+     * @return nombre
+     */
     public java.lang.String getNombre() {
         return nombre;
     }
 
 
+    /**
+     * Sets the nombre value for this Espectaculo.
+     * 
+     * @param nombre
+     */
     public void setNombre(java.lang.String nombre) {
         this.nombre = nombre;
     }
 
+
+    /**
+     * Gets the paquete value for this Espectaculo.
+     * 
+     * @return paquete
+     */
     public publicadores.PaqueteEspectaculos[] getPaquete() {
         return paquete;
     }
 
 
+    /**
+     * Sets the paquete value for this Espectaculo.
+     * 
+     * @param paquete
+     */
     public void setPaquete(publicadores.PaqueteEspectaculos[] paquete) {
         this.paquete = paquete;
     }
@@ -144,20 +230,42 @@ public class Espectaculo  implements java.io.Serializable {
         this.paquete[i] = _value;
     }
 
+
+    /**
+     * Gets the registro value for this Espectaculo.
+     * 
+     * @return registro
+     */
     public java.util.Calendar getRegistro() {
         return registro;
     }
 
+
+    /**
+     * Sets the registro value for this Espectaculo.
+     * 
+     * @param registro
+     */
     public void setRegistro(java.util.Calendar registro) {
         this.registro = registro;
     }
 
 
+    /**
+     * Gets the url value for this Espectaculo.
+     * 
+     * @return url
+     */
     public java.lang.String getUrl() {
         return url;
     }
 
 
+    /**
+     * Sets the url value for this Espectaculo.
+     * 
+     * @param url
+     */
     public void setUrl(java.lang.String url) {
         this.url = url;
     }

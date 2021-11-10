@@ -50,7 +50,7 @@ public class ControladorFuncionPublishProxy implements publicadores.ControladorF
     return controladorFuncionPublish.getFuncionesVigentesRegistradasPorEspectador(arg0);
   }
   
-  public void altaFuncion(publicadores.DtFuncion arg0, java.lang.String arg1, byte[] arg2) throws java.rmi.RemoteException{
+  public void altaFuncion(publicadores.DtFuncion arg0, java.lang.String arg1, byte[] arg2) throws java.rmi.RemoteException, publicadores.FuncionYaRegistradaEnEspectaculoExcepcion{
     if (controladorFuncionPublish == null)
       _initControladorFuncionPublishProxy();
     controladorFuncionPublish.altaFuncion(arg0, arg1, arg2);

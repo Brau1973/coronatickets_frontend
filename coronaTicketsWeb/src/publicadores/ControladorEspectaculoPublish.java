@@ -8,10 +8,12 @@
 package publicadores;
 
 public interface ControladorEspectaculoPublish extends java.rmi.Remote {
-    public publicadores.DtEspectaculo[] listarEspectaculos(java.lang.String arg0) throws java.rmi.RemoteException;
-    public java.lang.String[] obtenerEspectaculosArtista(java.lang.String arg0) throws java.rmi.RemoteException;
     public publicadores.Espectaculo obtenerEspectaculo(java.lang.String arg0) throws java.rmi.RemoteException;
-    public void altaEspectaculo(publicadores.DtEspectaculo arg0, java.lang.String arg1) throws java.rmi.RemoteException;
-    public publicadores.Espectaculo[] obtenerEspectaculo2(java.lang.String arg0) throws java.rmi.RemoteException;
+    public void altaEspectaculo(publicadores.DtEspectaculo arg0, java.lang.String arg1) throws java.rmi.RemoteException, publicadores.EspectaculoRepetidoExcepcion;
+    public java.lang.String[] obtenerEspectaculosArtista(java.lang.String arg0) throws java.rmi.RemoteException;
+    public publicadores.DtEspectaculo[] listarEspectaculos(java.lang.String arg0) throws java.rmi.RemoteException;
     public publicadores.DtEspectaculo[] obtenerAllDtEspectaculos(java.lang.String arg0) throws java.rmi.RemoteException;
+    public publicadores.DtFuncion[] obtenerEspectaculoFunciones(java.lang.String arg0) throws java.rmi.RemoteException;
+    public publicadores.DtPaqueteEspectaculo[] obtenerEspectaculoPaquetes(java.lang.String arg0) throws java.rmi.RemoteException;
+    public publicadores.Espectaculo[] obtenerEspectaculo2(java.lang.String arg0) throws java.rmi.RemoteException;
 }

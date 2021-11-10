@@ -7,7 +7,6 @@
 
 package publicadores;
 
-@SuppressWarnings("serial")
 public class ControladorEspectaculoPublishServiceLocator extends org.apache.axis.client.Service implements publicadores.ControladorEspectaculoPublishService {
 
     public ControladorEspectaculoPublishServiceLocator() {

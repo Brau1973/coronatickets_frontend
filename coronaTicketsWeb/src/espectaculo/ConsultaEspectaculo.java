@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import publicadores.DtEspectaculo;
 import publicadores.DtFuncion;
 import publicadores.DtPaqueteEspectaculo;
+import publicadores.Espectaculo;
 import publicadores.ControladorEspectaculoPublish;
 import publicadores.ControladorEspectaculoPublishService;
 import publicadores.ControladorEspectaculoPublishServiceLocator;
@@ -43,17 +44,34 @@ public class ConsultaEspectaculo extends HttpServlet {
 		RequestDispatcher rd;
 		if (strPlataforma != null) {
 			if (request.getParameter("boton").equals("botonPlataformas")) {
-		//		listEspectaculos = iconE.listarEspectaculos(strPlataforma);
+				try {
+					listEspectaculos = listarEspectaculos(strPlataforma);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				strEspectaculo = request.getParameter("nomEsp");
 			} else if (request.getParameter("boton").equals("botonEspectaculos")) {
-			//	listEspectaculos = iconE.listarEspectaculos(strPlataforma);
+				try {
+					listEspectaculos = listarEspectaculos(strPlataforma);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				strEspectaculo = request.getParameter("nomEsp");
-			//	listFunciones = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
-				//listPaquetes = iconE.obtenerEspectaculo(strEspectaculo).getPaqueteEspectaculoDt();
+				try {
+					listFunciones = listarEspectaculoFunciones(strEspectaculo);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					listPaquetes = listEspectaculoPaquetes(strEspectaculo);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 			}
 		}
-		HttpSession s = request.getSession();
-	     s.setAttribute("allEspectaculos", listEspectaculos);
+		 HttpSession s = request.getSession();
+		 s.setAttribute("allEspectaculos", listEspectaculos);
 	     s.setAttribute("plataformaSelected", strPlataforma);
 	     s.setAttribute("espectaculoSelected", strEspectaculo);
 	     s.setAttribute("funciones", listFunciones);
@@ -63,9 +81,39 @@ public class ConsultaEspectaculo extends HttpServlet {
 	}
 	
 	// OPERACIÓN CONSUMIDA
-	public void listEspectaculos(String strPlataforma) throws Exception {
+	public List<DtEspectaculo> listarEspectaculos(String strPlataforma) throws Exception {
 		ControladorEspectaculoPublishService cps = new ControladorEspectaculoPublishServiceLocator();
 		ControladorEspectaculoPublish port = cps.getControladorEspectaculoPublishPort();
-	//	port.listEspectaculos(strPlataforma);
+		DtEspectaculo[] arrayEspectaculos = port.listarEspectaculos(strPlataforma);
+		
+		List<DtEspectaculo> listEspectaculos = new ArrayList<DtEspectaculo>();
+		for(int i = 0;i<arrayEspectaculos.length;i++) {
+			listEspectaculos.add(arrayEspectaculos[i]);		
+		}
+		return listEspectaculos;
+	}
+	
+	public List<DtFuncion> listarEspectaculoFunciones(String strEspectaculo) throws Exception {
+		ControladorEspectaculoPublishService cps = new ControladorEspectaculoPublishServiceLocator();
+		ControladorEspectaculoPublish port = cps.getControladorEspectaculoPublishPort();
+		DtFuncion[] arrayFunciones = port.obtenerEspectaculoFunciones(strEspectaculo);
+		
+		List<DtFuncion> listFunciones = new ArrayList<DtFuncion>();
+		for(int i = 0;i<arrayFunciones.length;i++) {
+			listFunciones.add(arrayFunciones[i]);		
+		}
+		return listFunciones;
+	}
+	
+	public List<DtPaqueteEspectaculo> listEspectaculoPaquetes(String strEspectaculo) throws Exception {
+		ControladorEspectaculoPublishService cps = new ControladorEspectaculoPublishServiceLocator();
+		ControladorEspectaculoPublish port = cps.getControladorEspectaculoPublishPort();
+		DtPaqueteEspectaculo[] arrayPaquetesEspectaculo = port.obtenerEspectaculoPaquetes(strEspectaculo);
+		
+		List<DtPaqueteEspectaculo> listPaquetesEspectaculo = new ArrayList<DtPaqueteEspectaculo>();
+		for(int i = 0;i<arrayPaquetesEspectaculo.length;i++) {
+			listPaquetesEspectaculo.add(arrayPaquetesEspectaculo[i]);		
+		}
+		return listPaquetesEspectaculo;
 	}
 }

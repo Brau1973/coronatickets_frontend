@@ -12,25 +12,25 @@ public class DtEspectador  extends publicadores.DtUsuario  implements java.io.Se
     }
 
     public DtEspectador(
+           java.lang.String apellido,
+           java.lang.String contrasenia,
+           java.lang.String email,
+           byte[] imagen,
            java.lang.String nickname,
            java.lang.String nombre,
-           java.lang.String apellido,
-           java.lang.String email,
-           java.util.Calendar fNacimiento,
-           java.lang.String[] seguidos,
            java.lang.String[] seguidores,
-           java.lang.String contrasenia,
-           byte[] imagen) {
+           java.lang.String[] seguidos,
+           java.util.Calendar fNacimiento) {
         super(
+            apellido,
+            contrasenia,
+            email,
+            imagen,
             nickname,
             nombre,
-            apellido,
-            email,
-            fNacimiento,
-            seguidos,
             seguidores,
-            contrasenia,
-            imagen);
+            seguidos,
+            fNacimiento);
     }
 
     private java.lang.Object __equalsCalc = null;

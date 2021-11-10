@@ -2,7 +2,6 @@ package espectaculo;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,22 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
-import publicadores.Espectaculo;
-import publicadores.Usuario;
 import publicadores.ControladorEspectaculoPublish;
 import publicadores.ControladorEspectaculoPublishService;
 import publicadores.ControladorEspectaculoPublishServiceLocator;
-import publicadores.ControladorPlataformaPublish;
-import publicadores.ControladorPlataformaPublishService;
-import publicadores.ControladorPlataformaPublishServiceLocator;
 import publicadores.DtEspectaculo;
-import publicadores.DtPlataforma;
+import publicadores.DtUsuario;
 
-/**
- * Servlet implementation class AltaEspectaculo
- */
 @WebServlet("/AltaEspectaculo")
 public class AltaEspectaculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,7 +34,7 @@ public class AltaEspectaculo extends HttpServlet {
 		//	IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
 		String plataforma = request.getParameter("nomPlataforma");
 		HttpSession sesion = request.getSession();
-		Usuario dtUsuLogueado = (Usuario) sesion.getAttribute("user");
+		DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
 		String artista = dtUsuLogueado.getNickname(); // pasar artista con el q ingresó al sistema
 		String nombre = request.getParameter("nomEspectaculo");
 		String descripcion = request.getParameter("descEspectaculo");
@@ -71,9 +61,7 @@ public class AltaEspectaculo extends HttpServlet {
 		dte.setCosto(costo);
 		dte.setRegistro(fechaAlta);
 
-		/* dte = new publicadores.DtEspectaculo(); dte.setEnRambla(enRambla); dte.set(artista); dte.setNombre(nombre); dte.setTurno(turno); */
 		try {
-
 			altaEspectaculo(dte, plataforma);
 			sesion.removeAttribute("plataformaSelected");
 			sesion.removeAttribute("nombreEspectaculo");
@@ -98,7 +86,6 @@ public class AltaEspectaculo extends HttpServlet {
 			sesion.setAttribute("espectadoresMaxEspectaculo", espectadoresMax);
 			sesion.setAttribute("urlEspectaculo", url);
 			sesion.setAttribute("costoEspectaculo", costo);
-			//e.printStackTrace();
 		}
 		//}
 		rd.forward(request, response);
