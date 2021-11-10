@@ -16,8 +16,8 @@ public class DtArtista extends publicadores.DtUsuario implements java.io.Seriali
 	public DtArtista() {
 	}
 
-	public DtArtista(java.lang.String nickname, java.lang.String nombre, java.lang.String apellido, java.lang.String email, java.util.Calendar fNacimiento, java.lang.String[] seguidos, java.lang.String[] seguidores, java.lang.String contrasenia, byte[] imagen, java.lang.String descripcion, java.lang.String biografia, java.lang.String link) {
-		super(nickname, nombre, apellido, email, fNacimiento, seguidos, seguidores, contrasenia, imagen);
+	public DtArtista(java.lang.String apellido, java.lang.String contrasenia, java.lang.String email, byte[] imagen, java.lang.String nickname, java.lang.String nombre, java.lang.String[] seguidores, java.lang.String[] seguidos, java.util.Calendar fNacimiento, java.lang.String descripcion, java.lang.String biografia, java.lang.String link) {
+		super(apellido, contrasenia, email, imagen, nickname, nombre, seguidores, seguidos, fNacimiento);
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.link = link;
