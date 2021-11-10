@@ -34,14 +34,18 @@ public class AltaPlataforma extends HttpServlet {
 		DtPlataforma dtp = new DtPlataforma(nombre, desc, url, null);
 		try {
 			agregarPlataforma(dtp);
+			request.setAttribute("mensaje", "Se ha ingresado correctamente la Plataforma al sistema.");
+			RequestDispatcher rd;
+			rd = request.getRequestDispatcher("/notificacion.jsp");
+			rd.forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			request.setAttribute("mensaje", "La plataforma ya existe");
+			RequestDispatcher rd;
+			rd = request.getRequestDispatcher("/notificacion.jsp");
+			rd.forward(request, response);
+			//e.printStackTrace();
 		}
 
-		RequestDispatcher rd;
-		request.setAttribute("mensaje", "Se ha ingresado correctamente la Plataforma al sistema.");
-		rd = request.getRequestDispatcher("/notificacion.jsp");
-		rd.forward(request, response);
 	}
 
 	// OPERACIÓN CONSUMIDA
