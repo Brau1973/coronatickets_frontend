@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import publicadores.DtUsuario;
 import publicadores.*;
-// import interfaces.Fabrica;
-// import interfaces.IControladorUsuario;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -28,48 +26,47 @@ public class Login extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 		HttpSession session = request.getSession();
 		session.setAttribute("user", null);
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 		String userName = request.getParameter("user_name");
 		String userPass = request.getParameter("user_pass");
 		System.out.println("Login servlet");
-		//	IControladorUsuario iconU = Fabrica.getInstancia().getIControladorUsuario();
 		DtUsuario dtu = null;
 		DtArtista dt = null;
 		if (userName.contains("@")) {
 			try {
+				System.out.println("Logueo con mail: " + userName);
 				dtu = getLoginUsuarioMail(userName);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-			try {	
-				System.out.println("1:"+userName);
-				dt = getLoginDtArtista(userName);
-				System.out.println("1:"+userName);
-				System.out.println("1.1:"+dt.getNickname());
+			try {
+				System.out.println("Logueo con nickname:" + userName);
+				dtu = getLoginUsuario(userName);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("ac2"+userPass);
-
-		if (dt != null) {// && dt.getContrasenia().equals(userPass)) {
-			System.out.println("1");
+		System.out.println("DtUsuario Retornado: " + dtu.getContrasenia());
+		if (dtu != null && dtu.getContrasenia().equals(userPass)) {
+			System.out.println("Retorno usuario con nombre: " + dtu.getNombre() + " // Apellido: " + dtu.getApellido());
+			System.out.println("Retorno usuario con pass: " + dtu.getContrasenia());
 			HttpSession session = request.getSession();
-			session.setAttribute("user", dt);
+			session.setAttribute("user", dtu);
 			session.setAttribute("loged", true);
-			System.out.println("2");
-		if (dt.getImagen() != null) {
-				System.out.println("3");
-				byte[] foto = dt.getImagen();
+			if (dtu.getImagen() != null) {
+				System.out.println("IF IMAGEN: ");
+				byte[] foto = dtu.getImagen();
 				BufferedImage image = null;
 				InputStream in = new ByteArrayInputStream(foto);
 				try {
@@ -96,12 +93,12 @@ public class Login extends HttpServlet {
 		return port.getLoginUsuario(userName);
 	}
 
-	public DtArtista getLoginDtArtista(String userName) throws Exception {
-		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
-		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
-		return port.getLoginArtista(userName);
-	}
-	
+//	public DtArtista getLoginDtArtista(String userName) throws Exception {
+//		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
+//		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
+//		return port.getLoginArtista(userName);
+//	}
+
 	public DtUsuario getLoginUsuarioMail(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
 		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();

@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import logica.Plataforma;
-import manejadores.ManejadorPlataforma;
 import publicadores.ControladorPlataformaPublish;
 import publicadores.ControladorPlataformaPublishService;
 import publicadores.ControladorPlataformaPublishServiceLocator;

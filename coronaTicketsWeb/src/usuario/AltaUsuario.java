@@ -93,6 +93,7 @@ public class AltaUsuario extends HttpServlet {
 
 			} else if (tipoU.equals("Artista")) {
 				DtArtista dta = new DtArtista(apellido, contrasenia, correo, foto, nickname, nombre, seguidores, seguidos, fechaN, descripcion, biografia, url);
+				System.out.println("dta.getNickname(): "+dta.getNickname());
 				try {
 					agregarDtArtista(dta);
 					request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el usuario");
