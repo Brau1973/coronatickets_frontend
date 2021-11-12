@@ -96,16 +96,16 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 			session.removeAttribute("horaFuncion");
 			session.removeAttribute("nombreEspectaculoSelected");
 			rd.forward(request, response);
-
+			
 		} catch (Exception e) {
-			request.setAttribute("message", e.getMessage());
 			//guardo los campos del formulario en la sesion
 			session.setAttribute("nomFuncion", nombre);
 			session.setAttribute("fechaFuncion", fechaFuncion);
 			session.setAttribute("horaFuncion", hora);
 			session.setAttribute("nombreEspectaculoSelected", espectaculo);
 			//	System.out.println(nombre);
-			rd = request.getRequestDispatcher("/altaFuncionEspectaculo.jsp");
+			request.setAttribute("mensaje", "La funcion ya existe");
+			rd = request.getRequestDispatcher("/notificacion.jsp");
 			rd.forward(request, response);
 		}
 	}

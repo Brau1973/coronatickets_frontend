@@ -50,7 +50,13 @@ public class ControladorPlataformaPublishProxy implements publicadores.Controlad
     return controladorPlataformaPublish.listarPlataformasStr();
   }
   
-  public void altaPlataforma(publicadores.DtPlataforma arg0) throws java.rmi.RemoteException{
+  public publicadores.DtPlataforma[] listarPlataformas() throws java.rmi.RemoteException{
+    if (controladorPlataformaPublish == null)
+      _initControladorPlataformaPublishProxy();
+    return controladorPlataformaPublish.listarPlataformas();
+  }
+  
+  public void altaPlataforma(publicadores.DtPlataforma arg0) throws java.rmi.RemoteException, publicadores.PlataformaRepetidaExcepcion{
     if (controladorPlataformaPublish == null)
       _initControladorPlataformaPublishProxy();
     controladorPlataformaPublish.altaPlataforma(arg0);
@@ -60,12 +66,6 @@ public class ControladorPlataformaPublishProxy implements publicadores.Controlad
     if (controladorPlataformaPublish == null)
       _initControladorPlataformaPublishProxy();
     return controladorPlataformaPublish.buscarPlataforma(arg0);
-  }
-  
-  public publicadores.DtPlataforma[] listarPlataformas() throws java.rmi.RemoteException{
-    if (controladorPlataformaPublish == null)
-      _initControladorPlataformaPublishProxy();
-    return controladorPlataformaPublish.listarPlataformas();
   }
   
   public publicadores.DtPlataforma mapEntityToDt(publicadores.Plataforma arg0) throws java.rmi.RemoteException{

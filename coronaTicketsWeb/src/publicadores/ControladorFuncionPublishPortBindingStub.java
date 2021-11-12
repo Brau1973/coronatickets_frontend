@@ -60,6 +60,12 @@ public class ControladorFuncionPublishPortBindingStub extends org.apache.axis.cl
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        oper.addFault(new org.apache.axis.description.FaultDesc(
+                      new javax.xml.namespace.QName("http://publicadores/", "FuncionYaRegistradaEnEspectaculoExcepcion"),
+                      "publicadores.FuncionYaRegistradaEnEspectaculoExcepcion",
+                      new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), 
+                      false
+                     ));
         _operations[2] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -291,7 +297,7 @@ public class ControladorFuncionPublishPortBindingStub extends org.apache.axis.cl
 }
     }
 
-    public void altaFuncion(publicadores.DtFuncion arg0, java.lang.String arg1, byte[] arg2) throws java.rmi.RemoteException {
+    public void altaFuncion(publicadores.DtFuncion arg0, java.lang.String arg1, byte[] arg2) throws java.rmi.RemoteException, publicadores.FuncionYaRegistradaEnEspectaculoExcepcion {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -314,6 +320,14 @@ public class ControladorFuncionPublishPortBindingStub extends org.apache.axis.cl
         }
         extractAttachments(_call);
   } catch (org.apache.axis.AxisFault axisFaultException) {
+    if (axisFaultException.detail != null) {
+        if (axisFaultException.detail instanceof java.rmi.RemoteException) {
+              throw (java.rmi.RemoteException) axisFaultException.detail;
+         }
+        if (axisFaultException.detail instanceof publicadores.FuncionYaRegistradaEnEspectaculoExcepcion) {
+              throw (publicadores.FuncionYaRegistradaEnEspectaculoExcepcion) axisFaultException.detail;
+         }
+   }
   throw axisFaultException;
 }
     }

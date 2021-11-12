@@ -81,79 +81,79 @@ if(obtenerPaquetes13mtemp == null){
 break;
 case 16:
         gotMethod = true;
-        String descuento_2id=  request.getParameter("descuento21");
-        int descuento_2idTemp  = Integer.parseInt(descuento_2id);
-        String descripcion_3id=  request.getParameter("descripcion23");
-            java.lang.String descripcion_3idTemp = null;
-        if(!descripcion_3id.equals("")){
-         descripcion_3idTemp  = descripcion_3id;
+        String arg0_1id=  request.getParameter("arg019");
+            java.lang.String arg0_1idTemp = null;
+        if(!arg0_1id.equals("")){
+         arg0_1idTemp  = arg0_1id;
         }
-        String fechaInicio_4id=  request.getParameter("fechaInicio25");
-            java.util.Calendar fechaInicio_4idTemp = null;
-        if(!fechaInicio_4id.equals("")){
-        java.text.DateFormat dateFormatfechaInicio25 = java.text.DateFormat.getDateInstance();
-        java.util.Date dateTempfechaInicio25  = dateFormatfechaInicio25.parse(fechaInicio_4id);
-         fechaInicio_4idTemp = new java.util.GregorianCalendar();
-        fechaInicio_4idTemp.setTime(dateTempfechaInicio25);
+        String arg1_2id=  request.getParameter("arg121");
+            java.lang.String arg1_2idTemp = null;
+        if(!arg1_2id.equals("")){
+         arg1_2idTemp  = arg1_2id;
         }
-        String fechaFin_5id=  request.getParameter("fechaFin27");
-            java.util.Calendar fechaFin_5idTemp = null;
-        if(!fechaFin_5id.equals("")){
-        java.text.DateFormat dateFormatfechaFin27 = java.text.DateFormat.getDateInstance();
-        java.util.Date dateTempfechaFin27  = dateFormatfechaFin27.parse(fechaFin_5id);
-         fechaFin_5idTemp = new java.util.GregorianCalendar();
-        fechaFin_5idTemp.setTime(dateTempfechaFin27);
-        }
-        String fechaAlta_6id=  request.getParameter("fechaAlta29");
-            java.util.Calendar fechaAlta_6idTemp = null;
-        if(!fechaAlta_6id.equals("")){
-        java.text.DateFormat dateFormatfechaAlta29 = java.text.DateFormat.getDateInstance();
-        java.util.Date dateTempfechaAlta29  = dateFormatfechaAlta29.parse(fechaAlta_6id);
-         fechaAlta_6idTemp = new java.util.GregorianCalendar();
-        fechaAlta_6idTemp.setTime(dateTempfechaAlta29);
-        }
-        String nombre_7id=  request.getParameter("nombre31");
-            java.lang.String nombre_7idTemp = null;
-        if(!nombre_7id.equals("")){
-         nombre_7idTemp  = nombre_7id;
-        }
-        %>
-        <jsp:useBean id="publicadores1PaqueteEspectaculos_1id" scope="session" class="publicadores.PaqueteEspectaculos" />
-        <%
-        publicadores1PaqueteEspectaculos_1id.setDescuento(descuento_2idTemp);
-        publicadores1PaqueteEspectaculos_1id.setDescripcion(descripcion_3idTemp);
-        publicadores1PaqueteEspectaculos_1id.setFechaInicio(fechaInicio_4idTemp);
-        publicadores1PaqueteEspectaculos_1id.setFechaFin(fechaFin_5idTemp);
-        publicadores1PaqueteEspectaculos_1id.setFechaAlta(fechaAlta_6idTemp);
-        publicadores1PaqueteEspectaculos_1id.setNombre(nombre_7idTemp);
-        sampleControladorPaquetePublishProxyid.altaPaquete(publicadores1PaqueteEspectaculos_1id);
+        sampleControladorPaquetePublishProxyid.agregarEspectaculo(arg0_1idTemp,arg1_2idTemp);
 break;
-case 33:
+case 23:
         gotMethod = true;
-        String arg0_8id=  request.getParameter("arg036");
-            java.lang.String arg0_8idTemp = null;
-        if(!arg0_8id.equals("")){
-         arg0_8idTemp  = arg0_8id;
+        String arg0_3id=  request.getParameter("arg026");
+            java.lang.String arg0_3idTemp = null;
+        if(!arg0_3id.equals("")){
+         arg0_3idTemp  = arg0_3id;
         }
-        boolean existePaquete33mtemp = sampleControladorPaquetePublishProxyid.existePaquete(arg0_8idTemp);
-        String tempResultreturnp34 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(existePaquete33mtemp));
+        boolean existePaquete23mtemp = sampleControladorPaquetePublishProxyid.existePaquete(arg0_3idTemp);
+        String tempResultreturnp24 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(existePaquete23mtemp));
         %>
-        <%= tempResultreturnp34 %>
+        <%= tempResultreturnp24 %>
         <%
 break;
-case 38:
+case 28:
         gotMethod = true;
-        String arg0_9id=  request.getParameter("arg041");
-            java.lang.String arg0_9idTemp = null;
-        if(!arg0_9id.equals("")){
-         arg0_9idTemp  = arg0_9id;
+        String descuento_5id=  request.getParameter("descuento33");
+        int descuento_5idTemp  = Integer.parseInt(descuento_5id);
+        String descripcion_6id=  request.getParameter("descripcion35");
+            java.lang.String descripcion_6idTemp = null;
+        if(!descripcion_6id.equals("")){
+         descripcion_6idTemp  = descripcion_6id;
         }
-        String arg1_10id=  request.getParameter("arg143");
-            java.lang.String arg1_10idTemp = null;
-        if(!arg1_10id.equals("")){
-         arg1_10idTemp  = arg1_10id;
+        String fechaInicio_7id=  request.getParameter("fechaInicio37");
+            java.util.Calendar fechaInicio_7idTemp = null;
+        if(!fechaInicio_7id.equals("")){
+        java.text.DateFormat dateFormatfechaInicio37 = java.text.DateFormat.getDateInstance();
+        java.util.Date dateTempfechaInicio37  = dateFormatfechaInicio37.parse(fechaInicio_7id);
+         fechaInicio_7idTemp = new java.util.GregorianCalendar();
+        fechaInicio_7idTemp.setTime(dateTempfechaInicio37);
         }
-        sampleControladorPaquetePublishProxyid.agregarEspectaculo(arg0_9idTemp,arg1_10idTemp);
+        String fechaFin_8id=  request.getParameter("fechaFin39");
+            java.util.Calendar fechaFin_8idTemp = null;
+        if(!fechaFin_8id.equals("")){
+        java.text.DateFormat dateFormatfechaFin39 = java.text.DateFormat.getDateInstance();
+        java.util.Date dateTempfechaFin39  = dateFormatfechaFin39.parse(fechaFin_8id);
+         fechaFin_8idTemp = new java.util.GregorianCalendar();
+        fechaFin_8idTemp.setTime(dateTempfechaFin39);
+        }
+        String fechaAlta_9id=  request.getParameter("fechaAlta41");
+            java.util.Calendar fechaAlta_9idTemp = null;
+        if(!fechaAlta_9id.equals("")){
+        java.text.DateFormat dateFormatfechaAlta41 = java.text.DateFormat.getDateInstance();
+        java.util.Date dateTempfechaAlta41  = dateFormatfechaAlta41.parse(fechaAlta_9id);
+         fechaAlta_9idTemp = new java.util.GregorianCalendar();
+        fechaAlta_9idTemp.setTime(dateTempfechaAlta41);
+        }
+        String nombre_10id=  request.getParameter("nombre43");
+            java.lang.String nombre_10idTemp = null;
+        if(!nombre_10id.equals("")){
+         nombre_10idTemp  = nombre_10id;
+        }
+        %>
+        <jsp:useBean id="publicadores1PaqueteEspectaculos_4id" scope="session" class="publicadores.PaqueteEspectaculos" />
+        <%
+        publicadores1PaqueteEspectaculos_4id.setDescuento(descuento_5idTemp);
+        publicadores1PaqueteEspectaculos_4id.setDescripcion(descripcion_6idTemp);
+        publicadores1PaqueteEspectaculos_4id.setFechaInicio(fechaInicio_7idTemp);
+        publicadores1PaqueteEspectaculos_4id.setFechaFin(fechaFin_8idTemp);
+        publicadores1PaqueteEspectaculos_4id.setFechaAlta(fechaAlta_9idTemp);
+        publicadores1PaqueteEspectaculos_4id.setNombre(nombre_10idTemp);
+        sampleControladorPaquetePublishProxyid.altaPaquete(publicadores1PaqueteEspectaculos_4id);
 break;
 }
 } catch (Exception e) { 

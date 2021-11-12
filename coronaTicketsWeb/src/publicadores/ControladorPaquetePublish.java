@@ -9,7 +9,7 @@ package publicadores;
 
 public interface ControladorPaquetePublish extends java.rmi.Remote {
     public publicadores.DtPaqueteEspectaculo[] obtenerPaquetes() throws java.rmi.RemoteException;
-    public void altaPaquete(publicadores.PaqueteEspectaculos arg0) throws java.rmi.RemoteException;
-    public boolean existePaquete(java.lang.String arg0) throws java.rmi.RemoteException;
     public void agregarEspectaculo(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException;
+    public boolean existePaquete(java.lang.String arg0) throws java.rmi.RemoteException;
+    public void altaPaquete(publicadores.PaqueteEspectaculos arg0) throws java.rmi.RemoteException;
 }

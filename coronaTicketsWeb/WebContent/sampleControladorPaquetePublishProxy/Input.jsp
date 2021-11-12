@@ -72,109 +72,109 @@ valid = false;
 <INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
 <TABLE>
 <TR>
-<TD COLSPAN="3" ALIGN="LEFT">arg0:</TD>
-<TR>
-<TD WIDTH="5%"></TD>
-<TD COLSPAN="2" ALIGN="LEFT">descuento:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="descuento21" SIZE=20></TD>
-</TR>
-<TR>
-<TD WIDTH="5%"></TD>
-<TD COLSPAN="2" ALIGN="LEFT">descripcion:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="descripcion23" SIZE=20></TD>
-</TR>
-<TR>
-<TD WIDTH="5%"></TD>
-<TD COLSPAN="2" ALIGN="LEFT">fechaInicio:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="fechaInicio25" SIZE=20></TD>
-<%
-java.text.DateFormat dateFormatfechaInicio25 = java.text.DateFormat.getDateInstance();
-java.util.GregorianCalendar gcExampfechaInicio25  = new java.util.GregorianCalendar();
-java.util.Date datefechaInicio25 = gcExampfechaInicio25.getTime();
-String tempResultfechaInicio25 = dateFormatfechaInicio25.format(datefechaInicio25);
-%>
-<TD ALIGN="left">
-</TR>
-<TR>
-<TD> </TD>
-<TD ALIGN="left"> eg. <%= tempResultfechaInicio25 %> </TD>
-</TR>
-<TR>
-<TD WIDTH="5%"></TD>
-<TD COLSPAN="2" ALIGN="LEFT">fechaFin:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="fechaFin27" SIZE=20></TD>
-<%
-java.text.DateFormat dateFormatfechaFin27 = java.text.DateFormat.getDateInstance();
-java.util.GregorianCalendar gcExampfechaFin27  = new java.util.GregorianCalendar();
-java.util.Date datefechaFin27 = gcExampfechaFin27.getTime();
-String tempResultfechaFin27 = dateFormatfechaFin27.format(datefechaFin27);
-%>
-<TD ALIGN="left">
-</TR>
-<TR>
-<TD> </TD>
-<TD ALIGN="left"> eg. <%= tempResultfechaFin27 %> </TD>
-</TR>
-<TR>
-<TD WIDTH="5%"></TD>
-<TD COLSPAN="2" ALIGN="LEFT">fechaAlta:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="fechaAlta29" SIZE=20></TD>
-<%
-java.text.DateFormat dateFormatfechaAlta29 = java.text.DateFormat.getDateInstance();
-java.util.GregorianCalendar gcExampfechaAlta29  = new java.util.GregorianCalendar();
-java.util.Date datefechaAlta29 = gcExampfechaAlta29.getTime();
-String tempResultfechaAlta29 = dateFormatfechaAlta29.format(datefechaAlta29);
-%>
-<TD ALIGN="left">
-</TR>
-<TR>
-<TD> </TD>
-<TD ALIGN="left"> eg. <%= tempResultfechaAlta29 %> </TD>
-</TR>
-<TR>
-<TD WIDTH="5%"></TD>
-<TD COLSPAN="2" ALIGN="LEFT">nombre:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="nombre31" SIZE=20></TD>
-</TR>
-</TABLE>
-<BR>
-<INPUT TYPE="SUBMIT" VALUE="Invoke">
-<INPUT TYPE="RESET" VALUE="Clear">
-</FORM>
-<%
-break;
-case 33:
-valid = false;
-%>
-<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
-<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
-<TABLE>
-<TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg036" SIZE=20></TD>
-</TR>
-</TABLE>
-<BR>
-<INPUT TYPE="SUBMIT" VALUE="Invoke">
-<INPUT TYPE="RESET" VALUE="Clear">
-</FORM>
-<%
-break;
-case 38:
-valid = false;
-%>
-<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
-<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
-<TABLE>
-<TR>
-<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg041" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg019" SIZE=20></TD>
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg1:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg143" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg121" SIZE=20></TD>
+</TR>
+</TABLE>
+<BR>
+<INPUT TYPE="SUBMIT" VALUE="Invoke">
+<INPUT TYPE="RESET" VALUE="Clear">
+</FORM>
+<%
+break;
+case 23:
+valid = false;
+%>
+<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
+<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg026" SIZE=20></TD>
+</TR>
+</TABLE>
+<BR>
+<INPUT TYPE="SUBMIT" VALUE="Invoke">
+<INPUT TYPE="RESET" VALUE="Clear">
+</FORM>
+<%
+break;
+case 28:
+valid = false;
+%>
+<FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
+<INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
+<TD COLSPAN="3" ALIGN="LEFT">arg0:</TD>
+<TR>
+<TD WIDTH="5%"></TD>
+<TD COLSPAN="2" ALIGN="LEFT">descuento:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="descuento33" SIZE=20></TD>
+</TR>
+<TR>
+<TD WIDTH="5%"></TD>
+<TD COLSPAN="2" ALIGN="LEFT">descripcion:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="descripcion35" SIZE=20></TD>
+</TR>
+<TR>
+<TD WIDTH="5%"></TD>
+<TD COLSPAN="2" ALIGN="LEFT">fechaInicio:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="fechaInicio37" SIZE=20></TD>
+<%
+java.text.DateFormat dateFormatfechaInicio37 = java.text.DateFormat.getDateInstance();
+java.util.GregorianCalendar gcExampfechaInicio37  = new java.util.GregorianCalendar();
+java.util.Date datefechaInicio37 = gcExampfechaInicio37.getTime();
+String tempResultfechaInicio37 = dateFormatfechaInicio37.format(datefechaInicio37);
+%>
+<TD ALIGN="left">
+</TR>
+<TR>
+<TD> </TD>
+<TD ALIGN="left"> eg. <%= tempResultfechaInicio37 %> </TD>
+</TR>
+<TR>
+<TD WIDTH="5%"></TD>
+<TD COLSPAN="2" ALIGN="LEFT">fechaFin:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="fechaFin39" SIZE=20></TD>
+<%
+java.text.DateFormat dateFormatfechaFin39 = java.text.DateFormat.getDateInstance();
+java.util.GregorianCalendar gcExampfechaFin39  = new java.util.GregorianCalendar();
+java.util.Date datefechaFin39 = gcExampfechaFin39.getTime();
+String tempResultfechaFin39 = dateFormatfechaFin39.format(datefechaFin39);
+%>
+<TD ALIGN="left">
+</TR>
+<TR>
+<TD> </TD>
+<TD ALIGN="left"> eg. <%= tempResultfechaFin39 %> </TD>
+</TR>
+<TR>
+<TD WIDTH="5%"></TD>
+<TD COLSPAN="2" ALIGN="LEFT">fechaAlta:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="fechaAlta41" SIZE=20></TD>
+<%
+java.text.DateFormat dateFormatfechaAlta41 = java.text.DateFormat.getDateInstance();
+java.util.GregorianCalendar gcExampfechaAlta41  = new java.util.GregorianCalendar();
+java.util.Date datefechaAlta41 = gcExampfechaAlta41.getTime();
+String tempResultfechaAlta41 = dateFormatfechaAlta41.format(datefechaAlta41);
+%>
+<TD ALIGN="left">
+</TR>
+<TR>
+<TD> </TD>
+<TD ALIGN="left"> eg. <%= tempResultfechaAlta41 %> </TD>
+</TR>
+<TR>
+<TD WIDTH="5%"></TD>
+<TD COLSPAN="2" ALIGN="LEFT">nombre:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="nombre43" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>

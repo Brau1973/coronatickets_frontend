@@ -82,16 +82,26 @@ public class AltaUsuario extends HttpServlet {
 				DtEspectador dte = new DtEspectador(apellido, contrasenia, correo, foto, nickname, nombre, seguidores, seguidos, fechaN);
 				try {
 					agregarDtEspectador(dte);
+					request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el usuario");
+					rd = request.getRequestDispatcher("/notificacion.jsp");
+					rd.forward(request, response);
 				} catch (Exception e) {
-					e.printStackTrace();
+					request.setAttribute("mensaje", "El usuario que intenta registrar ya existe");
+					rd = request.getRequestDispatcher("/notificacion.jsp");
+					rd.forward(request, response);
 				}
 
 			} else if (tipoU.equals("Artista")) {
 				DtArtista dta = new DtArtista(apellido, contrasenia, correo, foto, nickname, nombre, seguidores, seguidos, fechaN, descripcion, biografia, url);
 				try {
 					agregarDtArtista(dta);
+					request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el usuario");
+					rd = request.getRequestDispatcher("/notificacion.jsp");
+					rd.forward(request, response);
 				} catch (Exception e) {
-					e.printStackTrace();
+					request.setAttribute("mensaje", "El usuario que intenta registrar ya existe");
+					rd = request.getRequestDispatcher("/notificacion.jsp");
+					rd.forward(request, response);
 				}
 			}
 
@@ -107,10 +117,7 @@ public class AltaUsuario extends HttpServlet {
 			sesion.removeAttribute("biografia");
 			sesion.removeAttribute("url");
 
-			request.setAttribute("message", "Se ha ingresado correctamente al sistema, el usuario");
-			rd = request.getRequestDispatcher("/index.jsp");
 		} catch (Exception e) {
-			request.setAttribute("message", e.getMessage());
 			//Guardo variables del formulario 
 			sesion.setAttribute("tipoDeUsuario", tipoU);
 			sesion.setAttribute("nickname", nickname);
@@ -123,9 +130,7 @@ public class AltaUsuario extends HttpServlet {
 			sesion.setAttribute("descripcion", descripcion);
 			sesion.setAttribute("biografia", biografia);
 			sesion.setAttribute("url", url);
-			rd = request.getRequestDispatcher("/altaUsuario.jsp");
 		}
-		rd.forward(request, response);
 	}
 
 	public void agregarDtEspectador(DtEspectador dte) throws Exception {
@@ -139,5 +144,4 @@ public class AltaUsuario extends HttpServlet {
 		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
 		port.altaDtArtista(dta);
 	}
-
 }

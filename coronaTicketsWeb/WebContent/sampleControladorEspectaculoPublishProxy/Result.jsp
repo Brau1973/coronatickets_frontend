@@ -68,15 +68,15 @@ case 13:
         if(!arg0_1id.equals("")){
          arg0_1idTemp  = arg0_1id;
         }
-        publicadores.DtEspectaculo[] listarEspectaculos13mtemp = sampleControladorEspectaculoPublishProxyid.listarEspectaculos(arg0_1idTemp);
-if(listarEspectaculos13mtemp == null){
+        java.lang.String[] obtenerEspectaculosArtista13mtemp = sampleControladorEspectaculoPublishProxyid.obtenerEspectaculosArtista(arg0_1idTemp);
+if(obtenerEspectaculosArtista13mtemp == null){
 %>
-<%=listarEspectaculos13mtemp %>
+<%=obtenerEspectaculosArtista13mtemp %>
 <%
 }else{
         String tempreturnp14 = null;
-        if(listarEspectaculos13mtemp != null){
-        java.util.List listreturnp14= java.util.Arrays.asList(listarEspectaculos13mtemp);
+        if(obtenerEspectaculosArtista13mtemp != null){
+        java.util.List listreturnp14= java.util.Arrays.asList(obtenerEspectaculosArtista13mtemp);
         tempreturnp14 = listreturnp14.toString();
         }
         %>
@@ -86,38 +86,101 @@ if(listarEspectaculos13mtemp == null){
 break;
 case 18:
         gotMethod = true;
-        String arg0_2id=  request.getParameter("arg021");
-            java.lang.String arg0_2idTemp = null;
-        if(!arg0_2id.equals("")){
-         arg0_2idTemp  = arg0_2id;
+        String url_3id=  request.getParameter("url23");
+            java.lang.String url_3idTemp = null;
+        if(!url_3id.equals("")){
+         url_3idTemp  = url_3id;
         }
-        java.lang.String[] obtenerEspectaculosArtista18mtemp = sampleControladorEspectaculoPublishProxyid.obtenerEspectaculosArtista(arg0_2idTemp);
-if(obtenerEspectaculosArtista18mtemp == null){
-%>
-<%=obtenerEspectaculosArtista18mtemp %>
-<%
-}else{
-        String tempreturnp19 = null;
-        if(obtenerEspectaculosArtista18mtemp != null){
-        java.util.List listreturnp19= java.util.Arrays.asList(obtenerEspectaculosArtista18mtemp);
-        tempreturnp19 = listreturnp19.toString();
+        String cantMin_4id=  request.getParameter("cantMin25");
+        int cantMin_4idTemp  = Integer.parseInt(cantMin_4id);
+        String costo_5id=  request.getParameter("costo27");
+        int costo_5idTemp  = Integer.parseInt(costo_5id);
+        String descripcion_6id=  request.getParameter("descripcion29");
+            java.lang.String descripcion_6idTemp = null;
+        if(!descripcion_6id.equals("")){
+         descripcion_6idTemp  = descripcion_6id;
+        }
+        String registro_7id=  request.getParameter("registro31");
+            java.util.Calendar registro_7idTemp = null;
+        if(!registro_7id.equals("")){
+        java.text.DateFormat dateFormatregistro31 = java.text.DateFormat.getDateInstance();
+        java.util.Date dateTempregistro31  = dateFormatregistro31.parse(registro_7id);
+         registro_7idTemp = new java.util.GregorianCalendar();
+        registro_7idTemp.setTime(dateTempregistro31);
+        }
+        String cantMax_8id=  request.getParameter("cantMax33");
+        int cantMax_8idTemp  = Integer.parseInt(cantMax_8id);
+        String artista_9id=  request.getParameter("artista35");
+            java.lang.String artista_9idTemp = null;
+        if(!artista_9id.equals("")){
+         artista_9idTemp  = artista_9id;
+        }
+        String plataforma_10id=  request.getParameter("plataforma37");
+            java.lang.String plataforma_10idTemp = null;
+        if(!plataforma_10id.equals("")){
+         plataforma_10idTemp  = plataforma_10id;
+        }
+        String duracion_11id=  request.getParameter("duracion39");
+        int duracion_11idTemp  = Integer.parseInt(duracion_11id);
+        String nombre_12id=  request.getParameter("nombre41");
+            java.lang.String nombre_12idTemp = null;
+        if(!nombre_12id.equals("")){
+         nombre_12idTemp  = nombre_12id;
         }
         %>
-        <%=tempreturnp19%>
+        <jsp:useBean id="publicadores1DtEspectaculo_2id" scope="session" class="publicadores.DtEspectaculo" />
+        <%
+        publicadores1DtEspectaculo_2id.setUrl(url_3idTemp);
+        publicadores1DtEspectaculo_2id.setCantMin(cantMin_4idTemp);
+        publicadores1DtEspectaculo_2id.setCosto(costo_5idTemp);
+        publicadores1DtEspectaculo_2id.setDescripcion(descripcion_6idTemp);
+        publicadores1DtEspectaculo_2id.setRegistro(registro_7idTemp);
+        publicadores1DtEspectaculo_2id.setCantMax(cantMax_8idTemp);
+        publicadores1DtEspectaculo_2id.setArtista(artista_9idTemp);
+        publicadores1DtEspectaculo_2id.setPlataforma(plataforma_10idTemp);
+        publicadores1DtEspectaculo_2id.setDuracion(duracion_11idTemp);
+        publicadores1DtEspectaculo_2id.setNombre(nombre_12idTemp);
+        String arg1_13id=  request.getParameter("arg143");
+            java.lang.String arg1_13idTemp = null;
+        if(!arg1_13id.equals("")){
+         arg1_13idTemp  = arg1_13id;
+        }
+        sampleControladorEspectaculoPublishProxyid.altaEspectaculo(publicadores1DtEspectaculo_2id,arg1_13idTemp);
+break;
+case 45:
+        gotMethod = true;
+        String arg0_14id=  request.getParameter("arg048");
+            java.lang.String arg0_14idTemp = null;
+        if(!arg0_14id.equals("")){
+         arg0_14idTemp  = arg0_14id;
+        }
+        publicadores.DtEspectaculo[] listarEspectaculos45mtemp = sampleControladorEspectaculoPublishProxyid.listarEspectaculos(arg0_14idTemp);
+if(listarEspectaculos45mtemp == null){
+%>
+<%=listarEspectaculos45mtemp %>
+<%
+}else{
+        String tempreturnp46 = null;
+        if(listarEspectaculos45mtemp != null){
+        java.util.List listreturnp46= java.util.Arrays.asList(listarEspectaculos45mtemp);
+        tempreturnp46 = listreturnp46.toString();
+        }
+        %>
+        <%=tempreturnp46%>
         <%
 }
 break;
-case 23:
+case 50:
         gotMethod = true;
-        String arg0_3id=  request.getParameter("arg042");
-            java.lang.String arg0_3idTemp = null;
-        if(!arg0_3id.equals("")){
-         arg0_3idTemp  = arg0_3id;
+        String arg0_15id=  request.getParameter("arg069");
+            java.lang.String arg0_15idTemp = null;
+        if(!arg0_15id.equals("")){
+         arg0_15idTemp  = arg0_15id;
         }
-        publicadores.Espectaculo obtenerEspectaculo23mtemp = sampleControladorEspectaculoPublishProxyid.obtenerEspectaculo(arg0_3idTemp);
-if(obtenerEspectaculo23mtemp == null){
+        publicadores.Espectaculo obtenerEspectaculo50mtemp = sampleControladorEspectaculoPublishProxyid.obtenerEspectaculo(arg0_15idTemp);
+if(obtenerEspectaculo50mtemp == null){
 %>
-<%=obtenerEspectaculo23mtemp %>
+<%=obtenerEspectaculo50mtemp %>
 <%
 }else{
 %>
@@ -129,11 +192,11 @@ if(obtenerEspectaculo23mtemp == null){
 <TD COLSPAN="2" ALIGN="LEFT">url:</TD>
 <TD>
 <%
-if(obtenerEspectaculo23mtemp != null){
-java.lang.String typeurl26 = obtenerEspectaculo23mtemp.getUrl();
-        String tempResulturl26 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typeurl26));
+if(obtenerEspectaculo50mtemp != null){
+java.lang.String typeurl53 = obtenerEspectaculo50mtemp.getUrl();
+        String tempResulturl53 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typeurl53));
         %>
-        <%= tempResulturl26 %>
+        <%= tempResulturl53 %>
         <%
 }%>
 </TD>
@@ -142,9 +205,9 @@ java.lang.String typeurl26 = obtenerEspectaculo23mtemp.getUrl();
 <TD COLSPAN="2" ALIGN="LEFT">costo:</TD>
 <TD>
 <%
-if(obtenerEspectaculo23mtemp != null){
+if(obtenerEspectaculo50mtemp != null){
 %>
-<%=obtenerEspectaculo23mtemp.getCosto()
+<%=obtenerEspectaculo50mtemp.getCosto()
 %><%}%>
 </TD>
 <TR>
@@ -152,11 +215,11 @@ if(obtenerEspectaculo23mtemp != null){
 <TD COLSPAN="2" ALIGN="LEFT">descripcion:</TD>
 <TD>
 <%
-if(obtenerEspectaculo23mtemp != null){
-java.lang.String typedescripcion30 = obtenerEspectaculo23mtemp.getDescripcion();
-        String tempResultdescripcion30 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typedescripcion30));
+if(obtenerEspectaculo50mtemp != null){
+java.lang.String typedescripcion57 = obtenerEspectaculo50mtemp.getDescripcion();
+        String tempResultdescripcion57 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typedescripcion57));
         %>
-        <%= tempResultdescripcion30 %>
+        <%= tempResultdescripcion57 %>
         <%
 }%>
 </TD>
@@ -165,13 +228,13 @@ java.lang.String typedescripcion30 = obtenerEspectaculo23mtemp.getDescripcion();
 <TD COLSPAN="2" ALIGN="LEFT">registro:</TD>
 <TD>
 <%
-if(obtenerEspectaculo23mtemp != null){
-java.util.Calendar typeregistro32 = obtenerEspectaculo23mtemp.getRegistro();
-        java.text.DateFormat dateFormatregistro32 = java.text.DateFormat.getDateInstance();
-        java.util.Date dateregistro32 = typeregistro32.getTime();
-        String tempResultregistro32 = org.eclipse.jst.ws.util.JspUtils.markup(dateFormatregistro32.format(dateregistro32));
+if(obtenerEspectaculo50mtemp != null){
+java.util.Calendar typeregistro59 = obtenerEspectaculo50mtemp.getRegistro();
+        java.text.DateFormat dateFormatregistro59 = java.text.DateFormat.getDateInstance();
+        java.util.Date dateregistro59 = typeregistro59.getTime();
+        String tempResultregistro59 = org.eclipse.jst.ws.util.JspUtils.markup(dateFormatregistro59.format(dateregistro59));
         %>
-        <%= tempResultregistro32 %>
+        <%= tempResultregistro59 %>
         <%
 }%>
 </TD>
@@ -180,9 +243,9 @@ java.util.Calendar typeregistro32 = obtenerEspectaculo23mtemp.getRegistro();
 <TD COLSPAN="2" ALIGN="LEFT">cantMinEsp:</TD>
 <TD>
 <%
-if(obtenerEspectaculo23mtemp != null){
+if(obtenerEspectaculo50mtemp != null){
 %>
-<%=obtenerEspectaculo23mtemp.getCantMinEsp()
+<%=obtenerEspectaculo50mtemp.getCantMinEsp()
 %><%}%>
 </TD>
 <TR>
@@ -190,9 +253,9 @@ if(obtenerEspectaculo23mtemp != null){
 <TD COLSPAN="2" ALIGN="LEFT">duracion:</TD>
 <TD>
 <%
-if(obtenerEspectaculo23mtemp != null){
+if(obtenerEspectaculo50mtemp != null){
 %>
-<%=obtenerEspectaculo23mtemp.getDuracion()
+<%=obtenerEspectaculo50mtemp.getDuracion()
 %><%}%>
 </TD>
 <TR>
@@ -200,9 +263,9 @@ if(obtenerEspectaculo23mtemp != null){
 <TD COLSPAN="2" ALIGN="LEFT">cantMaxEsp:</TD>
 <TD>
 <%
-if(obtenerEspectaculo23mtemp != null){
+if(obtenerEspectaculo50mtemp != null){
 %>
-<%=obtenerEspectaculo23mtemp.getCantMaxEsp()
+<%=obtenerEspectaculo50mtemp.getCantMaxEsp()
 %><%}%>
 </TD>
 <TR>
@@ -210,80 +273,17 @@ if(obtenerEspectaculo23mtemp != null){
 <TD COLSPAN="2" ALIGN="LEFT">nombre:</TD>
 <TD>
 <%
-if(obtenerEspectaculo23mtemp != null){
-java.lang.String typenombre40 = obtenerEspectaculo23mtemp.getNombre();
-        String tempResultnombre40 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typenombre40));
+if(obtenerEspectaculo50mtemp != null){
+java.lang.String typenombre67 = obtenerEspectaculo50mtemp.getNombre();
+        String tempResultnombre67 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typenombre67));
         %>
-        <%= tempResultnombre40 %>
+        <%= tempResultnombre67 %>
         <%
 }%>
 </TD>
 </TABLE>
 <%
 }
-break;
-case 44:
-        gotMethod = true;
-        String url_5id=  request.getParameter("url49");
-            java.lang.String url_5idTemp = null;
-        if(!url_5id.equals("")){
-         url_5idTemp  = url_5id;
-        }
-        String cantMin_6id=  request.getParameter("cantMin51");
-        int cantMin_6idTemp  = Integer.parseInt(cantMin_6id);
-        String costo_7id=  request.getParameter("costo53");
-        int costo_7idTemp  = Integer.parseInt(costo_7id);
-        String descripcion_8id=  request.getParameter("descripcion55");
-            java.lang.String descripcion_8idTemp = null;
-        if(!descripcion_8id.equals("")){
-         descripcion_8idTemp  = descripcion_8id;
-        }
-        String registro_9id=  request.getParameter("registro57");
-            java.util.Calendar registro_9idTemp = null;
-        if(!registro_9id.equals("")){
-        java.text.DateFormat dateFormatregistro57 = java.text.DateFormat.getDateInstance();
-        java.util.Date dateTempregistro57  = dateFormatregistro57.parse(registro_9id);
-         registro_9idTemp = new java.util.GregorianCalendar();
-        registro_9idTemp.setTime(dateTempregistro57);
-        }
-        String cantMax_10id=  request.getParameter("cantMax59");
-        int cantMax_10idTemp  = Integer.parseInt(cantMax_10id);
-        String artista_11id=  request.getParameter("artista61");
-            java.lang.String artista_11idTemp = null;
-        if(!artista_11id.equals("")){
-         artista_11idTemp  = artista_11id;
-        }
-        String plataforma_12id=  request.getParameter("plataforma63");
-            java.lang.String plataforma_12idTemp = null;
-        if(!plataforma_12id.equals("")){
-         plataforma_12idTemp  = plataforma_12id;
-        }
-        String duracion_13id=  request.getParameter("duracion65");
-        int duracion_13idTemp  = Integer.parseInt(duracion_13id);
-        String nombre_14id=  request.getParameter("nombre67");
-            java.lang.String nombre_14idTemp = null;
-        if(!nombre_14id.equals("")){
-         nombre_14idTemp  = nombre_14id;
-        }
-        %>
-        <jsp:useBean id="publicadores1DtEspectaculo_4id" scope="session" class="publicadores.DtEspectaculo" />
-        <%
-        publicadores1DtEspectaculo_4id.setUrl(url_5idTemp);
-        publicadores1DtEspectaculo_4id.setCantMin(cantMin_6idTemp);
-        publicadores1DtEspectaculo_4id.setCosto(costo_7idTemp);
-        publicadores1DtEspectaculo_4id.setDescripcion(descripcion_8idTemp);
-        publicadores1DtEspectaculo_4id.setRegistro(registro_9idTemp);
-        publicadores1DtEspectaculo_4id.setCantMax(cantMax_10idTemp);
-        publicadores1DtEspectaculo_4id.setArtista(artista_11idTemp);
-        publicadores1DtEspectaculo_4id.setPlataforma(plataforma_12idTemp);
-        publicadores1DtEspectaculo_4id.setDuracion(duracion_13idTemp);
-        publicadores1DtEspectaculo_4id.setNombre(nombre_14idTemp);
-        String arg1_15id=  request.getParameter("arg169");
-            java.lang.String arg1_15idTemp = null;
-        if(!arg1_15id.equals("")){
-         arg1_15idTemp  = arg1_15id;
-        }
-        sampleControladorEspectaculoPublishProxyid.altaEspectaculo(publicadores1DtEspectaculo_4id,arg1_15idTemp);
 break;
 case 71:
         gotMethod = true;
@@ -292,15 +292,15 @@ case 71:
         if(!arg0_16id.equals("")){
          arg0_16idTemp  = arg0_16id;
         }
-        publicadores.Espectaculo[] obtenerEspectaculo271mtemp = sampleControladorEspectaculoPublishProxyid.obtenerEspectaculo2(arg0_16idTemp);
-if(obtenerEspectaculo271mtemp == null){
+        publicadores.DtFuncion[] obtenerEspectaculoFunciones71mtemp = sampleControladorEspectaculoPublishProxyid.obtenerEspectaculoFunciones(arg0_16idTemp);
+if(obtenerEspectaculoFunciones71mtemp == null){
 %>
-<%=obtenerEspectaculo271mtemp %>
+<%=obtenerEspectaculoFunciones71mtemp %>
 <%
 }else{
         String tempreturnp72 = null;
-        if(obtenerEspectaculo271mtemp != null){
-        java.util.List listreturnp72= java.util.Arrays.asList(obtenerEspectaculo271mtemp);
+        if(obtenerEspectaculoFunciones71mtemp != null){
+        java.util.List listreturnp72= java.util.Arrays.asList(obtenerEspectaculoFunciones71mtemp);
         tempreturnp72 = listreturnp72.toString();
         }
         %>
@@ -315,19 +315,65 @@ case 76:
         if(!arg0_17id.equals("")){
          arg0_17idTemp  = arg0_17id;
         }
-        publicadores.DtEspectaculo[] obtenerAllDtEspectaculos76mtemp = sampleControladorEspectaculoPublishProxyid.obtenerAllDtEspectaculos(arg0_17idTemp);
-if(obtenerAllDtEspectaculos76mtemp == null){
+        publicadores.Espectaculo[] obtenerEspectaculo276mtemp = sampleControladorEspectaculoPublishProxyid.obtenerEspectaculo2(arg0_17idTemp);
+if(obtenerEspectaculo276mtemp == null){
 %>
-<%=obtenerAllDtEspectaculos76mtemp %>
+<%=obtenerEspectaculo276mtemp %>
 <%
 }else{
         String tempreturnp77 = null;
-        if(obtenerAllDtEspectaculos76mtemp != null){
-        java.util.List listreturnp77= java.util.Arrays.asList(obtenerAllDtEspectaculos76mtemp);
+        if(obtenerEspectaculo276mtemp != null){
+        java.util.List listreturnp77= java.util.Arrays.asList(obtenerEspectaculo276mtemp);
         tempreturnp77 = listreturnp77.toString();
         }
         %>
         <%=tempreturnp77%>
+        <%
+}
+break;
+case 81:
+        gotMethod = true;
+        String arg0_18id=  request.getParameter("arg084");
+            java.lang.String arg0_18idTemp = null;
+        if(!arg0_18id.equals("")){
+         arg0_18idTemp  = arg0_18id;
+        }
+        publicadores.DtEspectaculo[] obtenerAllDtEspectaculos81mtemp = sampleControladorEspectaculoPublishProxyid.obtenerAllDtEspectaculos(arg0_18idTemp);
+if(obtenerAllDtEspectaculos81mtemp == null){
+%>
+<%=obtenerAllDtEspectaculos81mtemp %>
+<%
+}else{
+        String tempreturnp82 = null;
+        if(obtenerAllDtEspectaculos81mtemp != null){
+        java.util.List listreturnp82= java.util.Arrays.asList(obtenerAllDtEspectaculos81mtemp);
+        tempreturnp82 = listreturnp82.toString();
+        }
+        %>
+        <%=tempreturnp82%>
+        <%
+}
+break;
+case 86:
+        gotMethod = true;
+        String arg0_19id=  request.getParameter("arg089");
+            java.lang.String arg0_19idTemp = null;
+        if(!arg0_19id.equals("")){
+         arg0_19idTemp  = arg0_19id;
+        }
+        publicadores.DtPaqueteEspectaculo[] obtenerEspectaculoPaquetes86mtemp = sampleControladorEspectaculoPublishProxyid.obtenerEspectaculoPaquetes(arg0_19idTemp);
+if(obtenerEspectaculoPaquetes86mtemp == null){
+%>
+<%=obtenerEspectaculoPaquetes86mtemp %>
+<%
+}else{
+        String tempreturnp87 = null;
+        if(obtenerEspectaculoPaquetes86mtemp != null){
+        java.util.List listreturnp87= java.util.Arrays.asList(obtenerEspectaculoPaquetes86mtemp);
+        tempreturnp87 = listreturnp87.toString();
+        }
+        %>
+        <%=tempreturnp87%>
         <%
 }
 break;

@@ -50,10 +50,10 @@ public class ControladorPaquetePublishProxy implements publicadores.ControladorP
     return controladorPaquetePublish.obtenerPaquetes();
   }
   
-  public void altaPaquete(publicadores.PaqueteEspectaculos arg0) throws java.rmi.RemoteException{
+  public void agregarEspectaculo(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException{
     if (controladorPaquetePublish == null)
       _initControladorPaquetePublishProxy();
-    controladorPaquetePublish.altaPaquete(arg0);
+    controladorPaquetePublish.agregarEspectaculo(arg0, arg1);
   }
   
   public boolean existePaquete(java.lang.String arg0) throws java.rmi.RemoteException{
@@ -62,10 +62,10 @@ public class ControladorPaquetePublishProxy implements publicadores.ControladorP
     return controladorPaquetePublish.existePaquete(arg0);
   }
   
-  public void agregarEspectaculo(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException{
+  public void altaPaquete(publicadores.PaqueteEspectaculos arg0) throws java.rmi.RemoteException{
     if (controladorPaquetePublish == null)
       _initControladorPaquetePublishProxy();
-    controladorPaquetePublish.agregarEspectaculo(arg0, arg1);
+    controladorPaquetePublish.altaPaquete(arg0);
   }
   
   

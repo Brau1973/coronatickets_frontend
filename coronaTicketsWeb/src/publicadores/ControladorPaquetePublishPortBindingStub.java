@@ -35,8 +35,10 @@ public class ControladorPaquetePublishPortBindingStub extends org.apache.axis.cl
         _operations[0] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("altaPaquete");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://publicadores/", "paqueteEspectaculos"), publicadores.PaqueteEspectaculos.class, false, false);
+        oper.setName("agregarEspectaculo");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg1"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -55,10 +57,8 @@ public class ControladorPaquetePublishPortBindingStub extends org.apache.axis.cl
         _operations[2] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("agregarEspectaculo");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg1"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.setName("altaPaquete");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://publicadores/", "paqueteEspectaculos"), publicadores.PaqueteEspectaculos.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
@@ -268,7 +268,7 @@ public class ControladorPaquetePublishPortBindingStub extends org.apache.axis.cl
 }
     }
 
-    public void altaPaquete(publicadores.PaqueteEspectaculos arg0) throws java.rmi.RemoteException {
+    public void agregarEspectaculo(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -280,11 +280,11 @@ public class ControladorPaquetePublishPortBindingStub extends org.apache.axis.cl
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://publicadores/", "altaPaquete"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://publicadores/", "agregarEspectaculo"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0, arg1});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
@@ -329,7 +329,7 @@ public class ControladorPaquetePublishPortBindingStub extends org.apache.axis.cl
 }
     }
 
-    public void agregarEspectaculo(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException {
+    public void altaPaquete(publicadores.PaqueteEspectaculos arg0) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -341,11 +341,11 @@ public class ControladorPaquetePublishPortBindingStub extends org.apache.axis.cl
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://publicadores/", "agregarEspectaculo"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://publicadores/", "altaPaquete"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0, arg1});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;

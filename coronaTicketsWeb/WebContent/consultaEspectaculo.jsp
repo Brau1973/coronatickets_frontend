@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="publicadores.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -77,10 +78,14 @@
 		</thead>
 		<tbody>
 		<%
+		String dia, mes, anio,diaF, mesF, anioF;
 		if(listEspectaculos != null){
 			int i = 1;
 			for (DtEspectaculo dte : listEspectaculos) {
 				if(espectaculoSelected != null && espectaculoSelected.equals(dte.getNombre())){
+					dia = Integer.toString(dte.getRegistro().get(Calendar.DATE));
+					mes = Integer.toString(dte.getRegistro().get(Calendar.MONTH)+1);
+					anio = Integer.toString(dte.getRegistro().get(Calendar.YEAR));
 			%>
 			<tr>
 				<td><%=dte.getDescripcion()%></td>
@@ -88,7 +93,7 @@
 				<td><%=dte.getCantMin()%></td>
 				<td><%=dte.getCantMax()%></td>
 				<td><%=dte.getCosto()%></td>
-				<td><%=dte.getRegistro()%></td>
+				<td><%=dia+"/"+mes+"/"+anio%></td>
 			</tr>
 			<%
 				} 
@@ -103,7 +108,6 @@
 			<span class="input-group-text" id="basic-addon3"> Funciones</span>
 				<%
 				   ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) s.getAttribute("funciones");
-				
 				%>
 		</div>
 		
@@ -123,13 +127,19 @@
 				int j = 1;
 				if(listFunciones != null){
 					for (DtFuncion dtf : listFunciones) {
+						dia = Integer.toString(dtf.getFecha().get(Calendar.DATE));
+						mes = Integer.toString(dtf.getFecha().get(Calendar.MONTH)+1);
+						anio = Integer.toString(dtf.getFecha().get(Calendar.YEAR));
+						diaF = Integer.toString(dtf.getRegistro().get(Calendar.DATE));
+						mesF = Integer.toString(dtf.getRegistro().get(Calendar.MONTH)+1);
+						anioF = Integer.toString(dtf.getRegistro().get(Calendar.YEAR));
 			%>
 			<tr>
 				<th scope="row"><%=j%></th>
 				<td><%=dtf.getNombre()%></td>
-				<td><%=dtf.getFecha()%></td>
-				<td><%=dtf.getHoraInicio()%></td>
-				<td><%=dtf.getRegistro()%></td>
+				<td><%=dia+"/"+mes+"/"+anio%></td>
+				<td><%=dtf.getFecha().get(Calendar.HOUR_OF_DAY) +":"+ dtf.getFecha().get(Calendar.MINUTE)+"hs"%></td>
+				<td><%=diaF+"/"+mesF+"/"+anioF%></td>
 				<td><%=dtf.getArtistas().toString().replace("[", "").replace("]", "")%></td>
 			</tr>
 			<%

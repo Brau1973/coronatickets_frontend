@@ -51,6 +51,7 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = "";
@@ -96,7 +97,18 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 				fechaN=func.getFecha();
 				//String a=formato.format(func.getFecha());
 				
-				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + func.getFecha().getTime()+ "<br/>Hora: " + func.getHoraInicio() + "<br/>Registro: " + func.getRegistro().getTime());
+				String dia, mes, anio;
+				dia = Integer.toString(func.getRegistro().get(Calendar.DATE));
+				mes = Integer.toString(func.getRegistro().get(Calendar.MONTH)+1);
+				anio = Integer.toString(func.getRegistro().get(Calendar.YEAR));
+
+				String diaF, mesF, anioF;
+				diaF = Integer.toString(func.getFecha().get(Calendar.DATE));
+				mesF = Integer.toString(func.getFecha().get(Calendar.MONTH)+1);
+				anioF = Integer.toString(func.getFecha().get(Calendar.YEAR));
+				
+				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + diaF + "/" + mesF +"/" + anioF
+				+ "<br/>Hora: " + func.getFecha().get(Calendar.HOUR_OF_DAY) +":"+ func.getFecha().get(Calendar.MINUTE)+"hs"+ "<br/>Registro: " + dia + "/" + mes +"/" + anio);
 				//func.getArtistas();
 				List<String> listArtistas = new ArrayList<String>();
 				for (Artista artistai : func.getArtistas()) {

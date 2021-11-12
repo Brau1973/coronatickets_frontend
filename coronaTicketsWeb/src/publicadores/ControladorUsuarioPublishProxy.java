@@ -44,12 +44,6 @@ public class ControladorUsuarioPublishProxy implements publicadores.ControladorU
     return controladorUsuarioPublish;
   }
   
-  public publicadores.Usuario obtenerUsuario(java.lang.String arg0) throws java.rmi.RemoteException{
-    if (controladorUsuarioPublish == null)
-      _initControladorUsuarioPublishProxy();
-    return controladorUsuarioPublish.obtenerUsuario(arg0);
-  }
-  
   public java.lang.String[] listarNicknameArtistas() throws java.rmi.RemoteException{
     if (controladorUsuarioPublish == null)
       _initControladorUsuarioPublishProxy();
@@ -68,10 +62,16 @@ public class ControladorUsuarioPublishProxy implements publicadores.ControladorU
     return controladorUsuarioPublish.listarNicknameUsuarios();
   }
   
-  public void altaDtEspectador(publicadores.DtEspectador arg0) throws java.rmi.RemoteException{
+  public void altaDtEspectador(publicadores.DtEspectador arg0) throws java.rmi.RemoteException, publicadores.UsuarioRepetidoExcepcion{
     if (controladorUsuarioPublish == null)
       _initControladorUsuarioPublishProxy();
     controladorUsuarioPublish.altaDtEspectador(arg0);
+  }
+  
+  public publicadores.Usuario obtenerUsuario(java.lang.String arg0) throws java.rmi.RemoteException{
+    if (controladorUsuarioPublish == null)
+      _initControladorUsuarioPublishProxy();
+    return controladorUsuarioPublish.obtenerUsuario(arg0);
   }
   
   public publicadores.DtUsuario getLoginUsuarioMail(java.lang.String arg0) throws java.rmi.RemoteException{
@@ -80,10 +80,10 @@ public class ControladorUsuarioPublishProxy implements publicadores.ControladorU
     return controladorUsuarioPublish.getLoginUsuarioMail(arg0);
   }
   
-  public void dejarDeSeguirUsuario(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException{
+  public java.lang.String[] listarNicknameUsuariosNoSeguidos(java.lang.String arg0) throws java.rmi.RemoteException{
     if (controladorUsuarioPublish == null)
       _initControladorUsuarioPublishProxy();
-    controladorUsuarioPublish.dejarDeSeguirUsuario(arg0, arg1);
+    return controladorUsuarioPublish.listarNicknameUsuariosNoSeguidos(arg0);
   }
   
   public java.lang.String[] listarNicknameUsuariosSeguidos(java.lang.String arg0) throws java.rmi.RemoteException{
@@ -92,22 +92,22 @@ public class ControladorUsuarioPublishProxy implements publicadores.ControladorU
     return controladorUsuarioPublish.listarNicknameUsuariosSeguidos(arg0);
   }
   
-  public java.lang.String[] listarNicknameUsuariosNoSeguidos(java.lang.String arg0) throws java.rmi.RemoteException{
+  public void dejarDeSeguirUsuario(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException{
     if (controladorUsuarioPublish == null)
       _initControladorUsuarioPublishProxy();
-    return controladorUsuarioPublish.listarNicknameUsuariosNoSeguidos(arg0);
+    controladorUsuarioPublish.dejarDeSeguirUsuario(arg0, arg1);
   }
   
-  public void altaDtArtista(publicadores.DtArtista arg0) throws java.rmi.RemoteException{
+  public void altaDtArtista(publicadores.DtArtista arg0) throws java.rmi.RemoteException, publicadores.UsuarioRepetidoExcepcion{
     if (controladorUsuarioPublish == null)
       _initControladorUsuarioPublishProxy();
     controladorUsuarioPublish.altaDtArtista(arg0);
   }
   
-  public publicadores.DtUsuario getLoginUsuario(java.lang.String arg0) throws java.rmi.RemoteException{
+  public void seguirUsuario(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException{
     if (controladorUsuarioPublish == null)
       _initControladorUsuarioPublishProxy();
-    return controladorUsuarioPublish.getLoginUsuario(arg0);
+    controladorUsuarioPublish.seguirUsuario(arg0, arg1);
   }
   
   public publicadores.DtArtista getLoginArtista(java.lang.String arg0) throws java.rmi.RemoteException{
@@ -122,16 +122,16 @@ public class ControladorUsuarioPublishProxy implements publicadores.ControladorU
     return controladorUsuarioPublish.emailRepetido(arg0);
   }
   
-  public void seguirUsuario(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException{
-    if (controladorUsuarioPublish == null)
-      _initControladorUsuarioPublishProxy();
-    controladorUsuarioPublish.seguirUsuario(arg0, arg1);
-  }
-  
   public publicadores.Artista obtenerArtista(java.lang.String arg0) throws java.rmi.RemoteException{
     if (controladorUsuarioPublish == null)
       _initControladorUsuarioPublishProxy();
     return controladorUsuarioPublish.obtenerArtista(arg0);
+  }
+  
+  public publicadores.DtUsuario getLoginUsuario(java.lang.String arg0) throws java.rmi.RemoteException{
+    if (controladorUsuarioPublish == null)
+      _initControladorUsuarioPublishProxy();
+    return controladorUsuarioPublish.getLoginUsuario(arg0);
   }
   
   

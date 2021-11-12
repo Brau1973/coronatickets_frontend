@@ -9,8 +9,8 @@ package publicadores;
 
 public interface ControladorPlataformaPublish extends java.rmi.Remote {
     public java.lang.String[] listarPlataformasStr() throws java.rmi.RemoteException;
-    public void altaPlataforma(publicadores.DtPlataforma arg0) throws java.rmi.RemoteException;
-    public publicadores.Plataforma buscarPlataforma(java.lang.String arg0) throws java.rmi.RemoteException;
     public publicadores.DtPlataforma[] listarPlataformas() throws java.rmi.RemoteException;
+    public void altaPlataforma(publicadores.DtPlataforma arg0) throws java.rmi.RemoteException, publicadores.PlataformaRepetidaExcepcion;
+    public publicadores.Plataforma buscarPlataforma(java.lang.String arg0) throws java.rmi.RemoteException;
     public publicadores.DtPlataforma mapEntityToDt(publicadores.Plataforma arg0) throws java.rmi.RemoteException;
 }
