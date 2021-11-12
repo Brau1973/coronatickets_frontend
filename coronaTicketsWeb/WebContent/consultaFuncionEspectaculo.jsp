@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="resources/index.css" rel="stylesheet"></link>
+<!-- <link href="resources/index.css" rel="stylesheet"></link> -->
 
 <title>Coronatickets</title>
 <%@include file="header.jsp"%>
