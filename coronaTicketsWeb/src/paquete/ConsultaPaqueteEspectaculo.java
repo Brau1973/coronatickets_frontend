@@ -19,7 +19,6 @@ import publicadores.DtPaqueteEspectaculo;
 //import interfaces.IControladorPaquete;
 import publicadores.Espectaculo;
 import publicadores.PaqueteEspectaculos;
-//import manejadores.ManejadorPaquete;
 
 @WebServlet("/ConsultaPaqueteEspectaculo")
 public class ConsultaPaqueteEspectaculo extends HttpServlet{
@@ -37,7 +36,7 @@ public class ConsultaPaqueteEspectaculo extends HttpServlet{
 	//	IControladorEspectaculo iconE = Fabrica.getInstancia().getIControladorEspectaculo();
 	//	IControladorPaquete iconPaq = Fabrica.getInstancia().getIControladorPaquete();
 		String strPaquete = request.getParameter("nomPaquete");
-		// String strEspectaculo = "";
+	 String strEspectaculo = "";
 		List<Espectaculo> listEspectaculos = new ArrayList<Espectaculo>();
 		List<DtEspectaculo> listDtEspectaculos = new ArrayList<DtEspectaculo>();
 
@@ -48,7 +47,7 @@ public class ConsultaPaqueteEspectaculo extends HttpServlet{
 		if(strPaquete != null){
 			if(request.getParameter("boton").equals("selPaquete")){
 
-				// strEspectaculo = request.getParameter("nomEsp");
+			strEspectaculo = request.getParameter("nomEsp");
 				// listFunciones = iconE.obtenerEspectaculo(strEspectaculo).getFuncionesDt();
 				// listDtEspectaculos = iconE.listarEspectaculos("Youtube");
 
@@ -60,7 +59,7 @@ public class ConsultaPaqueteEspectaculo extends HttpServlet{
 				// listEspectaculos = listPaquetes.getEspectaculos();
 				// listDtEspectaculos=listPaquetess.getEspectaculos();
 				// listDtEspectaculos=new DtEspectaculo(listEspectaculos.ge, plataforma, nombre, descripcion, duracion, cantMin, cantMax, url, costo, registro)
-				// session.setAttribute("paqueteSelected", strPaquete);
+				//session.setAttribute("paqueteSelected", strPaquete);
 			}
 		}
 		HttpSession session = request.getSession();

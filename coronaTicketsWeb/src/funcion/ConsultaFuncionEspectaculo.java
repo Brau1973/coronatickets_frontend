@@ -51,7 +51,6 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = "";
@@ -109,9 +108,9 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 				
 				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + diaF + "/" + mesF +"/" + anioF
 				+ "<br/>Hora: " + func.getFecha().get(Calendar.HOUR_OF_DAY) +":"+ func.getFecha().get(Calendar.MINUTE)+"hs"+ "<br/>Registro: " + dia + "/" + mes +"/" + anio);
-				//func.getArtistas();
+				Artista[] sd=func.getArtistas();
 				List<String> listArtistas = new ArrayList<String>();
-				for (Artista artistai : func.getArtistas()) {
+				for (Artista artistai : sd) {
 					listArtistas.add(artistai.getNombre());
 				}
 				request.setAttribute("mostrarArtistas", listArtistas);

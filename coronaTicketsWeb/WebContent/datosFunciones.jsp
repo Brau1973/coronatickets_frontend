@@ -1,12 +1,12 @@
 <%@page import="publicadores.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="resources/index.css" rel="stylesheet"></link>
-<title>Coronatickets</title>
+<title>Consulta Funcion - Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace container p-5 my-5 text-dark">

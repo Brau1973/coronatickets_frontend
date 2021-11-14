@@ -18,13 +18,13 @@
 
 <link href="https://fonts.googleapis.com/css?" />
 <link href="resources/index.css" rel="stylesheet"></link>
-<title>Consulta Espectaculo</title>
+<title>Coronatickets - Consulta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<h3>Consulta de Paquete de Espectaculos</h3>
-	<form action="ConsultaPaqueteEspectaculo" method="post"
+	<form class="container p-5 my-5 border" action="ConsultaPaqueteEspectaculo" method="post"
 		id="formConsultaPaqueteEspectaculo">
+	<h3>Consulta de Paquete de Espectaculos</h3>
 		<input type="hidden" name="boton" id="boton" value="">
 
 		<div class="input-group mb-3">
@@ -142,6 +142,6 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 		crossorigin="anonymous"></script>
-
+<%@include file="footer.jsp"%>
 </body>
 </html>

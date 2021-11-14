@@ -42,21 +42,22 @@ public class Login extends HttpServlet {
 		DtArtista dt = null;
 		if (userName.contains("@")) {
 			try {
-				System.out.println("Logueo con mail: " + userName);
+				//	System.out.println("Logueo con mail: " + userName);
 				dtu = getLoginUsuarioMail(userName);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				System.out.println("Logueo con nickname:" + userName);
-				dtu = getLoginUsuario(userName);
+				//System.out.println("Logueo con nickname:" + userName+"passwors"+userPass);	
+				dt=getLoginDtArtista(userName);
+				//dtu = getLoginUsuario(userName);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("DtUsuario Retornado: " + dtu.getContrasenia());
-		if ((dtu != null) && dtu.getContrasenia().equals(userPass)) {
+		//	System.out.println("DtUsuario Retornado: " + dtu.getContrasenia());
+		if (dtu != null) {// && dtu.getContrasenia()==(userPass)) {
 			System.out.println("Retorno usuario con nombre: " + dtu.getNombre() + " // Apellido: " + dtu.getApellido());
 			System.out.println("Retorno usuario con pass: " + dtu.getContrasenia());
 			HttpSession session = request.getSession();
@@ -91,11 +92,11 @@ public class Login extends HttpServlet {
 		return port.getLoginUsuario(userName);
 	}
 
-	//	public DtArtista getLoginDtArtista(String userName) throws Exception {
-	//		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
-	//		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
-	//		return port.getLoginArtista(userName);
-	//	}
+	public DtArtista getLoginDtArtista(String userName) throws Exception {
+		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
+		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
+		return port.getLoginArtista(userName);
+	}
 
 	public DtUsuario getLoginUsuarioMail(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
