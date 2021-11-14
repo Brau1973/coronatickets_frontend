@@ -50,8 +50,8 @@ public class Login extends HttpServlet {
 		} else {
 			try {
 				//System.out.println("Logueo con nickname:" + userName+"passwors"+userPass);	
-				dt=getLoginDtArtista(userName);
-				//dtu = getLoginUsuario(userName);
+				//dt=getLoginDtArtista(userName);
+				dtu = getLoginUsuario(userName);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -92,11 +92,11 @@ public class Login extends HttpServlet {
 		return port.getLoginUsuario(userName);
 	}
 
-	public DtArtista getLoginDtArtista(String userName) throws Exception {
-		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
-		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
-		return port.getLoginArtista(userName);
-	}
+//	public DtArtista getLoginDtArtista(String userName) throws Exception {
+//		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
+//		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
+//		return port.getLoginArtista(userName);
+//	}
 
 	public DtUsuario getLoginUsuarioMail(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
