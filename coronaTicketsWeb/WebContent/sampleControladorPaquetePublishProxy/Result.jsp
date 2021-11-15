@@ -63,35 +63,35 @@ if(getControladorPaquetePublish10mtemp == null){
 break;
 case 13:
         gotMethod = true;
-        publicadores.DtPaqueteEspectaculo[] obtenerPaquetes13mtemp = sampleControladorPaquetePublishProxyid.obtenerPaquetes();
-if(obtenerPaquetes13mtemp == null){
-%>
-<%=obtenerPaquetes13mtemp %>
-<%
-}else{
-        String tempreturnp14 = null;
-        if(obtenerPaquetes13mtemp != null){
-        java.util.List listreturnp14= java.util.Arrays.asList(obtenerPaquetes13mtemp);
-        tempreturnp14 = listreturnp14.toString();
-        }
-        %>
-        <%=tempreturnp14%>
-        <%
-}
-break;
-case 16:
-        gotMethod = true;
-        String arg0_1id=  request.getParameter("arg019");
+        String arg0_1id=  request.getParameter("arg016");
             java.lang.String arg0_1idTemp = null;
         if(!arg0_1id.equals("")){
          arg0_1idTemp  = arg0_1id;
         }
-        String arg1_2id=  request.getParameter("arg121");
+        String arg1_2id=  request.getParameter("arg118");
             java.lang.String arg1_2idTemp = null;
         if(!arg1_2id.equals("")){
          arg1_2idTemp  = arg1_2id;
         }
         sampleControladorPaquetePublishProxyid.agregarEspectaculo(arg0_1idTemp,arg1_2idTemp);
+break;
+case 20:
+        gotMethod = true;
+        publicadores.DtPaqueteEspectaculo[] obtenerPaquetes20mtemp = sampleControladorPaquetePublishProxyid.obtenerPaquetes();
+if(obtenerPaquetes20mtemp == null){
+%>
+<%=obtenerPaquetes20mtemp %>
+<%
+}else{
+        String tempreturnp21 = null;
+        if(obtenerPaquetes20mtemp != null){
+        java.util.List listreturnp21= java.util.Arrays.asList(obtenerPaquetes20mtemp);
+        tempreturnp21 = listreturnp21.toString();
+        }
+        %>
+        <%=tempreturnp21%>
+        <%
+}
 break;
 case 23:
         gotMethod = true;

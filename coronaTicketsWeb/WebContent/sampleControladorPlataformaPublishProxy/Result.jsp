@@ -63,15 +63,15 @@ if(getControladorPlataformaPublish10mtemp == null){
 break;
 case 13:
         gotMethod = true;
-        java.lang.String[] listarPlataformasStr13mtemp = sampleControladorPlataformaPublishProxyid.listarPlataformasStr();
-if(listarPlataformasStr13mtemp == null){
+        publicadores.DtPlataforma[] listarPlataformas13mtemp = sampleControladorPlataformaPublishProxyid.listarPlataformas();
+if(listarPlataformas13mtemp == null){
 %>
-<%=listarPlataformasStr13mtemp %>
+<%=listarPlataformas13mtemp %>
 <%
 }else{
         String tempreturnp14 = null;
-        if(listarPlataformasStr13mtemp != null){
-        java.util.List listreturnp14= java.util.Arrays.asList(listarPlataformasStr13mtemp);
+        if(listarPlataformas13mtemp != null){
+        java.util.List listreturnp14= java.util.Arrays.asList(listarPlataformas13mtemp);
         tempreturnp14 = listreturnp14.toString();
         }
         %>
@@ -81,26 +81,15 @@ if(listarPlataformasStr13mtemp == null){
 break;
 case 16:
         gotMethod = true;
-<<<<<<< HEAD
-        String arg0_1id=  request.getParameter("arg025");
-            java.lang.String arg0_1idTemp = null;
-        if(!arg0_1id.equals("")){
-         arg0_1idTemp  = arg0_1id;
-        }
-        publicadores.Plataforma buscarPlataforma16mtemp = sampleControladorPlataformaPublishProxyid.buscarPlataforma(arg0_1idTemp);
-if(buscarPlataforma16mtemp == null){
+        java.lang.String[] listarPlataformasStr16mtemp = sampleControladorPlataformaPublishProxyid.listarPlataformasStr();
+if(listarPlataformasStr16mtemp == null){
 %>
-<%=buscarPlataforma16mtemp %>
-=======
-        publicadores.DtPlataforma[] listarPlataformas16mtemp = sampleControladorPlataformaPublishProxyid.listarPlataformas();
-if(listarPlataformas16mtemp == null){
-%>
-<%=listarPlataformas16mtemp %>
+<%=listarPlataformasStr16mtemp %>
 <%
 }else{
         String tempreturnp17 = null;
-        if(listarPlataformas16mtemp != null){
-        java.util.List listreturnp17= java.util.Arrays.asList(listarPlataformas16mtemp);
+        if(listarPlataformasStr16mtemp != null){
+        java.util.List listreturnp17= java.util.Arrays.asList(listarPlataformasStr16mtemp);
         tempreturnp17 = listreturnp17.toString();
         }
         %>
@@ -110,41 +99,15 @@ if(listarPlataformas16mtemp == null){
 break;
 case 19:
         gotMethod = true;
-        String descripcion_2id=  request.getParameter("descripcion24");
-            java.lang.String descripcion_2idTemp = null;
-        if(!descripcion_2id.equals("")){
-         descripcion_2idTemp  = descripcion_2id;
+        String arg0_1id=  request.getParameter("arg028");
+            java.lang.String arg0_1idTemp = null;
+        if(!arg0_1id.equals("")){
+         arg0_1idTemp  = arg0_1id;
         }
-        String url_3id=  request.getParameter("url26");
-            java.lang.String url_3idTemp = null;
-        if(!url_3id.equals("")){
-         url_3idTemp  = url_3id;
-        }
-        String nombre_4id=  request.getParameter("nombre28");
-            java.lang.String nombre_4idTemp = null;
-        if(!nombre_4id.equals("")){
-         nombre_4idTemp  = nombre_4id;
-        }
-        %>
-        <jsp:useBean id="publicadores1DtPlataforma_1id" scope="session" class="publicadores.DtPlataforma" />
-        <%
-        publicadores1DtPlataforma_1id.setDescripcion(descripcion_2idTemp);
-        publicadores1DtPlataforma_1id.setUrl(url_3idTemp);
-        publicadores1DtPlataforma_1id.setNombre(nombre_4idTemp);
-        sampleControladorPlataformaPublishProxyid.altaPlataforma(publicadores1DtPlataforma_1id);
-break;
-case 30:
-        gotMethod = true;
-        String arg0_5id=  request.getParameter("arg039");
-            java.lang.String arg0_5idTemp = null;
-        if(!arg0_5id.equals("")){
-         arg0_5idTemp  = arg0_5id;
-        }
-        publicadores.Plataforma buscarPlataforma30mtemp = sampleControladorPlataformaPublishProxyid.buscarPlataforma(arg0_5idTemp);
-if(buscarPlataforma30mtemp == null){
+        publicadores.Plataforma buscarPlataforma19mtemp = sampleControladorPlataformaPublishProxyid.buscarPlataforma(arg0_1idTemp);
+if(buscarPlataforma19mtemp == null){
 %>
-<%=buscarPlataforma30mtemp %>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
+<%=buscarPlataforma19mtemp %>
 <%
 }else{
 %>
@@ -156,19 +119,11 @@ if(buscarPlataforma30mtemp == null){
 <TD COLSPAN="2" ALIGN="LEFT">descripcion:</TD>
 <TD>
 <%
-<<<<<<< HEAD
-if(buscarPlataforma16mtemp != null){
-java.lang.String typedescripcion19 = buscarPlataforma16mtemp.getDescripcion();
-        String tempResultdescripcion19 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typedescripcion19));
+if(buscarPlataforma19mtemp != null){
+java.lang.String typedescripcion22 = buscarPlataforma19mtemp.getDescripcion();
+        String tempResultdescripcion22 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typedescripcion22));
         %>
-        <%= tempResultdescripcion19 %>
-=======
-if(buscarPlataforma30mtemp != null){
-java.lang.String typedescripcion33 = buscarPlataforma30mtemp.getDescripcion();
-        String tempResultdescripcion33 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typedescripcion33));
-        %>
-        <%= tempResultdescripcion33 %>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
+        <%= tempResultdescripcion22 %>
         <%
 }%>
 </TD>
@@ -177,19 +132,11 @@ java.lang.String typedescripcion33 = buscarPlataforma30mtemp.getDescripcion();
 <TD COLSPAN="2" ALIGN="LEFT">url:</TD>
 <TD>
 <%
-<<<<<<< HEAD
-if(buscarPlataforma16mtemp != null){
-java.lang.String typeurl21 = buscarPlataforma16mtemp.getUrl();
-        String tempResulturl21 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typeurl21));
+if(buscarPlataforma19mtemp != null){
+java.lang.String typeurl24 = buscarPlataforma19mtemp.getUrl();
+        String tempResulturl24 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typeurl24));
         %>
-        <%= tempResulturl21 %>
-=======
-if(buscarPlataforma30mtemp != null){
-java.lang.String typeurl35 = buscarPlataforma30mtemp.getUrl();
-        String tempResulturl35 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typeurl35));
-        %>
-        <%= tempResulturl35 %>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
+        <%= tempResulturl24 %>
         <%
 }%>
 </TD>
@@ -198,43 +145,16 @@ java.lang.String typeurl35 = buscarPlataforma30mtemp.getUrl();
 <TD COLSPAN="2" ALIGN="LEFT">nombre:</TD>
 <TD>
 <%
-<<<<<<< HEAD
-if(buscarPlataforma16mtemp != null){
-java.lang.String typenombre23 = buscarPlataforma16mtemp.getNombre();
-        String tempResultnombre23 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typenombre23));
+if(buscarPlataforma19mtemp != null){
+java.lang.String typenombre26 = buscarPlataforma19mtemp.getNombre();
+        String tempResultnombre26 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typenombre26));
         %>
-        <%= tempResultnombre23 %>
-=======
-if(buscarPlataforma30mtemp != null){
-java.lang.String typenombre37 = buscarPlataforma30mtemp.getNombre();
-        String tempResultnombre37 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(typenombre37));
-        %>
-        <%= tempResultnombre37 %>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
+        <%= tempResultnombre26 %>
         <%
 }%>
 </TD>
 </TABLE>
 <%
-}
-break;
-<<<<<<< HEAD
-case 27:
-        gotMethod = true;
-        publicadores.DtPlataforma[] listarPlataformas27mtemp = sampleControladorPlataformaPublishProxyid.listarPlataformas();
-if(listarPlataformas27mtemp == null){
-%>
-<%=listarPlataformas27mtemp %>
-<%
-}else{
-        String tempreturnp28 = null;
-        if(listarPlataformas27mtemp != null){
-        java.util.List listreturnp28= java.util.Arrays.asList(listarPlataformas27mtemp);
-        tempreturnp28 = listreturnp28.toString();
-        }
-        %>
-        <%=tempreturnp28%>
-        <%
 }
 break;
 case 30:
@@ -262,8 +182,6 @@ case 30:
         publicadores1DtPlataforma_2id.setNombre(nombre_5idTemp);
         sampleControladorPlataformaPublishProxyid.altaPlataforma(publicadores1DtPlataforma_2id);
 break;
-=======
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 case 41:
         gotMethod = true;
         String descripcion_7id=  request.getParameter("descripcion52");

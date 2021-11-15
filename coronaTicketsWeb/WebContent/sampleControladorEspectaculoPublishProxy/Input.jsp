@@ -62,7 +62,7 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg032" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg016" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>
@@ -71,11 +71,7 @@ valid = false;
 </FORM>
 <%
 break;
-<<<<<<< HEAD
-case 34:
-=======
 case 18:
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -86,122 +82,69 @@ valid = false;
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">url:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="url39" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="url23" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">cantMin:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="cantMin41" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="cantMin25" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">costo:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="costo43" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="costo27" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">descripcion:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="descripcion45" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="descripcion29" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">registro:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="registro47" SIZE=20></TD>
-<%
-java.text.DateFormat dateFormatregistro47 = java.text.DateFormat.getDateInstance();
-java.util.GregorianCalendar gcExampregistro47  = new java.util.GregorianCalendar();
-java.util.Date dateregistro47 = gcExampregistro47.getTime();
-String tempResultregistro47 = dateFormatregistro47.format(dateregistro47);
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="registro31" SIZE=20></TD>
 <%
 java.text.DateFormat dateFormatregistro31 = java.text.DateFormat.getDateInstance();
 java.util.GregorianCalendar gcExampregistro31  = new java.util.GregorianCalendar();
 java.util.Date dateregistro31 = gcExampregistro31.getTime();
 String tempResultregistro31 = dateFormatregistro31.format(dateregistro31);
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 %>
 <TD ALIGN="left">
 </TR>
 <TR>
 <TD> </TD>
-<<<<<<< HEAD
-<TD ALIGN="left"> eg. <%= tempResultregistro47 %> </TD>
-=======
 <TD ALIGN="left"> eg. <%= tempResultregistro31 %> </TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">cantMax:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="cantMax49" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="cantMax33" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">artista:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="artista51" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="artista35" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">plataforma:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="plataforma53" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="plataforma37" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">duracion:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="duracion55" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="duracion39" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 <TR>
 <TD WIDTH="5%"></TD>
 <TD COLSPAN="2" ALIGN="LEFT">nombre:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="nombre57" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="nombre41" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg1:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg159" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg143" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 </TABLE>
 <BR>
@@ -210,11 +153,7 @@ String tempResultregistro31 = dateFormatregistro31.format(dateregistro31);
 </FORM>
 <%
 break;
-<<<<<<< HEAD
-case 61:
-=======
 case 45:
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -222,11 +161,7 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<<<<<<< HEAD
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg064" SIZE=20></TD>
-=======
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg048" SIZE=20></TD>
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 </TABLE>
 <BR>
@@ -235,11 +170,7 @@ valid = false;
 </FORM>
 <%
 break;
-<<<<<<< HEAD
-case 66:
-=======
 case 50:
->>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
