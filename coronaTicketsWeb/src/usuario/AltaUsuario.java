@@ -58,6 +58,8 @@ public class AltaUsuario extends HttpServlet {
 		HttpSession sesion = request.getSession();
 
 		Part imagenFuncion = request.getPart("imagen");
+		System.out.println("imagenFuncion:"+imagenFuncion);
+		//imagenFuncion;
 		int sizeimg = (int) imagenFuncion.getSize();
 		byte[] foto = null;
 		foto = new byte[sizeimg];
