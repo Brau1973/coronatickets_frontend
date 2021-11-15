@@ -72,6 +72,11 @@
 					<%
 					} else {
 					%>
+					<form action="ModificarUsuario" method="post">
+						<button class="dropdown-item" type="submit">Modificar
+							Datos de Usuario</button>
+					</form>
+					<div class="dropdown-divider"></div>
 					<form action="GetUsuariosNoSeguidos" method="post">
 						<button class="dropdown-item" type="submit">Seguir
 							Usuario</button>

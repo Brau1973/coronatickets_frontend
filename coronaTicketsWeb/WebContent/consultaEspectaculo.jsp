@@ -19,7 +19,7 @@
 
 <link href="https://fonts.googleapis.com/css?" />
 <link href="resources/index.css" rel="stylesheet"></link>
-<title>Coronatickets - Consulta Espectaculo</title>
+<title>Consulta Espectaculo | Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">

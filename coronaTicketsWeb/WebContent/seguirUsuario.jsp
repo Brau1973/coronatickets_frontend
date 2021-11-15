@@ -21,12 +21,12 @@
 		crossorigin="anonymous"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<title>Seguir Usuarios - Coronatickets</title>
+<title>Seguir Usuarios | Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
+	<form class="container p-5 my-5" action="SeguirUsuario" method="post">
 	<h3>Seguir Usuario</h3>
-	<form action="SeguirUsuario" method="post">
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Usuarios</span>
