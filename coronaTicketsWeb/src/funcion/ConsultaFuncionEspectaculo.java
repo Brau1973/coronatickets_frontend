@@ -56,7 +56,7 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 		String strEspectaculo = "";
 		Funcion func = null;
 		ArrayList<DtEspectaculo> listEspectaculosDt = null;
-		ArrayList<DtFuncion> listFunciones = null;
+		List<DtFuncion> listFunciones = null;
 		ArrayList<Artista> dtArt = null;
 
 		RequestDispatcher rd;
@@ -108,10 +108,10 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 				
 				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + diaF + "/" + mesF +"/" + anioF
 				+ "<br/>Hora: " + func.getFecha().get(Calendar.HOUR_OF_DAY) +":"+ func.getFecha().get(Calendar.MINUTE)+"hs"+ "<br/>Registro: " + dia + "/" + mes +"/" + anio);
-				Artista[] sd=func.getArtistas();
+				//Artista[] sd=func.getArtistas();
 				List<String> listArtistas = new ArrayList<String>();
-				for (Artista artistai : sd) {
-					listArtistas.add(artistai.getNombre());
+				for (Artista a : func.getArtistas()) {
+					listArtistas.add(a.getNombre());
 				}
 				request.setAttribute("mostrarArtistas", listArtistas);
 				if (func.getImagen() != null) {

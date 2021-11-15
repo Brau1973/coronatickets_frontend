@@ -13,7 +13,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="resources/index.css" rel="stylesheet"></link>
 
-<title>Coronatickets - Alta Funcion</title>
+<title>Alta Funcion | Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
@@ -85,7 +85,6 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text">Artistas invitados</span> <select
 				multiple="multiple" name="selArtista" class="form-control">
-		
 				<%
 				ArrayList<String> listArtistas = (ArrayList<String>) session.getAttribute("usuario");
 				if (listArtistas != null) {
@@ -102,6 +101,7 @@
 		<div class="input-group mb-3">
 			<input type="file" name="imagen" id="imagen" class="form-control">
 		</div>
+		
 		<button class="btn btn-primary" type="submit">Agregar Funcion</button>
 		<button class="btn btn-dark" type="reset">Cancelar</button>
 	</form>

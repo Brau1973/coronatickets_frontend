@@ -34,7 +34,7 @@
 <!-- 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" -->
 <!-- 	crossorigin="anonymous"></script> -->
 
-<title>Coronatickets - Iniciar Sesion</title>
+<title>Login | Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">

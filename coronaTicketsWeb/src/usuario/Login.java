@@ -37,9 +37,9 @@ public class Login extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 		String userName = request.getParameter("user_name");
 		String userPass = request.getParameter("user_pass");
-		System.out.println("Login servlet");
+	//	System.out.println("Login servlet");
 		DtUsuario dtu = null;
-		DtArtista dt = null;
+	//	DtArtista dtu = null;
 		if (userName.contains("@")) {
 			try {
 				//	System.out.println("Logueo con mail: " + userName);
@@ -50,20 +50,23 @@ public class Login extends HttpServlet {
 		} else {
 			try {
 				//System.out.println("Logueo con nickname:" + userName+"passwors"+userPass);	
-				//dt=getLoginDtArtista(userName);
+				//dtu=getLoginDtArtista(userName);
+				
 				dtu = getLoginUsuario(userName);
+				System.out.println("SEBA DtArtista LoginJAVA -> nickename="+dtu.getNickname()+" contraseña=" + dtu.getContrasenia()+" nom=" + dtu.getNombre());
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		//	System.out.println("DtUsuario Retornado: " + dtu.getContrasenia());
 		if (dtu != null) {// && dtu.getContrasenia()==(userPass)) {
-			System.out.println("Retorno usuario con nombre: " + dtu.getNombre() + " // Apellido: " + dtu.getApellido());
-			System.out.println("Retorno usuario con pass: " + dtu.getContrasenia());
+			//System.out.println("Retorno usuario con nombre: " + dtu.getNombre() + " // Apellido: " + dtu.getApellido());
+			//System.out.println("Retorno usuario con pass: " + dtu.getContrasenia());
 			HttpSession session = request.getSession();
 			session.setAttribute("user", dtu);
 			session.setAttribute("loged", true);
-			if (dtu.getImagen() != null) {
+	if (dtu.getImagen() != null) {
 				System.out.println("IF IMAGEN: ");
 				byte[] foto = dtu.getImagen();
 				BufferedImage image = null;
@@ -81,9 +84,10 @@ public class Login extends HttpServlet {
 			}
 			rd = request.getRequestDispatcher("/index.jsp");
 		} else {
-			request.setAttribute("message", "No existe el usuario y contraseña.");
+	 request.setAttribute("message", "No existe el usuario y contraseña.");
 		}
 		rd.forward(request, response);
+		
 	}
 
 	public DtUsuario getLoginUsuario(String userName) throws Exception {
@@ -92,11 +96,11 @@ public class Login extends HttpServlet {
 		return port.getLoginUsuario(userName);
 	}
 
-//	public DtArtista getLoginDtArtista(String userName) throws Exception {
-//		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
-//		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
-//		return port.getLoginArtista(userName);
-//	}
+	public DtArtista getLoginDtArtista(String userName) throws Exception {
+		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
+		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
+		return port.getLoginArtista(userName);
+	}
 
 	public DtUsuario getLoginUsuarioMail(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();

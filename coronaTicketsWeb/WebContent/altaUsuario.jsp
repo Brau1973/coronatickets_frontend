@@ -50,7 +50,7 @@
 
 
 <link href="resources/index.css" rel="stylesheet"></link>
-<title>Coronatickets - Alta Usuario</title>
+<title>Alta Usuario | Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
