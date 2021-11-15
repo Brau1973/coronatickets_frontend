@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
@@ -23,12 +23,12 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 		crossorigin="anonymous"></script>
-<title>Coronatickets</title>
+<title>Dejar de Seguir | Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<h1>Dejar de Seguir Usuario</h1>
 	<form action="DejarDeSeguirUsuario" method="post">
+	<h3>Dejar de Seguir Usuario</h3>
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Usuarios</span>
@@ -43,9 +43,9 @@
 				%>
 			</select>
 		</div>
-		<button type="reset" class="btn btn-primary">Cancelar</button>
+		<button type="reset" class="btn btn-dark">Cancelar</button>
 		<button type="submit" class="btn btn-primary">Confirmar</button>
 	</form>
-
+ <%@include file="footer.jsp"%>
 </body>
 </html>

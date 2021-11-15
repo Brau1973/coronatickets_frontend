@@ -1,13 +1,13 @@
 /* Margen superior lo que ocupa el header */
-.headerSpace{
-
-	padding-top: 60px;
-	margin-bottom: 100px;
-	margin-right: 400px;
-	margin-left: 400px;
+.headerSpace {
+	position: relative;
+	margin-top: 110px;
+	margin-bottom: 0px;
+	margin-right: 10px;
+	margin-left: 10px;
 }
 
-.posicionToast{
+.posicionToast {
 	position: absolute;
 	display: block;
 	bottom: 20px;

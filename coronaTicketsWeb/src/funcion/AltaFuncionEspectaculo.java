@@ -58,20 +58,23 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+		fechaInicio.setHours(hs);
+		fechaInicio.setMinutes(min);
+		fechaInicio.setSeconds(0);
 		Calendar fechaN = Calendar.getInstance();
 		fechaN.setTime(fechaInicio);
 
-		String[] listArtistas = null;
+		//String[] listArtistas = null;
 		String[] artistasInvitados = request.getParameterValues("selArtista");
 
-		if (artistasInvitados != null) {
+	//	if (artistasInvitados != null) {
 			//	for (String artista : artistasInvitados) {
 			//		listArtistas.add(artista);
 			//	}
 			//	for (int i = 0; i < artistasInvitados.length; ++i) {
 			//		listArtistas[i].add(artistasInvitados[i]);
 			//	}
-		}
+	//	}
 
 		Part imagenFuncion = request.getPart("imagen");
 		int sizeimg = (int) imagenFuncion.getSize();

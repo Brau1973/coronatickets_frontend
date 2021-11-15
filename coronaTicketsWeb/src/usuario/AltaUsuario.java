@@ -38,7 +38,7 @@ public class AltaUsuario extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//	response.getWriter().append("Served at: ").append(request.getContextPath());
+			response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,7 +49,7 @@ public class AltaUsuario extends HttpServlet {
 		String contrasenia2 = request.getParameter("pass2Usuario");
 		String correo = request.getParameter("emailUsuario");
 		String fechaNac = request.getParameter("fechaUsuario");
-		String imagen = request.getParameter("imagenUsuario");
+		String imagen = request.getParameter("imagenUsuario");  //??
 		String descripcion = request.getParameter("descUsuario");
 		String biografia = request.getParameter("bioUsuario");
 		String url = request.getParameter("linkUsuario");

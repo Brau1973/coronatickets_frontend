@@ -25,6 +25,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="resources/index.css"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Coronatickets</title>
 </head>
 <body>
@@ -186,9 +189,12 @@
 		<%
 		if (dtU == null) {
 		%>
-		<form class="form-inline" action="login.jsp">
-			<button class="btn btn-success" type="submit">Login</button>
-		</form>
+
+
+		<!-- 	 <a href="login.jsp" class="form-inline w3-bar-item w3-button w3-padding-large bg-dark"><i class="fa fa-user w3-margin-right w3-padding-left-large"></i>Login</a>
+				<form class="form-inline" action="login.jsp"></form>	<button class="btn btn-success" type="submit">Login</button>-->
+		<a href="login.jsp" class="w3-bar-item w3-button w3-red w3-right"><i
+			class="fa fa-user"></i></a>
 		<%
 		}
 		%>
@@ -223,8 +229,6 @@
 		}
 	</script>
 	<%
-
-
 	}
 	%>
 

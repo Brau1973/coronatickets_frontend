@@ -9,8 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -24,14 +23,15 @@
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	crossorigin="anonymous"></script>
 
-<title>Alta Espectaculo</title>
 <link href="resources/index.css" rel="stylesheet"></link>
+<title>Coronatickets - Alta Espectaculo</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<h1>Alta Espectaculo</h1>
-	<form action="AltaEspectaculo" method="post" id="formAltaEspectaculo">
+		<form class="container p-5 my-5 border"
+		action="AltaEspectaculo" method="post" id="formAltaEspectaculo">
 		<input type="hidden" name="boton" id="boton" value="">
+		<h3>Alta Espectaculo</h3>
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma">
@@ -49,12 +49,16 @@
 				%>
 			</select>
 		</div>
-		<div class="form-group">
-			<label for="nombreEspectaculo">Nombre</label> <input type="text"
-				name="nomEspectaculo" class="form-control" id="nombreEspectaculo"
-				value="${nombreEspectaculo}"
-				placeholder="Ingrese un nombre para el espectaculo" required>
-		</div>
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">Nombre</span> <input type="text"
+					value="${nombreEspectaculo}" class="form-control" name="nomEspectaculo"
+					placeholder="Ingrese un nombre para el espectaculo" required>
+				<div class="valid-feedback"></div>
+				<div class="invalid-feedback">Ingrese el nombre</div>
+			</div>
+
+			
 		<div class="form-group">
 			<label for="descripcionEspectaculo">Descripcion</label> <input
 				value="${descripcionEspectaculo}" type="text" name="descEspectaculo"
@@ -93,17 +97,17 @@
 				class="form-control" id="exampleInputPassword1"
 				placeholder="Ingrese el costo del espectaculo" required>
 		</div>
-		<div>
-			<label class="form-group" for="customFile">Seleccionar imagen</label>
-			<input type="file" style="width: 317px" id="fileInput" />
+
+		<div class="input-group mb-3">
+			<input type="file" name="imagen" id="imagen" class="form-control">
 		</div>
 		<!-- fecha de alta -->
 		<!-- se da de alta el espectaculo en la fecha actual-->
 		<!-- fecha de alta -->
 		<button type="submit" class="btn btn-primary">Confirmar</button>
-		<button type="reset" class="btn btn-primary">Cancelar</button>
+		<button type="reset" class="btn btn-dark">Cancelar</button>
 	</form>
 
-
+	<%@include file="footer.jsp"%>
 </body>
 </html>

@@ -28,12 +28,12 @@ public class DatosConsultaPaquete extends HttpServlet{
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	//	IControladorPaquete iconPaq = Fabrica.getInstancia().getIControladorPaquete();
-	//	List<DtPaqueteEspectaculo> listPaquetes = new ArrayList<DtPaqueteEspectaculo>();
+		List<DtPaqueteEspectaculo> listPaquetes = new ArrayList<DtPaqueteEspectaculo>();
 		RequestDispatcher rd;
 
 	//	listPaquetes = iconPaq.obtenerPaquetes();
 		HttpSession s = request.getSession();
-	//	s.setAttribute("allPaquetes", listPaquetes);
+		s.setAttribute("allPaquetes", listPaquetes);
 		String page = (String) request.getParameter("pageNavega");
 		switch(page){
 		case "MenuConsultaPaqEspectaculo":

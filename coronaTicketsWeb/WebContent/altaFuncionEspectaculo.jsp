@@ -5,7 +5,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="UTF-8">
@@ -13,19 +13,19 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="resources/index.css" rel="stylesheet"></link>
 
-<title>Coronatickets</title>
+<title>Alta Funcion | Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<form class="container p-5 my-5 bg-light text-dark"
-		action="AltaFuncionEspectaculo" method="post"
-		enctype="multipart/form-data">
+	<form class="container p-5 my-5 border" action="AltaFuncionEspectaculo"
+		method="post" enctype="multipart/form-data">
 		<h3>Alta Funcion de Espectaculo</h3>
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="basic-addon3"> Seleccionar
-				Espectaculo</span> <select class="form-control" name="nomEspectaculo">
+			<span class="input-group-text" id="basic-addon3"> Espectaculo</span>
+			<select class="form-control" name="nomEspectaculo">
+	
 				<%
-					//cargo variables del formulario
+				//cargo variables del formulario
 				String nomFuncion = (String) request.getAttribute("nomFuncion");
 				String fechaFuncion = (String) request.getAttribute("fechaFuncion");
 				String horaFuncion = (String) request.getAttribute("horaFuncion");
@@ -38,7 +38,7 @@
 				<%-- 				<option <% if(nombreEspectaculoSelected != null && nombreEspectaculoSelected.equals(nomEspectador)){%>selected="selected"<%} %>><%=nomEspectador.getNombre()%></option> --%>
 				<option><%=nomEspectador.getNombre()%></option>
 				<%
-					}
+				}
 				}
 				%>
 			</select>
@@ -86,22 +86,22 @@
 			<span class="input-group-text">Artistas invitados</span> <select
 				multiple="multiple" name="selArtista" class="form-control">
 				<%
-					ArrayList<String> listArtistas = (ArrayList<String>) session.getAttribute("usuario");
+				ArrayList<String> listArtistas = (ArrayList<String>) session.getAttribute("usuario");
 				if (listArtistas != null) {
 					for (String nickArtista : listArtistas) {
 				%>
 				<option><%=nickArtista%></option>
 				<%
-					}
+				}
 				}
 				%>
 			</select>
 		</div>
 
 		<div class="input-group mb-3">
-			<span class="input-group-text">Imagen</span> <input type="file"
-				name="imagen" id="imagen" class="form-control">
+			<input type="file" name="imagen" id="imagen" class="form-control">
 		</div>
+		
 		<button class="btn btn-primary" type="submit">Agregar Funcion</button>
 		<button class="btn btn-dark" type="reset">Cancelar</button>
 	</form>
@@ -112,5 +112,6 @@
 	    })
 	})
     </script>
+	<%@include file="footer.jsp"%>
 </body>
 </html>

@@ -80,7 +80,11 @@ valid = false;
 </FORM>
 <%
 break;
+<<<<<<< HEAD
 case 21:
+=======
+case 19:
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -97,22 +101,43 @@ valid = false;
 </FORM>
 <%
 break;
+<<<<<<< HEAD
 case 40:
+=======
+case 22:
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
 <INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+</TABLE>
 <BR>
 <INPUT TYPE="SUBMIT" VALUE="Invoke">
 <INPUT TYPE="RESET" VALUE="Clear">
 </FORM>
 <%
 break;
+<<<<<<< HEAD
 case 43:
+=======
+case 27:
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
 <INPUT TYPE="HIDDEN" NAME="method" VALUE="<%=org.eclipse.jst.ws.util.JspUtils.markup(method)%>">
+<<<<<<< HEAD
+=======
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg044" SIZE=20></TD>
+</TR>
+</TABLE>
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 <BR>
 <INPUT TYPE="SUBMIT" VALUE="Invoke">
 <INPUT TYPE="RESET" VALUE="Clear">
@@ -147,19 +172,26 @@ valid = false;
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg054" SIZE=20></TD>
 </TR>
 </TABLE>
+<<<<<<< HEAD
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg1:</TD>
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg156" SIZE=20></TD>
 </TR>
 </TABLE>
+=======
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 <BR>
 <INPUT TYPE="SUBMIT" VALUE="Invoke">
 <INPUT TYPE="RESET" VALUE="Clear">
 </FORM>
 <%
 break;
+<<<<<<< HEAD
 case 58:
+=======
+case 70:
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -167,7 +199,11 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<<<<<<< HEAD
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg061" SIZE=20></TD>
+=======
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg073" SIZE=20></TD>
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 </TABLE>
 <BR>
@@ -176,7 +212,11 @@ valid = false;
 </FORM>
 <%
 break;
+<<<<<<< HEAD
 case 63:
+=======
+case 75:
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -184,7 +224,13 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
-<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg080" SIZE=20></TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg078" SIZE=20></TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg1:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg180" SIZE=20></TD>
 </TR>
 </TABLE>
 <BR>
@@ -218,7 +264,17 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<<<<<<< HEAD
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0104" SIZE=20></TD>
+=======
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg096" SIZE=20></TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD COLSPAN="1" ALIGN="LEFT">arg1:</TD>
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg198" SIZE=20></TD>
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 </TABLE>
 <BR>
@@ -227,7 +283,11 @@ valid = false;
 </FORM>
 <%
 break;
+<<<<<<< HEAD
 case 106:
+=======
+case 100:
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -236,12 +296,15 @@ valid = false;
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0109" SIZE=20></TD>
+<<<<<<< HEAD
 </TR>
 </TABLE>
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg1:</TD>
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg1111" SIZE=20></TD>
+=======
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 </TABLE>
 <BR>
@@ -250,7 +313,11 @@ valid = false;
 </FORM>
 <%
 break;
+<<<<<<< HEAD
 case 113:
+=======
+case 111:
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -258,7 +325,11 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<<<<<<< HEAD
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0122" SIZE=20></TD>
+=======
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0114" SIZE=20></TD>
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 </TABLE>
 <BR>
@@ -267,7 +338,11 @@ valid = false;
 </FORM>
 <%
 break;
+<<<<<<< HEAD
 case 124:
+=======
+case 116:
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">
@@ -275,7 +350,11 @@ valid = false;
 <TABLE>
 <TR>
 <TD COLSPAN="1" ALIGN="LEFT">arg0:</TD>
+<<<<<<< HEAD
 <TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0133" SIZE=20></TD>
+=======
+<TD ALIGN="left"><INPUT TYPE="TEXT" NAME="arg0125" SIZE=20></TD>
+>>>>>>> 716f435eb1391fa1df2e2fa7e1a4beeb52e897f8
 </TR>
 </TABLE>
 <BR>
@@ -284,7 +363,7 @@ valid = false;
 </FORM>
 <%
 break;
-case 135:
+case 127:
 valid = false;
 %>
 <FORM METHOD="POST" ACTION="Result.jsp" TARGET="result">

@@ -49,13 +49,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-<title>Alta Usuario</title>
 <link href="resources/index.css" rel="stylesheet"></link>
+<title>Alta Usuario | Coronatickets</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<h1>Alta Usuario</h1>
-	<form action="AltaUsuario" method="post" enctype="multipart/form-data">
+	<form class="container p-5 my-5 border" action="AltaUsuario"
+		method="post" enctype="multipart/form-data">
+		<h3>Alta Usuario</h3>
 		<input type="hidden" name="boton" id="boton" value="">
 		<div class="input-group mb-3">
 			<%
@@ -72,7 +73,7 @@
 			// 			String biografia = (String)sesion.getAttribute("biografia");
 			// 			String url = (String)sesion.getAttribute("url");
 			%>
-			<div class="input-group-prepend">
+			<div class="input-group mb-3">
 				<label class="input-group-text" for="tipoUsuario">Tipo de
 					Usuario</label>
 			</div>
@@ -156,6 +157,8 @@
 
 		<button class="btn btn-primary" type="submit" id="guardo">Agregar
 			Usuario</button>
-		<button class="btn btn-primary" type="reset" id="cancelo">Cancelar</button>
+		<button class="btn btn-dark" type="reset" id="cancelo">Cancelar</button>
+	</form>
+	<%@include file="footer.jsp"%>
 </body>
 </html>
