@@ -34,6 +34,7 @@ public class AltaPlataforma extends HttpServlet {
 		DtPlataforma dtp = new DtPlataforma(nombre, desc, url, null);
 		try {
 			agregarPlataforma(dtp);
+			System.out.println("try");
 			request.setAttribute("mensaje", "Se ha ingresado correctamente la Plataforma al sistema.");
 			RequestDispatcher rd;
 			rd = request.getRequestDispatcher("/notificacion.jsp");

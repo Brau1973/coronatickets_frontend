@@ -41,7 +41,6 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 		HttpSession session = request.getSession();
 		String nombre = request.getParameter("nomFuncion");
 		String espectaculo = request.getParameter("nomEspectaculo");
-
 		String hora = request.getParameter("horaFuncion");
 		String[] parts = hora.split(":", 2);
 		String part1 = parts[0];
