@@ -1,6 +1,6 @@
 # coronatickets_frontend
 
-## Descripcion General del Proyecto entero
+## Descripcion General del Proyecto entero (coronatickets_backend - coronatickets_frontend)
 Este proyecto tiene como objetivo el desarrollo de un sistema de espectaculos.
 Se tienen varias plataformas que ofrecen distintos espectaculos, funciones de los mismos y espectadores como tambien artistas con distintos roles dentro del sistema.
 
