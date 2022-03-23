@@ -1,11 +1,12 @@
-# grupo3_2021
-
 # coronatickets_frontend
+
+## Descripcion General del Proyecto entero
 Este proyecto tiene como objetivo el desarrollo de un sistema de espectaculos.
 Se tienen varias plataformas que ofrecen distintos espectaculos, funciones de los mismos y espectadores como tambien artistas con distintos roles dentro del sistema.
 
 Se cuenta con Base de datos PostgreSQL, entity manager (hibernate), MVC, POO, Maven, una interfaz win desarrollada con swing con el objetivo de ser usada por un rol administrativo del sistema, interfaz web, entre otros...
 
+## Repositorio en particular
 **En este repositorio en particular** se tiene el frontend del proyecto, donde se ofrece una interfaz web con login para espectadores y artistas pero tambien la opcion de navegar por la aplicacion como visitante sin estar logueado.
 Desde esta capa es donde se consumen los WebServices expuestos desde el backend y se despliegan los resultados de las operaciones solicitadas al servidor.
 
