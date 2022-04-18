@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import publicadores.DtEspectaculo;
 import publicadores.DtFuncion;
 import publicadores.DtPaqueteEspectaculo;
-import publicadores.Espectaculo;
 import publicadores.ControladorEspectaculoPublish;
 import publicadores.ControladorEspectaculoPublishService;
 import publicadores.ControladorEspectaculoPublishServiceLocator;

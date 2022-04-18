@@ -17,8 +17,7 @@ import publicadores.DtPaqueteEspectaculo;
 //import interfaces.Fabrica;
 //import interfaces.IControladorEspectaculo;
 //import interfaces.IControladorPaquete;
-import publicadores.Espectaculo;
-import publicadores.PaqueteEspectaculos;
+
 
 @WebServlet("/ConsultaPaqueteEspectaculo")
 public class ConsultaPaqueteEspectaculo extends HttpServlet{
@@ -37,10 +36,10 @@ public class ConsultaPaqueteEspectaculo extends HttpServlet{
 	//	IControladorPaquete iconPaq = Fabrica.getInstancia().getIControladorPaquete();
 		String strPaquete = request.getParameter("nomPaquete");
 	 String strEspectaculo = "";
-		List<Espectaculo> listEspectaculos = new ArrayList<Espectaculo>();
+		//List<Espectaculo> listEspectaculos = new ArrayList<Espectaculo>();
 		List<DtEspectaculo> listDtEspectaculos = new ArrayList<DtEspectaculo>();
 
-		PaqueteEspectaculos listPaquetes = new PaqueteEspectaculos();
+		//PaqueteEspectaculos listPaquetes = new PaqueteEspectaculos();
 		DtPaqueteEspectaculo dtPaqueteEsp = null;
 
 		RequestDispatcher rd;

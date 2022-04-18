@@ -23,8 +23,6 @@ import javax.servlet.http.HttpSession;
 
 import publicadores.DtEspectaculo;
 import publicadores.DtFuncion;
-import publicadores.Espectaculo;
-import publicadores.Artista;
 import publicadores.ControladorEspectaculoPublish;
 import publicadores.ControladorEspectaculoPublishService;
 import publicadores.ControladorEspectaculoPublishServiceLocator;
@@ -37,7 +35,6 @@ import publicadores.ControladorPlataformaPublishServiceLocator;
 import publicadores.ControladorUsuarioPublish;
 import publicadores.ControladorUsuarioPublishService;
 import publicadores.ControladorUsuarioPublishServiceLocator;
-import publicadores.Funcion;
 
 @WebServlet("/ConsultaFuncionEspectaculo")
 public class ConsultaFuncionEspectaculo extends HttpServlet {

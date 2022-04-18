@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import publicadores.Artista;
 import publicadores.ControladorUsuarioPublish;
 import publicadores.ControladorUsuarioPublishService;
 import publicadores.ControladorUsuarioPublishServiceLocator;
