@@ -6,16 +6,16 @@
 .project
 .tern-project
 
-/coronaTicketsWeb/target/
-/coronaTicketsWeb/.settings/
-/coronaTicketsWeb/bin/
+coronaTicketsWeb/target/
+coronaTicketsWeb/.settings/
+coronaTicketsWeb/bin/
 
-/coronaTicketsWeb/WebContent/WEB-INF/lib/
-/coronaTicketsWeb/WebContent/WEB-INF/web.xml
-/coronaTicketsWeb/WebContent/lib/
-/coronaTicketsWeb/WebContent/META-INF/
-/coronaTicketsWeb/WebContent/lib/css/
-/coronaTicketsWeb/WebContent/lib/js/
-/coronaTicketsWeb/WebContent/sampleControlador*/
-/coronaTicketsWeb/nb-configuration.xml
-/coronaTicketsWeb/src/publicadores/
+coronaTicketsWeb/WebContent/WEB-INF/lib/
+coronaTicketsWeb/WebContent/WEB-INF/web.xml
+coronaTicketsWeb/WebContent/lib/
+coronaTicketsWeb/WebContent/META-INF/
+coronaTicketsWeb/WebContent/lib/css/
+coronaTicketsWeb/WebContent/lib/js/
+coronaTicketsWeb/WebContent/sampleControlador*/
+coronaTicketsWeb/nb-configuration.xml
+coronaTicketsWeb/src/publicadores/
