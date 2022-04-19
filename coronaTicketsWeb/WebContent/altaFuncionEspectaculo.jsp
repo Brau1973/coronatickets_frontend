@@ -1,4 +1,3 @@
-<%@page import="publicadores.Espectaculo"%>
 <%@page import="publicadores.DtUsuario"%>
 <%@page import="publicadores.DtEspectaculo"%>
 <%@page import="java.util.List"%>
