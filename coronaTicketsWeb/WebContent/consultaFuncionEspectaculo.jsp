@@ -23,7 +23,7 @@
 				onchange="procesar('selPlataformas')"><option selected
 					disabled>Seleccione Plataforma</option>
 				<%
-					HttpSession s = request.getSession();
+				HttpSession s = request.getSession();
 				String plataformaSelected = (String) s.getAttribute("plataformaSelected");
 				ArrayList<String> listPlataformas = (ArrayList<String>) s.getAttribute("allPlataformas");
 				for (String nomPlataforma : listPlataformas) {
@@ -32,7 +32,7 @@
 					<%if (plataformaSelected != null && plataformaSelected.equals(nomPlataforma)) {%>
 					selected="selected" <%}%>><%=nomPlataforma%></option>
 				<%
-					}
+				}
 				%>
 			</select>
 		</div>
@@ -43,7 +43,7 @@
 				onchange="procesar('selEspectaculo')">
 				<option selected disabled>Seleccione Espectaculo</option>
 				<%
-					String espectaculoSelected = (String) s.getAttribute("espectaculoSelected");
+				String espectaculoSelected = (String) s.getAttribute("espectaculoSelected");
 				ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) s.getAttribute("espectaculos");
 				if (listEspectaculos != null) {
 					for (DtEspectaculo nomEspectaculo : listEspectaculos) {
@@ -52,7 +52,7 @@
 					<%if (espectaculoSelected != null && espectaculoSelected.equals(nomEspectaculo.getNombre())) {%>
 					selected="selected" <%}%>><%=nomEspectaculo.getNombre()%></option>
 				<%
-					}
+				}
 				}
 				%>
 			</select>
@@ -64,28 +64,28 @@
 				onchange="procesar('selFuncion')">
 				<option selected disabled>Seleccione Funcion</option>
 				<%
-					ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) request.getAttribute("funciones");
+				ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) request.getAttribute("funciones");
 				if (request.getAttribute("funciones") != null) {
 					for (DtFuncion nomFuncion : listFunciones) {
 				%>
 				<option><%=nomFuncion.getNombre()%></option>
 				<%
-					}
+				}
 				}
 				%>
 			</select>
 		</div>
-	</form>
 
 	<p id="demo"></p>
 	<script type="text/javascript">
-	function procesar(tipo) {
-	    document.getElementById("boton").value = tipo;
-	    document.getElementById("formConsultaEspectaculo").submit();
-	  //  document.forms[7].submit();
-	}
-    </script>
-    <br><br>
-    <%@include file="footer.jsp"%>
+		function procesar(tipo) {
+			document.getElementById("boton").value = tipo;
+			document.getElementById("formConsultaEspectaculo").submit();
+			//  document.forms[7].submit();
+		}
+	</script>
+	<br>
+	<br>
+	<%@include file="footer.jsp"%>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 package funcion;
 
 import java.awt.image.BufferedImage;
@@ -29,12 +30,7 @@ import publicadores.ControladorEspectaculoPublishServiceLocator;
 import publicadores.ControladorFuncionPublish;
 import publicadores.ControladorFuncionPublishService;
 import publicadores.ControladorFuncionPublishServiceLocator;
-import publicadores.ControladorPlataformaPublish;
-import publicadores.ControladorPlataformaPublishService;
-import publicadores.ControladorPlataformaPublishServiceLocator;
-import publicadores.ControladorUsuarioPublish;
-import publicadores.ControladorUsuarioPublishService;
-import publicadores.ControladorUsuarioPublishServiceLocator;
+import publicadores.DtArtista;
 
 @WebServlet("/ConsultaFuncionEspectaculo")
 public class ConsultaFuncionEspectaculo extends HttpServlet {
@@ -51,10 +47,10 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = "";
-		Funcion func = null;
+		DtFuncion func = null;
 		ArrayList<DtEspectaculo> listEspectaculosDt = null;
-		ArrayList<DtFuncion> listFunciones = null;
-		ArrayList<Artista> dtArt = null;
+		List<DtFuncion> listFunciones = null;
+		ArrayList<DtArtista> dtArt = null;
 
 		RequestDispatcher rd;
 		if (strPlataforma != null) {
@@ -83,9 +79,8 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 			} else if (request.getParameter("boton").equals("selFuncion")) {
 				String strFuncion = request.getParameter("nomFuncion");
 				try {
-					func = obtenerNombreFuncion(strFuncion);
+					func = obtenerInfoFuncion(request,strFuncion);
 				} catch (Exception e) {
-					e.printStackTrace();
 				}
 				
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -93,24 +88,28 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 				fechaN=func.getFecha();
 				//String a=formato.format(func.getFecha());
 				
-				String dia, mes, anio;
+				
+				String dia = null, mes = null, anio = null;
 				dia = Integer.toString(func.getRegistro().get(Calendar.DATE));
 				mes = Integer.toString(func.getRegistro().get(Calendar.MONTH)+1);
 				anio = Integer.toString(func.getRegistro().get(Calendar.YEAR));
+				
 
-				String diaF, mesF, anioF;
+				String diaF = null, mesF = null, anioF = null;
+				
 				diaF = Integer.toString(func.getFecha().get(Calendar.DATE));
 				mesF = Integer.toString(func.getFecha().get(Calendar.MONTH)+1);
 				anioF = Integer.toString(func.getFecha().get(Calendar.YEAR));
 				
 				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + diaF + "/" + mesF +"/" + anioF
 				+ "<br/>Hora: " + func.getFecha().get(Calendar.HOUR_OF_DAY) +":"+ func.getFecha().get(Calendar.MINUTE)+"hs"+ "<br/>Registro: " + dia + "/" + mes +"/" + anio);
-				Artista[] sd=func.getArtistas();
+				String[] listArtistasString= func.getArtistas();
 				List<String> listArtistas = new ArrayList<String>();
-				for (Artista artistai : sd) {
-					listArtistas.add(artistai.getNombre());
+				for (String artistai : listArtistasString) {
+					listArtistas.add(artistai);
 				}
 				request.setAttribute("mostrarArtistas", listArtistas);
+				/*
 				if (func.getImagen() != null) {
 					byte[] foto = func.getImagen();
 					BufferedImage image = null;
@@ -125,6 +124,7 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 					String imageBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
 					request.setAttribute("mostrarFoto", imageBase64);
 				}
+				*/
 				rd = request.getRequestDispatcher("/datosFunciones.jsp");
 				rd.forward(request, response);
 			}
@@ -150,20 +150,20 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 		return lstEspectaculo;
 	}
 	
-	public ArrayList<DtFuncion> obtenerFunciones(String strEspectaculo) throws Exception {
+	public List<DtFuncion> obtenerFunciones(String strEspectaculo) throws Exception {
 		ControladorFuncionPublishService cps = new ControladorFuncionPublishServiceLocator();
 		ControladorFuncionPublish port = cps.getControladorFuncionPublishPort();
 		DtFuncion[] funciones = port.listarFunciones(strEspectaculo);
-		ArrayList<DtFuncion> lstFunciones = new ArrayList<>();
+		List<DtFuncion> lstFunciones = new ArrayList<>();
 		for (int i = 0; i < funciones.length; ++i) {
 			lstFunciones.add(funciones[i]);
 		}
 		return lstFunciones;
 	}
 	
-	public Funcion obtenerNombreFuncion(String strFuncion) throws Exception {
+	public DtFuncion obtenerInfoFuncion(HttpServletRequest request, String strFuncion ) throws Exception {
 		ControladorFuncionPublishService cps = new ControladorFuncionPublishServiceLocator();
 		ControladorFuncionPublish port = cps.getControladorFuncionPublishPort();
-		return port.obtenerFuncion(strFuncion);
+		return port.getInfoFuncion(strFuncion);
 	}
 }

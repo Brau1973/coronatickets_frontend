@@ -39,18 +39,18 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String nombre = request.getParameter("nomFuncion");
 		String espectaculo = request.getParameter("nomEspectaculo");
-
-		String hora = request.getParameter("horaFuncion");
-		String[] parts = hora.split(":", 2);
+		String nombre = request.getParameter("nomFuncion");
+		String fechaFuncion = request.getParameter("fechaFuncion");
+		String horaInicio = request.getParameter("horaInicio");
+		
+		String[] parts = horaInicio.split(":", 2);
 		String part1 = parts[0];
 		String part2 = parts[1];
 		int hs = Integer.parseInt(part1);
 		int min = Integer.parseInt(part2);
-		Time horaInicio = new Time(hs, min, 0);
-
-		String fechaFuncion = request.getParameter("fechaFuncion");
+		//Time horaInicioTime = new Time(min);
+		
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = null;
 		try {
@@ -75,28 +75,37 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 			//		listArtistas[i].add(artistasInvitados[i]);
 			//	}
 	//	}
-
-		Part imagenFuncion = request.getPart("imagen");
-		int sizeimg = (int) imagenFuncion.getSize();
+		
+		Part imagenFuncion = null;
+		imagenFuncion = request.getPart("imagen");
 		byte[] foto = null;
+		/*
+		if(imagenFuncion != null) {
+			System.out.println("IMAGEN NO NULA");
+			int sizeimg = (int) imagenFuncion.getSize();
 
-		foto = new byte[sizeimg];
-		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
-		dis.readFully(foto);
+			foto = new byte[sizeimg];
+			DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
+			dis.readFully(foto);
+			
+			System.out.println("foto: "+foto);
+		}
+		*/
 		RequestDispatcher rd;
 
 		Calendar fechaAlta = new GregorianCalendar();
 		fechaAlta.setTime(new Date());
 		
 		DtFuncion dtFuncion = new DtFuncion(nombre, fechaN, null, fechaAlta, artistasInvitados);
+		//Date FechaFuncion = this.fechaFuncion.getDate();
 		try {
 			agregarFuncion(dtFuncion, espectaculo, foto);
-			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion" + nombre);
+			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion " + nombre);
 			rd = request.getRequestDispatcher("/notificacion.jsp");
 
 			session.removeAttribute("nomFuncion");
 			session.removeAttribute("fechaFuncion");
-			session.removeAttribute("horaFuncion");
+			session.removeAttribute("horaInicio");
 			session.removeAttribute("nombreEspectaculoSelected");
 			rd.forward(request, response);
 			
@@ -104,7 +113,7 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 			//guardo los campos del formulario en la sesion
 			session.setAttribute("nomFuncion", nombre);
 			session.setAttribute("fechaFuncion", fechaFuncion);
-			session.setAttribute("horaFuncion", hora);
+			session.setAttribute("horaInicio", horaInicio);
 			session.setAttribute("nombreEspectaculoSelected", espectaculo);
 			//	System.out.println(nombre);
 			request.setAttribute("mensaje", "La funcion ya existe");

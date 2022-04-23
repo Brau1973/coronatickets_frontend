@@ -56,12 +56,17 @@ public class AltaUsuario extends HttpServlet {
 
 		HttpSession sesion = request.getSession();
 
-		Part imagenFuncion = request.getPart("imagen");
-		int sizeimg = (int) imagenFuncion.getSize();
+		Part imagenUsuario = null;
+		imagenUsuario = request.getPart("imagen");
 		byte[] foto = null;
-		foto = new byte[sizeimg];
-		DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
-		dis.readFully(foto);
+		/*
+		if(imagenUsuario != null) {
+			int sizeimg = (int) imagenUsuario.getSize();
+			foto = new byte[sizeimg];
+			DataInputStream dis = new DataInputStream(imagenUsuario.getInputStream());
+			dis.readFully(foto);
+		}
+		*/
 		RequestDispatcher rd;
 
 		try {
@@ -81,7 +86,7 @@ public class AltaUsuario extends HttpServlet {
 				DtEspectador dte = new DtEspectador(apellido, contrasenia, correo, foto, nickname, nombre, seguidores, seguidos, fechaN);
 				try {
 					agregarDtEspectador(dte);
-					request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el usuario");
+					request.setAttribute("mensaje", "Se ha ingresado correctamente el usuario "+nickname);
 					rd = request.getRequestDispatcher("/notificacion.jsp");
 					rd.forward(request, response);
 				} catch (Exception e) {
@@ -94,7 +99,7 @@ public class AltaUsuario extends HttpServlet {
 				DtArtista dta = new DtArtista(apellido, contrasenia, correo, foto, nickname, nombre, seguidores, seguidos, fechaN, descripcion, biografia, url);
 				try {
 					agregarDtArtista(dta);
-					request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema, el usuario");
+					request.setAttribute("mensaje", "Se ha ingresado correctamente el usuario "+nickname);
 					rd = request.getRequestDispatcher("/notificacion.jsp");
 					rd.forward(request, response);
 				} catch (Exception e) {

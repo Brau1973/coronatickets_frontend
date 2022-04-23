@@ -29,7 +29,7 @@
 				String fechaFuncion = (String) request.getAttribute("fechaFuncion");
 				String horaFuncion = (String) request.getAttribute("horaFuncion");
 				String nombreEspectaculoSelected = (String) request.getAttribute("nombreEspectaculoSelected");
-
+				
 				ArrayList<DtEspectaculo> listEspectadores = (ArrayList<DtEspectaculo>) session.getAttribute("espectaculo");
 				if (listEspectadores != null) {
 					for (DtEspectaculo nomEspectador : listEspectadores) {
@@ -63,8 +63,8 @@
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">Hora</span> <input type="time"
-					value="${horaFuncion}" name="horaFuncion" class="form-control"
+				<span class="input-group-text">Hora inicio</span> <input type="time"
+					value="${horaFuncion}" name="horaInicio" class="form-control"
 					required>
 				<div class="valid-feedback"></div>
 				<div class="invalid-feedback">Ingrese hora inicio</div>
@@ -99,7 +99,7 @@
 		</div>
 
 		<div class="input-group mb-3">
-			<input type="file" name="imagen" id="imagen" class="form-control">
+			<input type="file" name="imagen" id="imagen" class="form-control" value="null">
 		</div>
 		<button class="btn btn-primary" type="submit">Agregar Funcion</button>
 		<button class="btn btn-dark" type="reset">Cancelar</button>
