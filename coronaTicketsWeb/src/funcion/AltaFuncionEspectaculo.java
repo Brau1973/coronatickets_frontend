@@ -1,8 +1,12 @@
 package funcion;
 
-import java.io.DataInputStream;
+import java.io.File;
 import java.io.IOException;
-import java.sql.Time;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,6 +31,9 @@ import publicadores.DtFuncion;
 @WebServlet("/AltaFuncionEspectaculo")
 public class AltaFuncionEspectaculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String pathFiles = "C:\\Users\\Braulio\\Documents\\Brau2015\\Desarrollo\\Portfolio\\coronatickets_frontend\\coronaTicketsWeb\\WebContent\\imagenes\\";
+	private File uploads = new File(pathFiles);
+	private String[] extens = {".ico", ".png", ".jpg", ".jpeg"};
 
 	public AltaFuncionEspectaculo() {
 		super();
@@ -43,6 +50,7 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 		String nombre = request.getParameter("nomFuncion");
 		String fechaFuncion = request.getParameter("fechaFuncion");
 		String horaInicio = request.getParameter("horaInicio");
+		String photo = "";
 		
 		String[] parts = horaInicio.split(":", 2);
 		String part1 = parts[0];
@@ -64,42 +72,33 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 		Calendar fechaN = Calendar.getInstance();
 		fechaN.setTime(fechaInicio);
 
-		//String[] listArtistas = null;
 		String[] artistasInvitados = request.getParameterValues("selArtista");
 
-	//	if (artistasInvitados != null) {
-			//	for (String artista : artistasInvitados) {
-			//		listArtistas.add(artista);
-			//	}
-			//	for (int i = 0; i < artistasInvitados.length; ++i) {
-			//		listArtistas[i].add(artistasInvitados[i]);
-			//	}
-	//	}
-		
-		Part imagenFuncion = null;
-		imagenFuncion = request.getPart("imagen");
-		byte[] foto = null;
-		/*
-		if(imagenFuncion != null) {
-			System.out.println("IMAGEN NO NULA");
-			int sizeimg = (int) imagenFuncion.getSize();
-
-			foto = new byte[sizeimg];
-			DataInputStream dis = new DataInputStream(imagenFuncion.getInputStream());
-			dis.readFully(foto);
+		try {
+			Part part = request.getPart("imagen");
 			
-			System.out.println("foto: "+foto);
+			if(part == null) {
+				System.out.println("No ha seleccionado un archivo");
+				return;
+			}
+			
+			if(isExtension(part.getSubmittedFileName(), extens)) {
+				photo = saveFile(part, uploads); // imagePath
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		*/
+		
 		RequestDispatcher rd;
 
 		Calendar fechaAlta = new GregorianCalendar();
 		fechaAlta.setTime(new Date());
 		
-		DtFuncion dtFuncion = new DtFuncion(nombre, fechaN, null, fechaAlta, artistasInvitados);
+		DtFuncion dtFuncion = new DtFuncion(nombre, fechaN, null, fechaAlta, artistasInvitados,photo);
 		//Date FechaFuncion = this.fechaFuncion.getDate();
 		try {
-			agregarFuncion(dtFuncion, espectaculo, foto);
+			agregarFuncion(dtFuncion, espectaculo);
 			request.setAttribute("mensaje", "Se ha ingresado correctamente la funcion " + nombre);
 			rd = request.getRequestDispatcher("/notificacion.jsp");
 
@@ -122,10 +121,42 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 		}
 	}
 
-	public void agregarFuncion(DtFuncion dtFuncion, String nombreEspectaculo, byte[] foto) throws Exception {
+	public void agregarFuncion(DtFuncion dtFuncion, String nombreEspectaculo) throws Exception {
 		ControladorFuncionPublishService cps = new ControladorFuncionPublishServiceLocator();
 		ControladorFuncionPublish port = cps.getControladorFuncionPublishPort();
-		port.altaFuncion(dtFuncion, nombreEspectaculo, foto);
+		port.altaFuncion(dtFuncion, nombreEspectaculo);
+	}
+	
+	private boolean isExtension(String fileName, String[] extensions) {
+		for(String et : extensions) {
+			if(fileName.toLowerCase().endsWith(et)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private String saveFile(Part part, File pathUploads) {
+		//String pathAbsolute = "";
+		String fileName = "";
+		try {
+			
+			Path path = Paths.get(part.getSubmittedFileName());
+			fileName = path.getFileName().toString();
+			InputStream input = part.getInputStream();
+			
+			if(input != null) {
+				File file = new File(pathUploads, fileName);
+				//pathAbsolute = file.getAbsolutePath();
+				Files.copy(input, file.toPath());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return fileName;
 	}
 
 }

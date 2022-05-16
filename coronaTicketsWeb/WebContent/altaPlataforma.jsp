@@ -1,33 +1,25 @@
+<%@page import="publicadores.DtUsuario"%>
+<%@page import="publicadores.DtEspectaculo"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <link href="resources/index.css" rel="stylesheet"></link>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous" />
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
 
 <title>Coronatickets - Alta Plataforma</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
 	<form class="container p-5 my-5 border" action="AltaPlataforma"
-		method="post">
+		method="post" enctype="multipart/form-data">
 		<h3>Alta Plataforma</h3>
+		<script type="text/javascript"></script>
 		<div action="/action_page.php" class="was-validated">
 			<div class="input-group mb-3">
 				<span class="input-group-text">Nombre</span> <input type="text"
@@ -49,10 +41,31 @@
 				<div class="invalid-feedback">Ingrese Url de la plataforma</div>
 			</div>
 		</div>
-		<button type="submit" class="btn btn-primary">Agregar
-			Plataforma</button>
-		<button type="reset" class="btn btn-dark">Cancelar</button>
+
+		<link
+			href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css"
+			rel="stylesheet">
+		<link
+			href="https://unpkg.com/multiple-select@1.5.2/dist/themes/bootstrap.min.css"
+			rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+		<script
+			src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+			
+		<div class="input-group mb-3">
+			<input type="file" name="imagenPlataforma" id="imagenPlataforma" class="form-control" value="null">
+		</div>
+		
+		<button class="btn btn-primary" type="submit">Agregar Plataforma</button>
+		<button class="btn btn-dark" type="reset">Cancelar</button>
 	</form>
+	<script>
+	$(function() {
+	    $('select').multipleSelect({
+		selectAll : false
+	    })
+	})
+    </script>
 	<%@include file="footer.jsp"%>
 </body>
 </html>

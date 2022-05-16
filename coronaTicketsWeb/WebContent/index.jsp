@@ -22,7 +22,7 @@
 </head>
 <body class="container p-5 my-5">
 
-<img src="imagenes/img.png" class="w3-image" style="width:90%;margin-top: 50px;">
+<img src="imagenes/portada.png" class="w3-image" style="width:90%;margin-top: 50px;">
 <!--  	<img src="imagenes/img.png" class="img-fluid" alt="CoronaTickets">-->
 
 </body>

@@ -32,14 +32,42 @@
 	<div class="card text-dark bg-light mb-3" style="max-width: 30rem;">
 		<div class="card-header">Foto Funcion</div>
 		<div class="card-body">
+<!-- 			<div>
+				<img src="imagenes\Daddy_Yankee.jpg" width="200"
+					height="200" />
+			</div>
 			<div>
-			<%if((String)request.getAttribute("mostrarFoto") != null){ %>
+				<img src="imagenes\maxresdefault.jpg" width="200"
+					height="200" />
+			</div>
+			<div>
+				<img src="imagenes\img.png" width="200"
+					height="200" />
+			</div> -->
+						
+			<%-- <%if((String)request.getAttribute("mostrarFoto") != null){ %>
 				<img src="data:image/jpg;base64,${mostrarFoto}" width="200"
 					height="200" />
 			<%}else{ %>
 			<img src="imagenes/no_imagen.jpg" width="200"
 					height="200" />
-			<%} %>
+			<%} %>  --%>
+			
+			<%if((String)request.getAttribute("imagePath") != ""){ 
+				String imagePath = (String) request.getAttribute("imagePath");
+			%>
+				<img src="imagenes/${imagePath}" width="200"
+					height="200" />
+			<%}else{ %>
+			<img src="imagenes/noImageFound.jpg" width="200"
+					height="200" />
+			<%} %> 
+			
+			<div>
+				<img src="imagenes\Cantinflas.jpg" width="200"
+					height="200" />
+			</div>
+			
 			</div>
 		</div>
 	</div>

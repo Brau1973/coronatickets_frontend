@@ -67,21 +67,10 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", dtu);
 			session.setAttribute("loged", true);
-			if (dtu.getImagen() != null) {
+			if (dtu.getImageName()!= null) {
 				System.out.println("IF IMAGEN: ");
-				byte[] foto = dtu.getImagen();
-				BufferedImage image = null;
-				InputStream in = new ByteArrayInputStream(foto);
-				try {
-					image = ImageIO.read(in);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				System.out.println("4");
-				ByteArrayOutputStream output = new ByteArrayOutputStream();
-				ImageIO.write(image, "jpg", output);
-				String imageBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
-				session.setAttribute("imgUser", imageBase64);
+				session.setAttribute("userImageName",dtu.getImageName());
+				System.out.println("imagen seteada");
 			}
 			rd = request.getRequestDispatcher("/index.jsp");
 		} else {

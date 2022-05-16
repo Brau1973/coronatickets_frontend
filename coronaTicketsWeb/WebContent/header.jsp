@@ -37,7 +37,7 @@
 	HttpSession sesion = request.getSession();
 	String mensaje = (String) request.getAttribute("message");
 	DtUsuario dtU = (DtUsuario) sesion.getAttribute("user");
-	String imageUser = (String) sesion.getAttribute("imgUser");
+	String userImageName = (String) sesion.getAttribute("userImageName");
 	%>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
 	<div class="container-md">
@@ -61,7 +61,13 @@
 						<button class="w3-bar-item w3-button" type="submit">Alta
 							Plataforma</button>
 					</form>
-				</div></li>
+					<div class="dropdown-divider"></div>
+					<form action="ConsultaPlataformas" method="post">
+						<button class="w3-bar-item w3-button" type="submit">Consulta
+							Plataformas</button>
+					</form>
+				</div>
+			</li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#"
 				id="navbarDropdownUsuarios" role="button" data-toggle="dropdown"
@@ -164,10 +170,10 @@
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="true"> <%
- if (imageUser != null && !imageUser.isEmpty()) {
- %> <img src="data:image/jpg;base64,${imgUser}" height="30px" /> <%
+ if (userImageName != null) {
+ %> <img src="imagenes/<%=userImageName%>" height="30px" /> <%
  } else {
- %> <img src="imagenes/userImg.png" height="30px"> <%
+ %> <img src="imagenes/userNoImgage.png" height="30px"> <%
  }
  %> <%=dtU.getNombre()%></a>
 

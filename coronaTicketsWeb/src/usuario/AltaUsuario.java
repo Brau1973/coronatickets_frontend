@@ -59,14 +59,14 @@ public class AltaUsuario extends HttpServlet {
 		Part imagenUsuario = null;
 		imagenUsuario = request.getPart("imagen");
 		byte[] foto = null;
-		/*
+		
 		if(imagenUsuario != null) {
 			int sizeimg = (int) imagenUsuario.getSize();
 			foto = new byte[sizeimg];
 			DataInputStream dis = new DataInputStream(imagenUsuario.getInputStream());
 			dis.readFully(foto);
 		}
-		*/
+		
 		RequestDispatcher rd;
 
 		try {
@@ -83,7 +83,7 @@ public class AltaUsuario extends HttpServlet {
 
 			if (tipoU.equals("Espectador")) {
 				//	System.out.println("Estoy en " + tipoU);
-				DtEspectador dte = new DtEspectador(apellido, contrasenia, correo, foto, nickname, nombre, seguidores, seguidos, fechaN);
+				DtEspectador dte = new DtEspectador(apellido, contrasenia, correo,"", nickname, nombre, seguidores, seguidos, fechaN);
 				try {
 					agregarDtEspectador(dte);
 					request.setAttribute("mensaje", "Se ha ingresado correctamente el usuario "+nickname);
@@ -96,7 +96,7 @@ public class AltaUsuario extends HttpServlet {
 				}
 
 			} else if (tipoU.equals("Artista")) {
-				DtArtista dta = new DtArtista(apellido, contrasenia, correo, foto, nickname, nombre, seguidores, seguidos, fechaN, descripcion, biografia, url);
+				DtArtista dta = new DtArtista(apellido, contrasenia, correo,"", nickname, nombre, seguidores, seguidos, fechaN, descripcion, biografia, url);
 				try {
 					agregarDtArtista(dta);
 					request.setAttribute("mensaje", "Se ha ingresado correctamente el usuario "+nickname);

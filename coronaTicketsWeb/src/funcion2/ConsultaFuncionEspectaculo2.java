@@ -1,5 +1,5 @@
 
-package funcion;
+package funcion2;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -32,11 +32,11 @@ import publicadores.ControladorFuncionPublishService;
 import publicadores.ControladorFuncionPublishServiceLocator;
 import publicadores.DtArtista;
 
-@WebServlet("/ConsultaFuncionEspectaculo")
-public class ConsultaFuncionEspectaculo extends HttpServlet {
+@WebServlet("/ConsultaFuncionEspectaculo2")
+public class ConsultaFuncionEspectaculo2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ConsultaFuncionEspectaculo() {
+	public ConsultaFuncionEspectaculo2() {
 		super();
 	}
 
@@ -47,11 +47,13 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String strPlataforma = request.getParameter("nomPlataforma");
 		String strEspectaculo = "";
-		DtFuncion func = null;
 		ArrayList<DtEspectaculo> listEspectaculosDt = null;
 		List<DtFuncion> listFunciones = null;
 		ArrayList<DtArtista> dtArt = null;
-
+		request.setAttribute("funciones", null);
+		String[] datosDeFunciones = null;
+		String[] artistasInvitados = null;
+		HttpSession session = request.getSession();
 		RequestDispatcher rd;
 		if (strPlataforma != null) {
 			if (request.getParameter("boton").equals("selPlataformas")) {
@@ -73,78 +75,51 @@ public class ConsultaFuncionEspectaculo extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
 				request.setAttribute("funciones", listFunciones);
-
-			} else if (request.getParameter("boton").equals("selFuncion")) {
-				String strFuncion = request.getParameter("nomFuncion");
-				try {
-					func = obtenerInfoFuncion(request,strFuncion);
-				} catch (Exception e) {
-				}
-				
-				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-				Calendar fechaN = new GregorianCalendar();
-				fechaN=func.getFecha();
-				//String a=formato.format(func.getFecha());
-				
-				
-				String dia = null, mes = null, anio = null;
-				dia = Integer.toString(func.getRegistro().get(Calendar.DATE));
-				mes = Integer.toString(func.getRegistro().get(Calendar.MONTH)+1);
-				anio = Integer.toString(func.getRegistro().get(Calendar.YEAR));
-				
-
-				String diaF = null, mesF = null, anioF = null;
-				
-				diaF = Integer.toString(func.getFecha().get(Calendar.DATE));
-				mesF = Integer.toString(func.getFecha().get(Calendar.MONTH)+1);
-				anioF = Integer.toString(func.getFecha().get(Calendar.YEAR));
-				
-				request.setAttribute("mostrarFunciones", "Nombre: " + func.getNombre() + "<br/>Fecha: " + diaF + "/" + mesF +"/" + anioF
-				+ "<br/>Hora: " + func.getFecha().get(Calendar.HOUR_OF_DAY) +":"+ func.getFecha().get(Calendar.MINUTE)+"hs"+ "<br/>Registro: " + dia + "/" + mes +"/" + anio);
-				String[] listArtistasString= func.getArtistas();
-				List<String> listArtistas = new ArrayList<String>();
-				for (String artistai : listArtistasString) {
-					listArtistas.add(artistai);
-				}
-				request.setAttribute("mostrarArtistas", listArtistas);
-/*
-				if (func.getImagen() != null) {
-					byte[] foto = func.getImagen();
-					BufferedImage image = null;
-					InputStream in = new ByteArrayInputStream(foto);
-					try {
-						image = ImageIO.read(in);
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					ByteArrayOutputStream output = new ByteArrayOutputStream();
-					ImageIO.write(image, "jpg", output);
-					String imageBase64 = Base64.getEncoder().encodeToString(output.toByteArray());
-					request.setAttribute("mostrarFoto", imageBase64);
-				}
-				
-				if(!func.getImagePath().isEmpty()) {
-					System.out.println("func.getImagePath(): "+func.getImagePath());
-					request.setAttribute("imagePath",func.getImagePath());
+				int i = 0;
+				datosDeFunciones = new String[listFunciones.size()];
+				artistasInvitados = new String[listFunciones.size()];
+				for(DtFuncion funcion : listFunciones) {
+					String dia = null, mes = null, anio = null;
+					dia = Integer.toString(funcion.getRegistro().get(Calendar.DATE));
+					mes = Integer.toString(funcion.getRegistro().get(Calendar.MONTH)+1);
+					anio = Integer.toString(funcion.getRegistro().get(Calendar.YEAR));
 					
+					String diaF = null, mesF = null, anioF = null;
+					diaF = Integer.toString(funcion.getFecha().get(Calendar.DATE));
+					mesF = Integer.toString(funcion.getFecha().get(Calendar.MONTH)+1);
+					anioF = Integer.toString(funcion.getFecha().get(Calendar.YEAR));
+					
+					datosDeFunciones[i] ="<br/>Fecha: " + diaF + "/" + mesF +"/" + anioF
+							+ "<br/>Hora: " + funcion.getFecha().get(Calendar.HOUR_OF_DAY) +":"+ funcion.getFecha().get(Calendar.MINUTE)+"hs"+ "<br/>Alta Registro: " + dia + "/" + mes +"/" + anio;
+					
+					request.setAttribute("mostrarFunciones", "Nombre: " + funcion.getNombre() + "<br/>Fecha: " + diaF + "/" + mesF +"/" + anioF
+					+ "<br/>Hora: " + funcion.getFecha().get(Calendar.HOUR_OF_DAY) +":"+ funcion.getFecha().get(Calendar.MINUTE)+"hs"+ "<br/>Registro: " + dia + "/" + mes +"/" + anio);
+					
+					
+					String[] listArtistasString= funcion.getArtistas();
+					List<String> listArtistas = new ArrayList<String>();
+					String artistasInvitadosHTML = "";
+					for (String artistai : listArtistasString) {
+						listArtistas.add(artistai);
+						artistasInvitadosHTML += artistai+"<br/>";
+					}
+					artistasInvitados[i]=artistasInvitadosHTML;
+					
+					request.setAttribute("mostrarArtistas", listArtistas);
+					
+					i++;
 				}
-				*/
-				rd = request.getRequestDispatcher("/datosFunciones.jsp");
-				rd.forward(request, response);
 			}
 		}
-		
-			HttpSession session = request.getSession();
-			session.setAttribute("espectaculos", listEspectaculosDt);
-			session.setAttribute("plataformaSelected", strPlataforma);
-			session.setAttribute("espectaculoSelected", strEspectaculo);
-			session.setAttribute("funciones", listFunciones);
-			if(func == null) {
-				rd = request.getRequestDispatcher("/consultaFuncionEspectaculo.jsp");
-				rd.forward(request, response);
-			}
+		session.setAttribute("datosDeFunciones", datosDeFunciones);
+		session.setAttribute("artistasInvitados", artistasInvitados);
+		session.setAttribute("espectaculos", listEspectaculosDt);
+		session.setAttribute("plataformaSelected", strPlataforma);
+		session.setAttribute("espectaculoSelected", strEspectaculo);
+		session.setAttribute("funciones", listFunciones);
+		rd = request.getRequestDispatcher("/consultaFuncionEspectaculo2.jsp");
+		rd.forward(request, response);
 	}
 
 	public ArrayList<DtEspectaculo> obtenerEspectaculos(String strPlataforma) throws Exception {

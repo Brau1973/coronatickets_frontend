@@ -73,7 +73,7 @@ public class AltaEspectaculo extends HttpServlet {
 			sesion.removeAttribute("urlEspectaculo");
 			sesion.removeAttribute("costoEspectaculo");
 
-			request.setAttribute("mensaje", "Se ha ingresado correctamente al sistema el espectculo " + nombre);
+			request.setAttribute("mensaje", "Espectaculo "+nombre+" ingresado con exito.");
 			rd = request.getRequestDispatcher("/notificacion.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {

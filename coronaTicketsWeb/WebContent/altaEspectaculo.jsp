@@ -98,9 +98,9 @@
 				placeholder="Ingrese el costo del espectaculo" required>
 		</div>
 
-		<div class="input-group mb-3">
+		<!-- <div class="input-group mb-3">
 			<input type="file" name="imagen" id="imagen" class="form-control">
-		</div>
+		</div> -->
 		<!-- fecha de alta -->
 		<!-- se da de alta el espectaculo en la fecha actual-->
 		<!-- fecha de alta -->
