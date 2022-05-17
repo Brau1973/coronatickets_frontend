@@ -53,7 +53,20 @@ public class ConsultaPlataformas extends HttpServlet {
 		RequestDispatcher rd;
 		HttpSession session = request.getSession();
 		session.setAttribute("allPlataformas", listPlataformas);
-		rd = request.getRequestDispatcher("/consultaPlataformas.jsp");
+		
+		String page = (String) request.getParameter("pageNavega");
+		switch (page) {
+		case "MenuConsultaPlataformas":
+			rd = request.getRequestDispatcher("/consultaPlataformas.jsp");
+			break;
+		case "MenuConsultaEspectaculoNew":
+			rd = request.getRequestDispatcher("/consultaEspectaculosNew.jsp");
+			break;
+
+		default:
+			rd = request.getRequestDispatcher("/index.jsp");
+			break;
+		}
 		rd.forward(request, response);
 	}
 

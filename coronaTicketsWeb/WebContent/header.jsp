@@ -56,15 +56,15 @@
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="false">Plataforma</a>
-				<div class="dropdown-menu">
+				<div class="dropdown-menu">	
 					<form action="altaPlataforma.jsp" method="post">
 						<button class="w3-bar-item w3-button" type="submit">Alta
 							Plataforma</button>
 					</form>
 					<div class="dropdown-divider"></div>
 					<form action="ConsultaPlataformas" method="post">
-						<button class="w3-bar-item w3-button" type="submit">Consulta
-							Plataformas</button>
+						<button class="w3-bar-item w3-button" type="submit" name="pageNavega" value="MenuConsultaPlataformas">
+						Consulta Plataformas</button>
 					</form>
 				</div>
 			</li>
@@ -130,13 +130,23 @@
 						<button class="dropdown-item" type="submit" name="pageNavega"
 							value="MenuAltaEspectaculo">Alta Espectaculo</button>
 					</form>
+					
 					<div class="dropdown-divider"></div>
+					
 					<%
 					}
 					%>
+					
+					<form action="ConsultaPlataformas" method="post">
+						<button class="dropdown-item" type="submit" name="pageNavega"
+							value="MenuConsultaEspectaculoNew">Consulta Espectaculo</button>
+					</form>
+					
+					<div class="dropdown-divider"></div>
+					
 					<form action="DatosConsulta" method="post">
 						<button class="dropdown-item" type="submit" name="pageNavega"
-							value="MenuConsultaEspectaculo">Consulta Espectaculo</button>
+							value="MenuConsultaEspectaculo">Consulta Espectaculo Detalle</button>
 					</form>
 				</div></li>
 			<!-- 			<li class="nav-item"><a class="nav-link" href="index.jsp">Plataformas</a></li> -->

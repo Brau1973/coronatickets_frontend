@@ -29,7 +29,7 @@
 </head>
 <body class="headerSpace">
 		<form class="container p-5 my-5 border"
-		action="AltaEspectaculo" method="post" id="formAltaEspectaculo">
+		action="AltaEspectaculo" method="post" id="formAltaEspectaculo" enctype="multipart/form-data">
 		<input type="hidden" name="boton" id="boton" value="">
 		<h3>Alta Espectaculo</h3>
 		<div class="input-group mb-3">
@@ -98,9 +98,9 @@
 				placeholder="Ingrese el costo del espectaculo" required>
 		</div>
 
-		<!-- <div class="input-group mb-3">
-			<input type="file" name="imagen" id="imagen" class="form-control">
-		</div> -->
+		<div class="input-group mb-3">
+			<input type="file" name="imagenEspectaculo" id="imagenEspectaculo" class="form-control" value="null">
+		</div>
 		<!-- fecha de alta -->
 		<!-- se da de alta el espectaculo en la fecha actual-->
 		<!-- fecha de alta -->
