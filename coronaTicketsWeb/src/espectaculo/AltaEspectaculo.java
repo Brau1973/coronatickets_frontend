@@ -30,9 +30,11 @@ import publicadores.DtUsuario;
 @WebServlet("/AltaEspectaculo")
 public class AltaEspectaculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String pathFiles = "C:\\Users\\Braulio\\Documents\\Brau2015\\Desarrollo\\Portfolio\\coronatickets_frontend\\coronaTicketsWeb\\WebContent\\imagenes\\";
-	private File uploads = new File(pathFiles);
+	private String pathFiles = "C:\\Users\\Braulio\\Documents\\Brau2015\\Desarrollo\\Portfolio\\coronatickets_frontend\\coronaTicketsWeb\\WebContent\\imagenes\\Espectaculos\\";
+	private File uploads;
 	private String[] extens = {".ico", ".png", ".jpg", ".jpeg"};
+	private String photo;
+	private Part part; 
 
 	public AltaEspectaculo() {
 		super();
@@ -56,23 +58,8 @@ public class AltaEspectaculo extends HttpServlet {
 		String url = request.getParameter("urlEspectaculo");
 		Integer costo = Integer.valueOf(request.getParameter("costoEspectaculo"));
 		Calendar fechaAlta = Calendar.getInstance();
-		String photo = "";
 		
-		try {
-			Part part = request.getPart("imagenEspectaculo");
-			
-			if(part == null) {
-				System.out.println("No ha seleccionado un archivo");
-				return;
-			}
-			
-			if(isExtension(part.getSubmittedFileName(), extens)) {
-				photo = saveFile(part, uploads); // imagePath
-			}
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		processImage(request);
 
 		DtEspectaculo dte = new DtEspectaculo();
 		
@@ -90,6 +77,10 @@ public class AltaEspectaculo extends HttpServlet {
 
 		try {
 			altaEspectaculo(dte, plataforma);
+			if(!photo.isEmpty()) {
+				uploads = new File(pathFiles);
+				saveFile(part, uploads);
+			}
 			sesion.removeAttribute("plataformaSelected");
 			sesion.removeAttribute("nombreEspectaculo");
 			sesion.removeAttribute("descripcionEspectaculo");
@@ -136,17 +127,16 @@ public class AltaEspectaculo extends HttpServlet {
 		return false;
 	}
 	
-	private String saveFile(Part part, File pathUploads) {
+	private void saveFile(Part part, File pathUploads) {
 		//String pathAbsolute = "";
-		String fileName = "";
+		//String fileName = "";
 		try {
-			
-			Path path = Paths.get(part.getSubmittedFileName());
-			fileName = path.getFileName().toString();
+			//fileName = path.getFileName().toString();
 			InputStream input = part.getInputStream();
 			
 			if(input != null) {
-				File file = new File(pathUploads, fileName);
+				File file = new File(pathUploads, photo);
+				//pathAbsolute = file.getAbsolutePath();
 				Files.copy(input, file.toPath());
 			}
 			
@@ -154,6 +144,29 @@ public class AltaEspectaculo extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		return fileName;
+		//return fileName;
+	}
+	
+	private void processImage(HttpServletRequest request) {
+		photo = "";
+		try {
+			part = request.getPart("imagenEspectaculo");
+		} catch (IOException | ServletException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			if(part == null) {
+				System.out.println("No ha seleccionado un archivo");
+			}else {
+				if(isExtension(part.getSubmittedFileName(), extens)) {
+					Path path = Paths.get(part.getSubmittedFileName());
+					photo = path.getFileName().toString();
+				}
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

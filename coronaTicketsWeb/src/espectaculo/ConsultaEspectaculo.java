@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import publicadores.DtEspectaculo;
 import publicadores.DtFuncion;
-import publicadores.DtPaqueteEspectaculo;
+import publicadores.DtPaqueteEspectaculos;
 import publicadores.ControladorEspectaculoPublish;
 import publicadores.ControladorEspectaculoPublishService;
 import publicadores.ControladorEspectaculoPublishServiceLocator;
@@ -39,7 +39,7 @@ public class ConsultaEspectaculo extends HttpServlet {
 		String strEspectaculo = "";
 		List<DtEspectaculo> listEspectaculos = new ArrayList<DtEspectaculo>();
 		List<DtFuncion> listFunciones = new ArrayList<DtFuncion>();
-		List<DtPaqueteEspectaculo> listPaquetes = new ArrayList<DtPaqueteEspectaculo>();
+		List<DtPaqueteEspectaculos> listPaquetes = new ArrayList<DtPaqueteEspectaculos>();
 		RequestDispatcher rd;
 		if (strPlataforma != null) {
 			if (request.getParameter("boton").equals("botonPlataformas")) {
@@ -104,12 +104,12 @@ public class ConsultaEspectaculo extends HttpServlet {
 		return listFunciones;
 	}
 	
-	public List<DtPaqueteEspectaculo> listEspectaculoPaquetes(String strEspectaculo) throws Exception {
+	public List<DtPaqueteEspectaculos> listEspectaculoPaquetes(String strEspectaculo) throws Exception {
 		ControladorEspectaculoPublishService cps = new ControladorEspectaculoPublishServiceLocator();
 		ControladorEspectaculoPublish port = cps.getControladorEspectaculoPublishPort();
-		DtPaqueteEspectaculo[] arrayPaquetesEspectaculo = port.obtenerEspectaculoPaquetes(strEspectaculo);
+		DtPaqueteEspectaculos[] arrayPaquetesEspectaculo = port.obtenerEspectaculoPaquetes(strEspectaculo);
 		
-		List<DtPaqueteEspectaculo> listPaquetesEspectaculo = new ArrayList<DtPaqueteEspectaculo>();
+		List<DtPaqueteEspectaculos> listPaquetesEspectaculo = new ArrayList<DtPaqueteEspectaculos>();
 		for(int i = 0;i<arrayPaquetesEspectaculo.length;i++) {
 			listPaquetesEspectaculo.add(arrayPaquetesEspectaculo[i]);		
 		}

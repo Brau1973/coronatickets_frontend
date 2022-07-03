@@ -26,9 +26,11 @@ import publicadores.ControladorPlataformaPublishServiceLocator;
 @WebServlet("/AltaPlataforma")
 public class AltaPlataforma extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String pathFiles = "C:\\Users\\Braulio\\Documents\\Brau2015\\Desarrollo\\Portfolio\\coronatickets_frontend\\coronaTicketsWeb\\WebContent\\imagenes\\";
-	private File uploads = new File(pathFiles);
+	private String pathFiles = "C:\\Users\\Braulio\\Documents\\Brau2015\\Desarrollo\\Portfolio\\coronatickets_frontend\\coronaTicketsWeb\\WebContent\\imagenes\\Plataformas\\";
+	private File uploads;
 	private String[] extens = {".ico", ".png", ".jpg", ".jpeg"};
+	private String photo;
+	private Part part; 
 	
 	public AltaPlataforma() {
 		super();
@@ -43,28 +45,16 @@ public class AltaPlataforma extends HttpServlet {
 		String nombre = request.getParameter("nomPla");
 		String desc = request.getParameter("descPla");
 		String url = request.getParameter("urlPla");
-		String photo = "";
 		
-		try {
-			Part part = request.getPart("imagenPlataforma");
-			
-			if(part == null) {
-				part = (Part) session.getAttribute("imagenPlataforma");
-				System.out.println("No ha seleccionado un archivo");
-				return;
-			}
-			
-			if(isExtension(part.getSubmittedFileName(), extens)) {
-				photo = saveFile(part, uploads); // imagePath
-			}
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		processImage(request);
 		
 		DtPlataforma dtp = new DtPlataforma(nombre, desc, url, photo, null);
 		try {
 			agregarPlataforma(dtp);
+			if(!photo.isEmpty()){
+				uploads = new File(pathFiles);
+				saveFile(part, uploads);
+			}
 			request.setAttribute("mensaje", "Plataforma "+dtp.getNombre()+" ingresada con exito.");
 			RequestDispatcher rd;
 			rd = request.getRequestDispatcher("/notificacion.jsp");
@@ -96,17 +86,15 @@ public class AltaPlataforma extends HttpServlet {
 		return false;
 	}
 	
-	private String saveFile(Part part, File pathUploads) {
+	private void saveFile(Part part, File pathUploads) {
 		//String pathAbsolute = "";
-		String fileName = "";
+		//String fileName = "";
 		try {
-			
-			Path path = Paths.get(part.getSubmittedFileName());
-			fileName = path.getFileName().toString();
+			//fileName = path.getFileName().toString();
 			InputStream input = part.getInputStream();
 			
 			if(input != null) {
-				File file = new File(pathUploads, fileName);
+				File file = new File(pathUploads, photo);
 				//pathAbsolute = file.getAbsolutePath();
 				Files.copy(input, file.toPath());
 			}
@@ -115,6 +103,29 @@ public class AltaPlataforma extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		return fileName;
+		//return fileName;
+	}
+	
+	private void processImage(HttpServletRequest request) {
+		photo = "";
+		try {
+			part = request.getPart("imagenPlataforma");
+		} catch (IOException | ServletException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			if(part == null) {
+				System.out.println("No ha seleccionado un archivo");
+			}else {
+				if(isExtension(part.getSubmittedFileName(), extens)) {
+					Path path = Paths.get(part.getSubmittedFileName());
+					photo = path.getFileName().toString();
+				}
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

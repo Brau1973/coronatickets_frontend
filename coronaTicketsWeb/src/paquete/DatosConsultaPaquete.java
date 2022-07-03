@@ -12,7 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import publicadores.DtPaqueteEspectaculo;
+import publicadores.ControladorPaquetePublish;
+import publicadores.ControladorPaquetePublishService;
+import publicadores.ControladorPaquetePublishServiceLocator;
+import publicadores.ControladorPlataformaPublish;
+import publicadores.ControladorPlataformaPublishService;
+import publicadores.ControladorPlataformaPublishServiceLocator;
+import publicadores.DtPaqueteEspectaculos;
+import publicadores.DtPlataforma;
 
 @WebServlet("/DatosConsultaPaquete")
 public class DatosConsultaPaquete extends HttpServlet{
@@ -28,10 +35,15 @@ public class DatosConsultaPaquete extends HttpServlet{
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	//	IControladorPaquete iconPaq = Fabrica.getInstancia().getIControladorPaquete();
-		List<DtPaqueteEspectaculo> listPaquetes = new ArrayList<DtPaqueteEspectaculo>();
+		List<DtPaqueteEspectaculos> listPaquetes = new ArrayList<DtPaqueteEspectaculos>();
 		RequestDispatcher rd;
-
-	//	listPaquetes = iconPaq.obtenerPaquetes();
+		
+		try {
+			listPaquetes = obtenerPaquetes();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		HttpSession s = request.getSession();
 		s.setAttribute("allPaquetes", listPaquetes);
 		String page = (String) request.getParameter("pageNavega");
@@ -48,4 +60,16 @@ public class DatosConsultaPaquete extends HttpServlet{
 		rd.forward(request, response);
 
 	}
+	
+	public ArrayList<DtPaqueteEspectaculos> obtenerPaquetes() throws Exception {
+		ControladorPaquetePublishService cps = new ControladorPaquetePublishServiceLocator();
+		ControladorPaquetePublish port = cps.getControladorPaquetePublishPort();
+		DtPaqueteEspectaculos[] paquetes = port.obtenerPaquetes();
+		ArrayList<DtPaqueteEspectaculos> lstPaquetes = new ArrayList<>();
+		for (int i = 0; i < paquetes.length; ++i) {
+			lstPaquetes.add(paquetes[i]);
+		}
+		return lstPaquetes;
+	}
+	
 }

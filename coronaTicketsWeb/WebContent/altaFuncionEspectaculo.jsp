@@ -97,10 +97,6 @@
 				%>
 			</select>
 		</div>
-
-		<div class="input-group mb-3">
-			<input type="file" name="imagen" id="imagen" class="form-control" value="null">
-		</div>
 		<button class="btn btn-primary" type="submit">Agregar Funcion</button>
 		<button class="btn btn-dark" type="reset">Cancelar</button>
 	</form>

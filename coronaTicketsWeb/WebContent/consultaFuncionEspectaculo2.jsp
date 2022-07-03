@@ -71,7 +71,7 @@
 				%>
 				  <div class="col">
 				    <div class="card h-100">
-				      <img src="imagenes/<%=funcion.getImageName()%>" width=100 height="300" class="card-img-top" alt="...">
+				      <img src="imagenes/Espectaculos/<%=funcion.getImageName()%>" width=100 height="300" class="card-img-top" alt="...">
 				      <div class="card-body">
 				        <h3 class="card-title"><strong><%=funcion.getNombre()%></strong></h3>
 				        <p class="card-text"><%=datosDeFunciones[i]%></p>

@@ -8,7 +8,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="resources/index.css" rel="stylesheet"></link>
-<title>Coronatickets - Consulta Espectaculo New</title>
+<title>Coronatickets - Consulta Espectaculos New</title>
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
@@ -16,7 +16,7 @@
 		action="ConsultaEspectaculosNew" method="post"
 		id="formConsultaEspectaculo">
 		<input type=hidden name="boton" id="boton" value="">
-		<h3>Consulta de Funcion de Espectaculo</h3>
+		<h3>Consulta de Espectaculos</h3>
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
 			<select class="form-control" name="nomPlataforma"
@@ -48,7 +48,7 @@
 				%>
 				  <div class="col">
 				    <div class="card h-100">
-				      <img src="imagenes/<%=espec.getImageName()%>" width=100 height="300" class="card-img-top" alt="...">
+				      <img src="imagenes/Espectaculos/<%=espec.getImageName()%>" width=100 height="300" class="card-img-top" alt="...">
 				      <div class="card-body">
 				        <h3 class="card-title"><strong><%=espec.getNombre()%></strong></h3>
 				        <p class="card-text"><%=espec.getDescripcion()%></p>

@@ -29,7 +29,7 @@ public class GetUsuariosSeguidos extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> listUsuariosSeguidos = null;
+		ArrayList<DtUsuario> listUsuariosSeguidos = null;
 		HttpSession sesion = request.getSession();
 		DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
 
@@ -54,11 +54,11 @@ public class GetUsuariosSeguidos extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	public ArrayList<String> obtenerUsuariosSeguidos(String userName) throws Exception {
+	public ArrayList<DtUsuario> obtenerUsuariosSeguidos(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
 		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
-		String[] usuarios = port.listarNicknameUsuariosSeguidos(userName);
-		ArrayList<String> lstUsuarios = new ArrayList<>();
+		DtUsuario[] usuarios = port.listarUsuariosSeguidos(userName);
+		ArrayList<DtUsuario> lstUsuarios = new ArrayList<>();
 		for (int i = 0; i < usuarios.length; ++i) {
 			lstUsuarios.add(usuarios[i]);
 		}

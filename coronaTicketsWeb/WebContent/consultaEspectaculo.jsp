@@ -149,12 +149,15 @@
 					<td><%=diaF + "/" + mesF + "/" + anioF%></td>
 
 					<%
-					for (String artistas : dtf.getArtistas()) {
-					%>
-					<td><%=artistas%></td>
-					<%
+					String artistasStr="";
+					for (String artista : dtf.getArtistas()) {
+							artistasStr+=artista+"/";
 					}
 					%>
+					<td><%=artistasStr%></td>
+					<%-- <%
+					}
+					%> --%>
 					<%-- 	<td><%=dtf.getArtistas()%></td><td><%=dtf.getArtistas().toString().replace("[", "").replace("]", "")%></td>--%>
 				</tr>
 				<%
@@ -168,7 +171,7 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Paquetes</span>
 			<%
-			ArrayList<DtPaqueteEspectaculo> listPaquetes = (ArrayList<DtPaqueteEspectaculo>) s.getAttribute("paquetes");
+			ArrayList<DtPaqueteEspectaculos> listPaquetes = (ArrayList<DtPaqueteEspectaculos>) s.getAttribute("paquetes");
 			%>
 		</div>
 
@@ -187,17 +190,17 @@
 			<tbody>
 				<%
 				int k = 1;
-				if (listPaquetes != null) {
-					for (DtPaqueteEspectaculo dtp : listPaquetes) {
-						dia = Integer.toString(dtp.getFechaInicio().get(Calendar.DATE));
-						mes = Integer.toString(dtp.getFechaInicio().get(Calendar.MONTH) + 1);
-						anio = Integer.toString(dtp.getFechaInicio().get(Calendar.YEAR));
-						diaF = Integer.toString(dtp.getFechaFin().get(Calendar.DATE));
-						mesF = Integer.toString(dtp.getFechaFin().get(Calendar.MONTH) + 1);
-						anioF= Integer.toString(dtp.getFechaFin().get(Calendar.YEAR));
-						diaA = Integer.toString(dtp.getFechaAlta().get(Calendar.DATE));
-						mesA = Integer.toString(dtp.getFechaAlta().get(Calendar.MONTH) + 1);
-						anioA = Integer.toString(dtp.getFechaAlta().get(Calendar.YEAR));
+						if (listPaquetes != null) {
+							for (DtPaqueteEspectaculos dtp : listPaquetes) {
+								dia = Integer.toString(dtp.getFechaInicio().get(Calendar.DATE));
+								mes = Integer.toString(dtp.getFechaInicio().get(Calendar.MONTH) + 1);
+								anio = Integer.toString(dtp.getFechaInicio().get(Calendar.YEAR));
+								diaF = Integer.toString(dtp.getFechaFin().get(Calendar.DATE));
+								mesF = Integer.toString(dtp.getFechaFin().get(Calendar.MONTH) + 1);
+								anioF= Integer.toString(dtp.getFechaFin().get(Calendar.YEAR));
+								diaA = Integer.toString(dtp.getFechaAlta().get(Calendar.DATE));
+								mesA = Integer.toString(dtp.getFechaAlta().get(Calendar.MONTH) + 1);
+								anioA = Integer.toString(dtp.getFechaAlta().get(Calendar.YEAR));
 				%>
 				<tr>
 					<th scope="row"><%=k%></th>

@@ -56,68 +56,18 @@
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="false">Plataforma</a>
-				<div class="dropdown-menu">	
+				<div class="dropdown-menu">
 					<form action="altaPlataforma.jsp" method="post">
 						<button class="w3-bar-item w3-button" type="submit">Alta
 							Plataforma</button>
 					</form>
 					<div class="dropdown-divider"></div>
 					<form action="ConsultaPlataformas" method="post">
-						<button class="w3-bar-item w3-button" type="submit" name="pageNavega" value="MenuConsultaPlataformas">
-						Consulta Plataformas</button>
+						<button class="w3-bar-item w3-button" type="submit"
+							name="pageNavega" value="MenuConsultaPlataformas">
+							Consulta Plataformas</button>
 					</form>
-				</div>
-			</li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#"
-				id="navbarDropdownUsuarios" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> Usuarios </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<%
-					if (dtU == null) {
-					%>
-					<a class="dropdown-item" href="altaUsuario.jsp">Alta Usuario</a>
-					<%
-					} else {
-					%>
-					<form action="GetUsuariosNoSeguidos" method="post">
-						<button class="dropdown-item" type="submit">Seguir
-							Usuario</button>
-					</form>
-					<div class="dropdown-divider"></div>
-					<form action="GetUsuariosSeguidos" method="post">
-						<button class="dropdown-item" type="submit">Dejar de
-							seguir Usuario</button>
-					</form>
-					<%
-					}
-					%>
 				</div></li>
-
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-expanded="true">Paquetes</a>
-				<div class="dropdown-menu">
-					<%
-					if (dtU instanceof DtArtista) {
-					%>
-					<form action="index.jsp" method="post">
-						<button class="dropdown-item" type="submit">Crear
-							Paquetes de Espectaculos</button>
-					</form>
-					<div class="dropdown-divider"></div>
-					<%
-					}
-					%>
-
-					<form action="DatosConsultaPaquete" method="post">
-						<button class="dropdown-item" type="submit" name="pageNavega"
-							value="MenuConsultaPaqEspectaculo">Consulta de Paquete
-							de Espectaculos</button>
-					</form>
-
-				</div></li>
-
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -130,23 +80,24 @@
 						<button class="dropdown-item" type="submit" name="pageNavega"
 							value="MenuAltaEspectaculo">Alta Espectaculo</button>
 					</form>
-					
+
 					<div class="dropdown-divider"></div>
-					
+
 					<%
 					}
 					%>
-					
+
 					<form action="ConsultaPlataformas" method="post">
 						<button class="dropdown-item" type="submit" name="pageNavega"
 							value="MenuConsultaEspectaculoNew">Consulta Espectaculo</button>
 					</form>
-					
+
 					<div class="dropdown-divider"></div>
-					
+
 					<form action="DatosConsulta" method="post">
 						<button class="dropdown-item" type="submit" name="pageNavega"
-							value="MenuConsultaEspectaculo">Consulta Espectaculo Detalle</button>
+							value="MenuConsultaEspectaculo">Consulta Espectaculo
+							Detalle</button>
 					</form>
 				</div></li>
 			<!-- 			<li class="nav-item"><a class="nav-link" href="index.jsp">Plataformas</a></li> -->
@@ -174,6 +125,57 @@
 					</form>
 
 				</div></li>
+
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-expanded="true">Paquetes</a>
+				<div class="dropdown-menu">
+					<%
+					if (dtU instanceof DtArtista) {
+					%>
+					<form action="altaPaqueteEspectaculos.jsp" method="post">
+						<button class="dropdown-item" type="submit">Crear
+							Paquetes de Espectaculos</button>
+					</form>
+					<div class="dropdown-divider"></div>
+					<%
+					}
+					%>
+
+					<form action="DatosConsultaPaquete" method="post">
+						<button class="dropdown-item" type="submit" name="pageNavega"
+							value="MenuConsultaPaqEspectaculo">Consulta de Paquete
+							de Espectaculos</button>
+					</form>
+
+				</div></li>
+
+
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#"
+				id="navbarDropdownUsuarios" role="button" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false"> Usuarios </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<%
+					if (dtU == null) {
+					%>
+					<a class="dropdown-item" href="altaUsuario.jsp">Alta Usuario</a>
+					<%
+					} else {
+					%>
+					<form action="GetUsuariosNoSeguidos" method="post">
+						<button class="dropdown-item" type="submit">Seguir
+							Usuario</button>
+					</form>
+					<div class="dropdown-divider"></div>
+					<form action="GetUsuariosSeguidos" method="post">
+						<button class="dropdown-item" type="submit">Dejar de
+							seguir Usuario</button>
+					</form>
+					<%
+					}
+					%>
+				</div></li>
 			<%
 			if (dtU != null) {
 			%>
@@ -181,9 +183,10 @@
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="true"> <%
  if (userImageName != null) {
- %> <img src="imagenes/<%=userImageName%>" height="30px" /> <%
+ %> <img src="imagenes/Usuarios/<%=userImageName%>" height="30px" /> <%
  } else {
- %> <img src="imagenes/userNoImgage.png" height="30px"> <%
+ %>
+					<img src="imagenes/userNoImgage.png" height="30px"> <%
  }
  %> <%=dtU.getNombre()%></a>
 

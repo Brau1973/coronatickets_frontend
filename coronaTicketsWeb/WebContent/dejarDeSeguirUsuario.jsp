@@ -27,25 +27,30 @@
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<form action="DejarDeSeguirUsuario" method="post">
 	<h3>Dejar de Seguir Usuario</h3>
-		<input type="hidden" name="boton" id="boton" value="">
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="basic-addon3"> Usuarios</span>
-			<select class="form-control" name="nomUsuario">
-				<%
-				   ArrayList<String> listUsuarios = (ArrayList<String>) request.getAttribute("usuariosSeguidos");
-				for (String nomUsuario : listUsuarios) {
-				%>
-				<option><%=nomUsuario%></option>
-				<%
-				   }
-				%>
-			</select>
+	
+	<div class="row row-cols-1 row-cols-md-6 g-4">
+	<%
+    ArrayList<DtUsuario> listUsuarios = (ArrayList<DtUsuario>) request.getAttribute("usuariosSeguidos");
+	for (DtUsuario usuario : listUsuarios) {
+	%>
+		<div class="col">
+			<div class="card h-100" style="width: 12rem;">
+				<img src="imagenes/Usuarios/<%=usuario.getImageName()%>"width=100 height="150" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h3 class="card-title">
+						<strong><%=usuario.getNickname()%></strong>
+					</h3>
+					<br />
+					<form action="DejarDeSeguirUsuario" method="post">
+						<button class="btn btn-primary" type="submit" name="nomUsuario"
+							value="<%=usuario.getNickname()%>">Follow</button>
+					</form>
+				</div>
+			</div>
 		</div>
-		<button type="reset" class="btn btn-dark">Cancelar</button>
-		<button type="submit" class="btn btn-primary">Confirmar</button>
-	</form>
+	<%}%>
+	</div>
  <%@include file="footer.jsp"%>
 </body>
 </html>

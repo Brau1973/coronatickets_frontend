@@ -46,7 +46,7 @@
 					<div class="carousel-item">
 				<%}%>
 			%>
-						<img src="imagenes/<%=plataforma.getImageName()%>" class="d-block w-100" width=100 height="750" alt="...">
+						<img src="imagenes/Plataformas/<%=plataforma.getImageName()%>" class="d-block w-100" width=100 height="750" alt="...">
 						<div class="carousel-caption d-none d-md-block">
 							<h5><%=plataforma.getNombre()%></h5>
 							<p><%=plataforma.getDescripcion()%></p>

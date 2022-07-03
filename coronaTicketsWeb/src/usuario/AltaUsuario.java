@@ -1,7 +1,12 @@
 package usuario;
 
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
@@ -31,6 +36,12 @@ public class AltaUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String[] seguidos = null;
 	private String[] seguidores = null;
+	private String pathFiles = "C:\\Users\\Braulio\\Documents\\Brau2015\\Desarrollo\\Portfolio\\coronatickets_frontend\\coronaTicketsWeb\\WebContent\\imagenes\\Usuarios\\";
+	//private File uploads = new File(pathFiles);
+	private File uploads;
+	private String[] extens = {".ico", ".png", ".jpg", ".jpeg"};
+	private String photo;
+	private Part part; 
 
 	public AltaUsuario() {
 		super();
@@ -53,19 +64,10 @@ public class AltaUsuario extends HttpServlet {
 		String biografia = request.getParameter("bioUsuario");
 		String url = request.getParameter("linkUsuario");
 		String tipoU = request.getParameter("tipoUsuario");
-
-		HttpSession sesion = request.getSession();
-
-		Part imagenUsuario = null;
-		imagenUsuario = request.getPart("imagen");
-		byte[] foto = null;
 		
-		if(imagenUsuario != null) {
-			int sizeimg = (int) imagenUsuario.getSize();
-			foto = new byte[sizeimg];
-			DataInputStream dis = new DataInputStream(imagenUsuario.getInputStream());
-			dis.readFully(foto);
-		}
+		processImage(request);
+		
+		HttpSession sesion = request.getSession();
 		
 		RequestDispatcher rd;
 
@@ -83,9 +85,14 @@ public class AltaUsuario extends HttpServlet {
 
 			if (tipoU.equals("Espectador")) {
 				//	System.out.println("Estoy en " + tipoU);
-				DtEspectador dte = new DtEspectador(apellido, contrasenia, correo,"", nickname, nombre, seguidores, seguidos, fechaN);
+				DtEspectador dte = new DtEspectador(apellido, contrasenia, correo, photo, nickname, nombre, seguidores, seguidos, fechaN);
 				try {
 					agregarDtEspectador(dte);
+					if(!photo.isEmpty()) {
+						pathFiles += "Espectadores";
+						uploads = new File(pathFiles);
+						saveFile(part, uploads);
+					}
 					request.setAttribute("mensaje", "Se ha ingresado correctamente el usuario "+nickname);
 					rd = request.getRequestDispatcher("/notificacion.jsp");
 					rd.forward(request, response);
@@ -96,9 +103,14 @@ public class AltaUsuario extends HttpServlet {
 				}
 
 			} else if (tipoU.equals("Artista")) {
-				DtArtista dta = new DtArtista(apellido, contrasenia, correo,"", nickname, nombre, seguidores, seguidos, fechaN, descripcion, biografia, url);
+				DtArtista dta = new DtArtista(apellido, contrasenia, correo, photo, nickname, nombre, seguidores, seguidos, fechaN, descripcion, biografia, url);
 				try {
 					agregarDtArtista(dta);
+					if(!photo.isEmpty()) {
+						pathFiles += "Artistas";
+						uploads = new File(pathFiles);
+						saveFile(part, uploads);
+					}
 					request.setAttribute("mensaje", "Se ha ingresado correctamente el usuario "+nickname);
 					rd = request.getRequestDispatcher("/notificacion.jsp");
 					rd.forward(request, response);
@@ -147,5 +159,58 @@ public class AltaUsuario extends HttpServlet {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
 		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
 		port.altaDtArtista(dta);
+	}
+	
+	private boolean isExtension(String fileName, String[] extensions) {
+		for(String et : extensions) {
+			if(fileName.toLowerCase().endsWith(et)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private void saveFile(Part part, File pathUploads) {
+		//String pathAbsolute = "";
+		//String fileName = "";
+		try {
+			//fileName = path.getFileName().toString();
+			InputStream input = part.getInputStream();
+			
+			if(input != null) {
+				File file = new File(pathUploads, photo);
+				//pathAbsolute = file.getAbsolutePath();
+				Files.copy(input, file.toPath());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//return fileName;
+	}
+	
+	private void processImage(HttpServletRequest request) {
+		photo = "";
+		try {
+			part = request.getPart("imagen");
+		} catch (IOException | ServletException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			if(part == null) {
+				System.out.println("No ha seleccionado un archivo");
+			}else {
+				if(isExtension(part.getSubmittedFileName(), extens)) {
+					Path path = Paths.get(part.getSubmittedFileName());
+					photo = path.getFileName().toString();
+				}
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

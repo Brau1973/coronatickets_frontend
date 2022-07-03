@@ -74,28 +74,24 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 
 		String[] artistasInvitados = request.getParameterValues("selArtista");
 
-		try {
-			Part part = request.getPart("imagen");
-			
-			if(part == null) {
-				System.out.println("No ha seleccionado un archivo");
-				return;
-			}
-			
-			if(isExtension(part.getSubmittedFileName(), extens)) {
-				photo = saveFile(part, uploads); // imagePath
-			}
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		/*
+		 * try { Part part = request.getPart("imagen");
+		 * 
+		 * if(part == null) { System.out.println("No ha seleccionado un archivo");
+		 * return; }
+		 * 
+		 * if(isExtension(part.getSubmittedFileName(), extens)) { photo = saveFile(part,
+		 * uploads); // imagePath }
+		 * 
+		 * } catch (Exception e) { e.printStackTrace(); }
+		 */
 		
 		RequestDispatcher rd;
 
 		Calendar fechaAlta = new GregorianCalendar();
 		fechaAlta.setTime(new Date());
 		
-		DtFuncion dtFuncion = new DtFuncion(nombre, fechaN, null, fechaAlta, artistasInvitados,photo);
+		DtFuncion dtFuncion = new DtFuncion(nombre, fechaN, null, fechaAlta, artistasInvitados,"");
 		//Date FechaFuncion = this.fechaFuncion.getDate();
 		try {
 			agregarFuncion(dtFuncion, espectaculo);
@@ -127,36 +123,25 @@ public class AltaFuncionEspectaculo extends HttpServlet {
 		port.altaFuncion(dtFuncion, nombreEspectaculo);
 	}
 	
-	private boolean isExtension(String fileName, String[] extensions) {
-		for(String et : extensions) {
-			if(fileName.toLowerCase().endsWith(et)) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	private String saveFile(Part part, File pathUploads) {
-		//String pathAbsolute = "";
-		String fileName = "";
-		try {
-			
-			Path path = Paths.get(part.getSubmittedFileName());
-			fileName = path.getFileName().toString();
-			InputStream input = part.getInputStream();
-			
-			if(input != null) {
-				File file = new File(pathUploads, fileName);
-				//pathAbsolute = file.getAbsolutePath();
-				Files.copy(input, file.toPath());
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return fileName;
-	}
+	/*
+	 * private boolean isExtension(String fileName, String[] extensions) {
+	 * for(String et : extensions) { if(fileName.toLowerCase().endsWith(et)) {
+	 * return true; } }
+	 * 
+	 * return false; }
+	 * 
+	 * private String saveFile(Part part, File pathUploads) { //String pathAbsolute
+	 * = ""; String fileName = ""; try {
+	 * 
+	 * Path path = Paths.get(part.getSubmittedFileName()); fileName =
+	 * path.getFileName().toString(); InputStream input = part.getInputStream();
+	 * 
+	 * if(input != null) { File file = new File(pathUploads, fileName);
+	 * //pathAbsolute = file.getAbsolutePath(); Files.copy(input, file.toPath()); }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); }
+	 * 
+	 * return fileName; }
+	 */
 
 }

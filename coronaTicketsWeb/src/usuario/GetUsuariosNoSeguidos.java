@@ -30,7 +30,7 @@ public class GetUsuariosNoSeguidos extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> listUsuariosNoSeguidos = null;
+		ArrayList<DtUsuario> listUsuariosNoSeguidos = null;
 		HttpSession sesion = request.getSession();
 		DtUsuario dtUsuLogueado = (DtUsuario) sesion.getAttribute("user");
 		//	  for (String nomUsuario : listUsuariosNoSeguidos) {
@@ -54,11 +54,11 @@ public class GetUsuariosNoSeguidos extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	public ArrayList<String> obtenerUsuariosNoSeguidos(String userName) throws Exception {
+	public ArrayList<DtUsuario> obtenerUsuariosNoSeguidos(String userName) throws Exception {
 		ControladorUsuarioPublishService cps = new ControladorUsuarioPublishServiceLocator();
 		ControladorUsuarioPublish port = cps.getControladorUsuarioPublishPort();
-		String[] usuarios = port.listarNicknameUsuariosNoSeguidos(userName);
-		ArrayList<String> lstUsuarios = new ArrayList<>();
+		DtUsuario[] usuarios = port.listarUsuariosNoSeguidos(userName);
+		ArrayList<DtUsuario> lstUsuarios = new ArrayList<>();
 		for (int i = 0; i < usuarios.length; ++i) {
 			lstUsuarios.add(usuarios[i]);
 		}

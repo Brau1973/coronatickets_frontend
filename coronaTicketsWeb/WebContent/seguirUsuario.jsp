@@ -17,8 +17,8 @@
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <title>Seguir Usuarios - Coronatickets</title>
@@ -26,24 +26,29 @@
 </head>
 <body class="headerSpace">
 	<h3>Seguir Usuario</h3>
-	<form action="SeguirUsuario" method="post">
-		<input type="hidden" name="boton" id="boton" value="">
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="basic-addon3"> Usuarios</span>
-			<select class="form-control" name="nomUsuario">
-				<%
-				   ArrayList<String> listUsuarios = (ArrayList<String>) request.getAttribute("usuariosNoSeguidos");
-				for (String nomUsuario : listUsuarios) {
-				%>
-				<option><%=nomUsuario%></option>
-				<%
-				   }
-				%>
-			</select>
+
+	<div class="row row-cols-1 row-cols-md-6 g-4">
+	<%
+    ArrayList<DtUsuario> listUsuarios = (ArrayList<DtUsuario>) request.getAttribute("usuariosNoSeguidos");
+	for (DtUsuario usuario : listUsuarios) {
+	%>
+		<div class="col">
+			<div class="card h-100" style="width: 12rem;">
+				<img src="imagenes/Usuarios/<%=usuario.getImageName()%>"width=100 height="150" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h3 class="card-title">
+						<strong><%=usuario.getNickname()%></strong>
+					</h3>
+					<br />
+					<form action="SeguirUsuario" method="post">
+						<button class="btn btn-primary" type="submit" name="nomUsuario"
+							value="<%=usuario.getNickname()%>">Follow</button>
+					</form>
+				</div>
+			</div>
 		</div>
-		<button type="reset" class="btn btn-dark">Cancelar</button>
-		<button type="submit" class="btn btn-primary">Confirmar</button>
-	</form>
- <%@include file="footer.jsp"%>
+	<%}%>
+	</div>
+	<%@include file="footer.jsp"%>
 </body>
 </html>

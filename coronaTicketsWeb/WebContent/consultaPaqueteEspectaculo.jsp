@@ -1,6 +1,7 @@
 <%@page import="publicadores.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,24 +34,24 @@
 				onchange="procesar('selPaquete')">
 				<option selected disabled>Seleccione Paquete</option>
 				<%
-					HttpSession s = request.getSession();
-				String paqueteSelected = (String) s.getAttribute("paqueteSelected");
-				ArrayList<DtPaqueteEspectaculo> listDePaquetes = (ArrayList<DtPaqueteEspectaculo>) s.getAttribute("allPaquetes");
+				HttpSession s = request.getSession();
+						String paqueteSelected = (String) s.getAttribute("paqueteSelected");
+						ArrayList<DtPaqueteEspectaculos> listDePaquetes = (ArrayList<DtPaqueteEspectaculos>) s.getAttribute("allPaquetes");
 
-				for (DtPaqueteEspectaculo dtPaquete : listDePaquetes) {
+						for (DtPaqueteEspectaculos dtPaquete : listDePaquetes) {
 				%>
 				<option
 					<%if (paqueteSelected != null && paqueteSelected.equals(dtPaquete.getNombre())) {%>
 					selected="selected" <%}%>><%=dtPaquete.getNombre()%></option>
 				<%
-					}
+				}
 				%>
 			</select>
 		</div>
 
 		<div class="input-group mb-3">
 			<%
-				DtPaqueteEspectaculo listPaquetes = (DtPaqueteEspectaculo) s.getAttribute("paquetesEspec");
+			DtPaqueteEspectaculos paqueteEspec = (DtPaqueteEspectaculos) s.getAttribute("paqueteEspec");
 			%>
 		</div>
 		<table class="table table-striped">
@@ -66,15 +67,28 @@
 			</thead>
 			<tbody>
 				<%
-					if (listPaquetes != null) {
+					if (paqueteEspec != null) {
+						String diaFechaInicio,diaFechaFin,diaFechaAlta;
+						String mesFechaInicio,mesFechaFin,mesFechaAlta;
+						String anioFechaInicio,anioFechaFin,anioFechaAlta;
+						
+						diaFechaInicio = Integer.toString(paqueteEspec.getFechaInicio().get(Calendar.DATE));
+						mesFechaInicio = Integer.toString(paqueteEspec.getFechaInicio().get(Calendar.MONTH) + 1);
+						anioFechaInicio = Integer.toString(paqueteEspec.getFechaInicio().get(Calendar.YEAR));
+						diaFechaFin = Integer.toString(paqueteEspec.getFechaFin().get(Calendar.DATE));
+						mesFechaFin = Integer.toString(paqueteEspec.getFechaFin().get(Calendar.MONTH) + 1);
+						anioFechaFin= Integer.toString(paqueteEspec.getFechaFin().get(Calendar.YEAR));
+						diaFechaAlta = Integer.toString(paqueteEspec.getFechaAlta().get(Calendar.DATE));
+						mesFechaAlta = Integer.toString(paqueteEspec.getFechaAlta().get(Calendar.MONTH) + 1);
+						anioFechaAlta = Integer.toString(paqueteEspec.getFechaAlta().get(Calendar.YEAR));
 				%>
 				<tr>
-					<td><%=listPaquetes.getNombre()%></td>
-					<td><%=listPaquetes.getDescripcion()%></td>
-					<td><%=listPaquetes.getFechaInicio()%></td>
-					<td><%=listPaquetes.getFechaFin()%></td>
-					<td><%=listPaquetes.getFechaAlta()%></td>
-					<td><%=listPaquetes.getDescuento()%></td>
+					<td><%=paqueteEspec.getNombre()%></td>
+					<td><%=paqueteEspec.getDescripcion()%></td>
+					<td><%=diaFechaInicio + "/" + mesFechaInicio + "/" + anioFechaInicio%></td>
+					<td><%=diaFechaFin + "/" + mesFechaFin + "/" + anioFechaFin%></td>
+					<td><%=diaFechaAlta + "/" + mesFechaAlta + "/" + anioFechaAlta%></td>
+					<td><%=paqueteEspec.getDescuento()%></td>
 				</tr>
 				<%
 					}
@@ -105,8 +119,11 @@
 				<%
 					if (lisEspectaculPaq != null) {
 					int i = 1;
+					String dia,mes,anio;
 					for (DtEspectaculo dte : lisEspectaculPaq) {
-						//if(paqueteSelected != null && paqueteSelected.equals(dte.getNombre())){
+						dia = Integer.toString(dte.getRegistro().get(Calendar.DATE));
+						mes = Integer.toString(dte.getRegistro().get(Calendar.MONTH) + 1);
+						anio = Integer.toString(dte.getRegistro().get(Calendar.YEAR));
 				%>
 				<tr>
 					<th scope="row"><%=i%></th>
@@ -117,7 +134,7 @@
 					<td><%=dte.getCantMin()%></td>
 					<td><%=dte.getCantMax()%></td>
 					<td><%=dte.getCosto()%></td>
-					<td><%=dte.getRegistro()%></td>
+					<td><%=dia + "/" + mes + "/" + anio%></td>
 				</tr>
 				<%
 					i++;
