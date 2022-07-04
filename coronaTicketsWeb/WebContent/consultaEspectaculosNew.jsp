@@ -16,6 +16,7 @@
 		action="ConsultaEspectaculosNew" method="post"
 		id="formConsultaEspectaculo">
 		<input type=hidden name="boton" id="boton" value="">
+		<input type=hidden name="pageNavega" id="pageNavega" value="consultaEspectaculosNew">
 		<h3>Consulta de Espectaculos</h3>
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
