@@ -137,10 +137,20 @@
 						<button class="dropdown-item" type="submit">Crear
 							Paquetes de Espectaculos</button>
 					</form>
+					
 					<div class="dropdown-divider"></div>
+					
+					<form action="AgregarEspectaculoAPaquete" method="post">
+						<button class="dropdown-item" type="submit" name="pageNavega"
+							value="agregarEspectaculoAPaquete">Agregar Espectaculo a Paquete
+						</button>
+					</form>
+					
 					<%
 					}
 					%>
+					
+					<div class="dropdown-divider"></div>
 
 					<form action="DatosConsultaPaquete" method="post">
 						<button class="dropdown-item" type="submit" name="pageNavega"

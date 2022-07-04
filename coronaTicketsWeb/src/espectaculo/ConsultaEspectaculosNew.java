@@ -48,8 +48,25 @@ public class ConsultaEspectaculosNew extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("espectaculos", listEspectaculosDt);
 		session.setAttribute("plataformaSelected", strPlataforma);
-		rd = request.getRequestDispatcher("/consultaEspectaculosNew.jsp");
-		rd.forward(request, response);
+		
+		String page = (String) request.getParameter("pageNavega");
+		switch(page){
+		case "agregarEspectaculoAPaquete":
+			rd = request.getRequestDispatcher("/agregarEspectaculoAPaquete.jsp");
+			rd.forward(request, response);
+			break;
+		case "consultaEspectaculosNew":
+			rd = request.getRequestDispatcher("/consultaEspectaculosNew.jsp");
+			rd.forward(request, response);
+			break;	
+		default:
+			rd = request.getRequestDispatcher("/index.jsp");
+			rd.forward(request, response);
+			break;
+		}
+		
+		//rd = request.getRequestDispatcher("/consultaEspectaculosNew.jsp");
+		//rd.forward(request, response);
 	}
 
 	public ArrayList<DtEspectaculo> obtenerEspectaculos(String strPlataforma) throws Exception {
