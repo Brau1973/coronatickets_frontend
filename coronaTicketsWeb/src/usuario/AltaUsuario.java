@@ -89,7 +89,7 @@ public class AltaUsuario extends HttpServlet {
 				try {
 					agregarDtEspectador(dte);
 					if(!photo.isEmpty()) {
-						pathFiles += "Espectadores";
+						//pathFiles += "Espectadores";
 						uploads = new File(pathFiles);
 						saveFile(part, uploads);
 					}
@@ -107,7 +107,7 @@ public class AltaUsuario extends HttpServlet {
 				try {
 					agregarDtArtista(dta);
 					if(!photo.isEmpty()) {
-						pathFiles += "Artistas";
+						//pathFiles += "Artistas";
 						uploads = new File(pathFiles);
 						saveFile(part, uploads);
 					}

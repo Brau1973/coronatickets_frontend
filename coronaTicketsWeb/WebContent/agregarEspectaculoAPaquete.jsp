@@ -12,15 +12,15 @@
 <%@include file="header.jsp"%>
 </head>
 <body class="headerSpace">
-	<form class="container p-5 my-5 border" action="ConsultaEspectaculosNew" method="post" id="formConsultaEspectaculo" > 
-		
+		<form class="container p-5 my-5 border" action="ConsultaEspectaculosNew" method="post" id="formConsultaEspectaculo" > 
 		<input type=hidden name="boton" id="boton" value="">
 		<input type=hidden name="pageNavega" id="pageNavega" value="agregarEspectaculoAPaquete">
-		<!-- <input type=hidden name="nombrePaquete" id="nombrePaquete" value=""> -->
+		<form class="container p-5 my-5 border"
+		action="AgregarEspectaculoAPaqueteOperation" method="post" id="formAgregarEspectaculoAPaqueteOperation">
+		<input type="hidden" name="boton" id="boton" value="">
 		<h3>Agregar Espectaculo a Paquete</h3>
-		
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="basic-addon3-nomPaquete"> Paquetes</span>
+			<span class="input-group-text" id="basic-addon3"> Paquetes</span>
 			<select class="form-control" name="nomPaquete">Seleccione Paquete</option>
 				<%
 				HttpSession s = request.getSession();
@@ -55,6 +55,94 @@
 			</select>
 		</div>
 		
+		
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
+			<select class="form-control" name="nomEspectaculo"><option selected
+					disabled>Seleccione Espectaculo</option>
+				<%
+				ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) s.getAttribute("espectaculos");
+				if (listEspectaculos != null) {
+					for (DtEspectaculo espectaculo : listEspectaculos) {
+				%>
+				<option
+					selected="selected"><%=espectaculo.getNombre()%></option>
+				<%
+				}
+					}
+				%>
+			</select>
+		</div>
+			
+		<button type="submit" class="btn btn-primary">Confirmar</button>
+		<button type="reset" class="btn btn-dark">Cancelar</button>
+	</form>
+
+<%-- 
+
+
+
+	<form class="container p-5 my-5 border" action="ConsultaEspectaculosNew" method="post" id="formConsultaEspectaculo" > 
+	<form action="AgregarEspectaculoAPaqueteOperation" method="post">
+		<input type=hidden name="boton" id="boton" value="">
+		<input type=hidden name="pageNavega" id="pageNavega" value="agregarEspectaculoAPaquete">
+		<!-- <input type=hidden name="nombrePaquete" id="nombrePaquete" value=""> -->
+		<h3>Agregar Espectaculo a Paquete</h3>
+		
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon3"> Paquetes</span>
+			<select class="form-control" name="nomPaquete">Seleccione Paquete</option>
+				<%
+				HttpSession s = request.getSession();
+				//String plataformaSelected = (String) s.getAttribute("plataformaSelected");
+				List<DtPaqueteEspectaculos> listPaquetes = (ArrayList<DtPaqueteEspectaculos>) s.getAttribute("allPaquetes");
+				for (DtPaqueteEspectaculos paquete : listPaquetes) {
+				%>
+				<option
+					selected="selected"><%=paquete.getNombre()%></option>
+				<%
+				}
+				%>
+			</select>
+		</div>
+		
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon3"> Plataformas</span>
+			<select class="form-control" name="nomPlataforma"
+				onchange="procesar('selPlataformas')"><option selected
+					disabled>Seleccione Plataforma</option>
+				<%
+				String plataformaSelected = (String) s.getAttribute("plataformaSelected");
+				ArrayList<DtPlataforma> listPlataformas = (ArrayList<DtPlataforma>) s.getAttribute("allPlataformas");
+				for (DtPlataforma plataforma : listPlataformas) {
+				%>
+				<option
+					<%if (plataformaSelected != null && plataformaSelected.equals(plataforma.getNombre())) {%>
+					selected="selected" <%}%>><%=plataforma.getNombre()%></option>
+				<%
+				}
+				%>
+			</select>
+		</div>
+		
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon3"> Espectaculos</span>
+			<select class="form-control" name="nomEspectaculo"><option selected
+					disabled>Seleccione Espectaculo</option>
+				<%
+				//String plataformaSelected = (String) s.getAttribute("plataformaSelected");
+				ArrayList<DtPlataforma> listPlataformas = (ArrayList<DtPlataforma>) s.getAttribute("allPlataformas");
+				for (DtPlataforma plataforma : listPlataformas) {
+				%>
+				<option
+					<%if (plataformaSelected != null && plataformaSelected.equals(plataforma.getNombre())) {%>
+					selected="selected" <%}%>><%=plataforma.getNombre()%></option>
+				<%
+				}
+				%>
+			</select>
+		</div>
+		
 		<%
 			ArrayList<DtEspectaculo> listEspectaculos = (ArrayList<DtEspectaculo>) s.getAttribute("espectaculos");
 			if (listEspectaculos != null) {
@@ -77,10 +165,9 @@
 				        <p class="card-text">-Url: <%=espec.getUrl()%></p>
 				        <p class="card-text">-Organizador: <%=espec.getArtista()%></p>
 				        
-				        <form action="AgregarEspectaculoAPaqueteOperation" method="post">
+<!-- 				        <form action="AgregarEspectaculoAPaqueteOperation" method="post"> -->
 							<button class="btn btn-primary" type="submit" name="nomEspectaculo"
 							value="<%=espec.getNombre()%>">Agregar</button>
-						</form>
 				        <br/>
 				      </div>
 				    </div>
@@ -93,15 +180,10 @@
 			<%
 			}
 			%>
-			
+	</form> --%>
 	<p id="demo"></p>
 	<script type="text/javascript">
 		function procesar(tipo) {
-			document.getElementById("boton").value = tipo;
-			document.getElementById("formConsultaEspectaculo").submit();
-			//  document.forms[7].submit();
-		}
-		function setNombrePaquete(nombrePaquete) {
 			document.getElementById("boton").value = tipo;
 			document.getElementById("formConsultaEspectaculo").submit();
 			//  document.forms[7].submit();
