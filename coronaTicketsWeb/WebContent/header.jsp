@@ -126,7 +126,7 @@
 
 				</div></li>
 
-			<li class="nav-item dropdown"><a
+<%-- 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-expanded="true">Paquetes</a>
 				<div class="dropdown-menu">
@@ -158,7 +158,7 @@
 							de Espectaculos</button>
 					</form>
 
-				</div></li>
+				</div></li> --%>
 
 
 			<li class="nav-item dropdown"><a

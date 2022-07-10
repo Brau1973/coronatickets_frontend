@@ -1,5 +1,4 @@
-<%@page import="publicadores.DtUsuario"%>
-<%@page import="publicadores.DtEspectaculo"%>
+<%@page import="publicadores.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

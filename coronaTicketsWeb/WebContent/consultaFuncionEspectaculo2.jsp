@@ -60,9 +60,9 @@
 		
 		<%
 			ArrayList<DtFuncion> listFunciones = (ArrayList<DtFuncion>) s.getAttribute("funciones");
+			if (listFunciones != null) {
 			String[] datosDeFunciones = (String[]) s.getAttribute("datosDeFunciones");
 			String[] artistasInvitados = (String[]) s.getAttribute("artistasInvitados");
-			if (listFunciones != null) {
 		%>
 			<div class="row row-cols-1 row-cols-md-3 g-4">
 				<%
